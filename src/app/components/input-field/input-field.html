@@ -1,0 +1,22 @@
+@if(hasLabel())
+{
+  <label uiLabel>{{label()}}</label>
+}
+<div
+  class=""
+  [ngClass]="{
+    'flex': isFlex(),
+    'icon': hasIcon(),
+    'focus': isFocus()
+  }"
+  >
+  @if(hasIcon())
+  {
+    <uiIcon [attributes]="{
+      icon: '',
+      alt: '',
+      code: ''
+    }"/>
+  }
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,11 @@
+<section title="Ballot Box" [id]="ballotBox.ballotBoxId" >
+  <h1>{{ballotBox.ballotBoxName}}</h1>
+  <p>{{ballotBox.propertyId}}</p>
+  <p> Vote Status: {{ballotBox.voteStatus}}</p>
+  <p>Total Candidates: {{ballotBox.numberOfCandiates}}</p>
+  <p>Election Year: {{ballotBox.electionYear}}</p>
+  <p>Opening Date: {{ballotBox.startDate}}</p>
+  <p>Closing Date: {{ballotBox.endDate}}</p>
+  <p>Ballot Box Status: {{ballotBox.isOpen ? 'Active' : 'Closed'}}</p>
+  <button (click)="goToCandidates(ballotBox)">Begin To Vote</button>
+</section>

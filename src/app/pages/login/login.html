@@ -1,0 +1,32 @@
+<h1>Login</h1>
+<p>Login to cast your vote</p>
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" >
+  <div>
+    <label>Student Number</label>
+    <input
+      ngModel
+      name="username"
+      #username="ngModel"
+      id="username"
+      pattern="[0-9]{6,9}"
+      type="text"
+      placeholder="Student Number"
+      required>
+  </div>
+  <div>
+    <label>Password</label>
+    <input
+      ngModel
+      minlength="6"
+      name="password"
+      #password="ngModel"
+      id="password"
+      type="password"
+      placeholder="Password"
+      required>
+  </div>
+  <button [disabled]="!loginForm.valid" type="submit">Login</button>
+</form>
+<li>
+  <a routerLink="../forgot-password">Forgot Password</a>
+</li>

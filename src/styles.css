@@ -1,1 +1,172 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root
+{
+  /* ----------------------------------------------------------------
+  -- COLORS ---
+  ---------------------------------------------------------------- */
+  --theme-color                   : black;
+  --theme-color-focus             : black;
+  --theme-border-color            : black;
+  --theme-background-color        : black;
+  --theme-border-color-focus      : black;
+
+  /* ----------------------------------------------------------------
+  -- BORDER ---
+  ---------------------------------------------------------------- */
+  --theme-border                  : 1px solid var(--theme-border-color);
+  --theme-border-radius           : 5px;
+
+  /* ----------------------------------------------------------------
+  -- SPACING & PADDING, MARGIN ---
+  ---------------------------------------------------------------- */
+  --theme-margin                  : 5px;
+  --theme-padding                 : 5px;
+  --theme-margin-large            : 10px;
+  --theme-padding-large           : 10px;
+
+  /* ----------------------------------------------------------------
+  -- WIDTHS & HEIGHTS ---
+  ---------------------------------------------------------------- */
+  --theme-width                   : 300px;
+  --theme-min-width               : 240px;
+
+  /* ----------------------------------------------------------------
+  -- FOCUS & EVENTS ---
+  ---------------------------------------------------------------- */
+  --theme-on-focus                : black;
+  --theme-out-focus               : black;
+  --theme-color-focus             : black;
+  --theme-border-color-focus      : black;
+
+  /* ----------------------------------------------------------------
+  -- INPUTS ---
+  ---------------------------------------------------------------- */
+  --theme-input-color             : black;
+  --theme-input-height            : 50px;
+  --theme-input-outline           : none;
+  --theme-input-font-size         : 1rem;
+}
+
+/* ----------------------------------------------------------------
+  -- WEBKITS ---
+  ---------------------------------------------------------------- */
+::-webkit-scrollbar
+{
+  width                           : 10px;
+  height                          : 10px;
+}
+::-webkit-scrollbar-track
+{
+  background-color                : transparent;
+}
+::-webkit-scrollbar-thumb
+{
+  border-radius                   : var(--theme-border-radius);
+  background-color                : #00438a4e;
+}
+::-webkit-scrollbar-thum:hover
+{
+  background-color                : #215184;
+}
+
+/* ----------------------------------------------------------------
+  -- BODY CONFIGURATION STYLE ---
+---------------------------------------------------------------- */
+
+[title]:hover::after
+{
+  /* top: fit-content; */
+  top                             : 10%;
+  left                            : 70px;
+  right                           : 0;
+  color                           : white;
+  width                           : fit-content;
+  padding                         : 10px;
+  content                         : attr(title);
+  z-index                         : 10;
+  position                        : absolute;
+  font-size                       : 1.1rem;
+  border-radius                   : 5px;
+  backdrop-filter                 : blur(10px);
+  background-color                : #0015247f;
+}
+
+/* ----------------------------------------------------------------
+  -- BODY CONFIGURATION STYLE ---
+---------------------------------------------------------------- */
+html
+{
+  margin                          : 0;
+  font-style                      : normal;
+  font-family                     : "Google Sans Flex", system-ui, -apple-system, sans-serif;
+  scroll-behavior                 : smooth;
+  font-variation-settings         :
+                                    "slnt" 0,
+                                    "wdth" 100,
+                                    "GRAD" 0,
+                                    "ROND" 0;
+}
+
+
+/* ----------------------------------------------------------------
+  -- BODY CONFIGURATION STYLE ---
+---------------------------------------------------------------- */
+body
+{
+  margin                           : 0;
+}
+
+/* ----------------------------------------------------------------
+  -- GLOBAL INPU STYLES ---
+---------------------------------------------------------------- */
+input[type=tel],
+input[type=url],
+input[type=text],
+input[type=date],
+input[type=file],
+input[type=time],
+input[type=week],
+input[type=email],
+input[type=month],
+input[type=image],
+input[type=number],
+input[type=search],
+input[type=submit],
+input[type=password],
+input[type=datetime-local]
+{
+  color                            : var(--theme-input-color);
+  width                            : calc(100% - 15px);
+  border                           : none;
+  height                           : var(--theme-input-height);
+  outline                          : var(--them-input-outline);
+  font-size                        : var(--theme-input-font-size);
+  transition                       : 0.5s;
+  margin-left                      : 2px;
+  padding-left                     : 10px;
+  border-radius                    : var(--theme-border-radius);
+  -webkit-transition               : 0.5s;
+  border-top-right-radius          : 3px;
+  border-bottom-right-radius       : 3px;
+}
+
+input[type=tel],
+input[type=url],
+input[type=text],
+input[type=date],
+input[type=file],
+input[type=time],
+input[type=week],
+input[type=email],
+input[type=month],
+input[type=image],
+input[type=number],
+input[type=search],
+input[type=submit],
+input[type=password],
+input[type=datetime-local]:focus
+{
+  transition                       : 0.5s;
+  -webkit-transition               : 0.5s;
+}

@@ -1,0 +1,12 @@
+<span>
+  <img
+    [style.display]="isIconFound ? 'block' : 'none'"
+    [style.borderRadius]="hasBorderRadius() ? '5px': ''"
+    [id]="Icon.id"
+    [name]="Icon.name"
+    [src]="Icon.src == '' ? Icon.src: Icon.src"
+    [alt]="Icon.alt"
+    [width]="Icon.width"
+    [height]="Icon.height"
+  >
+</span>

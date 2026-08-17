@@ -1,0 +1,10 @@
+<h1>Validate OTP</h1>
+<p>To proceed validate your OTP</p>
+<form #validateOTPForm="ngForm" (ngSubmit)="onSubmit(validateOTPForm)" >
+  <div>
+    <label>OTP</label>
+    <input ngModel #otp="ngModel" name="otp" type="text" maxlength="6" pattern="[0-9]{6}" minlength="6" placeholder="OTP" required>
+  </div>
+  <button [disabled]="!validateOTPForm.valid" type="submit">Submit</button>
+</form>
+<button (click)="resendOTP()" type="button">Resend OTP</button>

@@ -1,0 +1,50 @@
+:host
+{
+  border: var(--theme-border);
+}
+:host:focus
+{
+  color: var(--theme-color-focus);
+}
+:host(.fill)
+{
+  width: 100%;
+}
+
+:host(.outlined)
+{
+  padding-left: 20px;
+  background-color: transparent;
+  border: none;
+  border-left: 2px solid var(--theme-border-color);
+}
+:host(.outlined):focus
+{
+  background-color: white;
+  border-left:2px solid var(--theme-border-color);
+}
+
+:host(.text)
+{
+  background-color: transparent;
+  width: 100%;
+}
+
+:host(.text):focus
+{
+  background-color: white;
+  width: max-content;
+}
+:host(.text-readonly)
+{
+  background-color: transparent;
+}
+:host(.text-readonly):focus
+{
+  background-color: transparent;
+}
+
+:host(.small)
+{
+  height: 35px;
+}

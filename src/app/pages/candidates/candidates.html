@@ -1,0 +1,19 @@
+<section>
+  <h1>Ballot Paper</h1>
+  <p>Year</p>
+  <p>Property Name</p>
+  <h1>Candidates List</h1>
+  <form #ballotPaperForm="ngForm" (ngSubmit)="onSubmit(ballotPaperForm)">
+    <input ngModel type="radio" id="1" name="candidate" value="c1">
+    <label for="1">Shiko Matlala</label><br>
+    <input ngModel type="radio" id="2" name="candidate" value="c2">
+    <label for="2">Samuel Mathabatha</label><br>
+    <input ngModel type="radio" id="3" name="candidate" value="c3">
+    <label for="3">James Tau</label><br>
+    <input ngModel type="radio" id="4" name="candidate" value="c4">
+    <label for="4">Kamili Matlala</label><br>
+    <input ngModel type="radio" id="5" name="candidate" value="c5">
+    <label for="5">Ofentse Ratau</label><br>
+    <button type="submit">Submit</button>
+  </form>
+</section>

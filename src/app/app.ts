@@ -1,12 +1,24 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Loader } from './components/loader/loader';
+import { LoaderService } from './services/loader.service';
+import { Snackbar } from "./components/snackbar/snackbar";
+import { SnackbarService } from './services/snackbar.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
+  imports: [
+    Loader,
+    RouterOutlet,
+    Snackbar
+]
 })
 export class App {
-  protected readonly title = signal('Student-Voting-System-UI');
+
+  loaderService  = inject(LoaderService);
+  snackBarService = inject(SnackbarService);
+  protected readonly title = signal('TUT Voting System');
+
 }

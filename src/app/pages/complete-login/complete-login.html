@@ -1,0 +1,13 @@
+<h1>Validate OTP</h1>
+<p>To proceed validate your OTP</p>
+<form
+  #completeLoginForm="ngForm"
+  (ngSubmit)="onSubmit(completeLoginForm)"
+>
+  <div>
+    <label>OTP</label>
+    <input ngModel name="otp" type="text" placeholder="OTP">
+  </div>
+  <button type="submit">Submit</button>
+</form>
+<button type="button">Resend OTP</button>
