@@ -1,1 +1,8 @@
-<p>candidate works!</p>
+<div>
+  <p>{{candidate().getFirstName()}} {{candidate().getLastName()}} </p>
+  <p>{{candidate().getSex()}}</p>
+  <p>{{candidate().getYear()}}</p>
+  <p>{{candidate().getCampaignTitle()}}</p>
+  <p>{{candidate().getCampaignMessage()}}</p>
+  <button (click)="onSubmit(candidate().getId())">Vote</button>
+</div>

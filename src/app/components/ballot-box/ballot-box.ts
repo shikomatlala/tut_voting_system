@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,input, AfterViewInit,OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { BallotBoxService } from '../../services/ballotBox.service';
+import { ElectionService } from '../../services/election.service';
+import { PropertyService } from '../../services/property.service';
 
 @Component({
   selector: 'uiBallotBox',
@@ -8,49 +11,21 @@ import { Router } from '@angular/router';
   styleUrl: './ballot-box.css',
 })
 export class BallotBox {
-  constructor(private router: Router)
+  constructor( private router: Router)
   {
+    console.log("constructor");
 
   }
 
-  startDate = new Date();
-  endDate = new Date();
-  ballotBox: BallotBoxInterface = {
-    voteStatus: "Not Voted",
-    dateVoted: null,
-    hasVoted: false,
-    ballotBoxId: 1024,
-    propertyId: 1,
-    electionYear: 2026,
-    startDate: new Date(this.startDate.setDate(1)),
-    endDate: new Date(this.endDate.setDate(15)),
-    isOpen: true,
-    ballotBoxName: "2026-LETHABONG BOKAMOS PROJECTS BALLOT BOX",
-    numberOfCandiates: 15
-  }
-  goToCandidates(ballotBox: BallotBoxInterface)
-  {
+  elections = inject(ElectionService);
+  ballotBox = inject(BallotBoxService);
+  property = inject(PropertyService);
 
+  goToCandidates()
+  {
     console.log("clicked");
     this.router.navigate(["candidates"]);
   }
 
 }
 
-
-interface BallotBoxInterface
-{
-
-  dateVoted: Date | null,
-  voteStatus: string,
-  hasVoted:boolean,
-  ballotBoxId: number,
-  propertyId: number,
-  electionYear: number,
-  startDate: Date,
-  endDate: Date,
-  isOpen: boolean,
-  ballotBoxName: string,
-  numberOfCandiates : number
-
-}

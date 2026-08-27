@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { OTPInterface } from '../Interfaces/otp.interface';
 import { SnackbarService } from './snackbar.service';
+import { StudentSessionService } from './studentSession.service';
 
 @Service()//This tells typescript that you can use the class as an injectable depedency
 export class OTPService{
 
   private snackbarService = inject(SnackbarService);
+  private studentSessionService = inject(StudentSessionService);
   private isOTPRecieved: boolean = false;
   private isOTPValid: boolean = false;
   private http = inject(HttpClient);
@@ -35,7 +37,9 @@ export class OTPService{
 
   completeLogin(otpData:OTPInterface):Observable<any>
   {
-    this.loaderService.startLoader();
+      console.log("IS LOGIN ATTEMTPED", this.loginService.getIsLoginAttempted());
+      console.log(!this.loginService.getIsLoggedIn());
+      console.log(this.loginService.getIsOTPSent());
     if(
         !this.loginService.getIsLoggedIn() &&
         this.loginService.getIsOTPSent() &&
@@ -50,6 +54,9 @@ export class OTPService{
               this.snackbarService.setMessage(response.message);
               if(response.result)
               {
+                this.studentSessionService.setSessionKey(response.data.studentSession.sessionKey);
+                this.studentSessionService.setSessionName(response.data.studentSession.sessionName);
+                this.studentSessionService.saveToLocalStorage();
                 this.loginService.setIsLoggedIn(true);
                 this.isOTPValid = true;
                 this.isOTPRecieved = true;
@@ -67,12 +74,12 @@ export class OTPService{
             catchError((err)=>{
               if(err.error.message){
                 this.snackbarService.setMessage(err.error.message);
-                return err.error.message;
+                return of(err.error.message);
               }
               else {
                 this.snackbarService.setMessage("an error occured, please refresh the page and try again");
               }
-              return err;
+              return of(err);
             }),
             finalize(()=>{
               this.loaderService.stopLoader();
@@ -83,6 +90,9 @@ export class OTPService{
     }
     else
     {
+
+      this.snackbarService.setMessage("Cannot submit OTP before login");
+      this.snackbarService.startSnackBar();
       this.loaderService.stopLoader();
       return of("Cannot submit OTP before login");
     }
@@ -121,6 +131,7 @@ export class OTPService{
               return err.error.message;
             }
             else {
+              console.log(err);
               this.snackbarService.setMessage("an error occured, please refresh the page and try again");
             }
             return err;

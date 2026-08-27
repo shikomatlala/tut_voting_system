@@ -1,11 +1,33 @@
-<section title="Ballot Box" [id]="ballotBox.ballotBoxId" >
-  <h1>{{ballotBox.ballotBoxName}}</h1>
-  <p>{{ballotBox.propertyId}}</p>
-  <p> Vote Status: {{ballotBox.voteStatus}}</p>
-  <p>Total Candidates: {{ballotBox.numberOfCandiates}}</p>
-  <p>Election Year: {{ballotBox.electionYear}}</p>
-  <p>Opening Date: {{ballotBox.startDate}}</p>
-  <p>Closing Date: {{ballotBox.endDate}}</p>
-  <p>Ballot Box Status: {{ballotBox.isOpen ? 'Active' : 'Closed'}}</p>
-  <button (click)="goToCandidates(ballotBox)">Begin To Vote</button>
+<section title="Ballot Box" [id]="ballotBox.getId()" >
+  <!-- ELECTIONS DATA -->
+  <p>Year: {{elections.getYear()}}</p>
+  <p>My Vote Status: {{elections.getHasVoted() ? "Voted" : "Not Voted"}}</p>
+  <p>Date of vote: {{elections.getTimeBallotBoxWasOpened().toLocaleDateString()}}</p>
+  <p>Time of vote: {{elections.getTimeBallotBoxWasOpened().toLocaleTimeString()}}</p>
+
+  <!-- BALLOT BOX DATA -->
+  <p>{{ballotBox.getBallotBoxName()}}</p>
+  <p>Start Date: {{ballotBox.getStartDate().toDateString()}}</p>
+  <p>Start Time: {{ballotBox.getStartDate().toLocaleTimeString()}}</p>
+  <p>End Date: {{ballotBox.getEndDate().toDateString()}}</p>
+  <p>End Time: {{ballotBox.getEndDate().toLocaleTimeString()}}</p>
+  <p>Status : {{ballotBox.getIsOpen() ? "Open": "Closed"}}</p>
+  <p>Candidates Count: {{ballotBox.getCandidatesCount()}}</p>
+
+  <!-- VOTER DATA & PROPERTY DATA -->
+  <p>Full Name: {{"Shiko Matlala"}}</p>
+  <p>Sex: {{"Shiko Matlala"}}</p>
+  <p>Student Number : {{"Shiko Matlala"}}</p>
+  <p>Property Name: {{property.getPropertyName()}}</p>
+  <p>Property Campus Code {{property.getCampusCode()}}</p>
+
+  @if(elections.getHasVoted())
+  {
+    <button (click)="goToCandidates()">Begin To Vote {{elections.getHasVoted()}}</button>
+  }
+  @else
+  {
+
+    <button disabled>Vote Completed</button>
+  }
 </section>
