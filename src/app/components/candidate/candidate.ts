@@ -16,13 +16,8 @@ export class Candidate {
   onSubmit(candidateId:number)
   {
     this.election.voteForCandidate(candidateId).subscribe((result:any)=>{
-
       console.log(result);
-
     });
-    console.log("You are voting for this candidate", candidateId);
-
-
   }
 
 }

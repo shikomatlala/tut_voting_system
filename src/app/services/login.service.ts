@@ -107,7 +107,6 @@ export class LoginService {
                 map((response:any)=>{
                   if(response.result)
                   {
-                    console.log("IS LOGGED IN", response.data.isLoggedIn);
                     this.setIsLoggedIn(response.data.isLoggedIn);
                     this.setIsOTPSent(response.data.isOTPSent);
                     this.setIsLoginAttempted(response.data.isLoginAttempted);

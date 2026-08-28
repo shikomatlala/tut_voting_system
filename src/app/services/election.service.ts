@@ -41,6 +41,7 @@ export class ElectionService {
   private ballotBoxId = signal<number>(0);
   private hasStartedTheVote = signal<boolean>(false);
   private hasCompletedTheVote = signal<boolean>(false);
+
   private timeBallotBoxWasOpened = signal<Date>( new Date());
   private timeBallotBoxWasClosed = signal<Date>(new Date());
   private year = signal<string>("");
@@ -96,7 +97,6 @@ export class ElectionService {
 
   voteForCandidate(candidateId:number) : Observable<any>
   {
-    console.log(this.studentPropertyId());
     const data = {
       candidateId: candidateId,
       studentPropertyId: this.studentPropertyId()
@@ -107,28 +107,39 @@ export class ElectionService {
       .post(this.url + "/cast-vote" + this.studentSessionService.getSessionURLQuery(), data)
       .pipe(
         map((response:any)=>{
-          console.log(response);
+          this.snackbarService.setMessage(response.message);
+          if(response.status) {
+            this.router.navigate(['vote-complete']);
+          }
         }),
         catchError((err:any)=>{
-          console.log(err);
+          if (err.error) {
+            this.snackbarService.setMessage(err.error.message);
+            this.router.navigate(['login']);
+            return of(err.error.message);
+          }
+          else {
+            console.log(err);
+            this.snackbarService.setMessage("An error occured, please refresh the page");
+          }
           return of(err);
         }),
         finalize(()=>{
-
+          this.loaderService.stopLoader();
+          this.snackbarService.startSnackBar();
         })
       )
 
   }
 
-  getVote(): Observable<any> {
+  getVote(snackBarMessage?:string): Observable<any> {
     this.loaderService.startLoader();
     this.snackbarService.stopSnackBar();
-    this.loaderService.startLoader();
     return this.http
       .get(this.url + this.studentSessionService.getSessionURLQuery())
       .pipe(
         map((response: any) => {
-          this.snackbarService.setMessage(response.message);
+          this.snackbarService.setMessage(snackBarMessage?  snackBarMessage : response.message);
           if (response.data.election !== undefined) {
             //-------------------------------------------------------
             // SET ELECTIONS DATA
@@ -156,7 +167,6 @@ export class ElectionService {
             // SET BALLOT BOX DATA
             //-------------------------------------------------------
             const ballotBox = election.ballot_box;
-            console.log("ELECTION", election);
             this.ballotBox.setPropertyId(ballotBox.property_id);
             this.ballotBox.setBallotBoxName(ballotBox.ballot_box_name);
             this.ballotBox.setElectionYear(ballotBox.election_year);
@@ -191,7 +201,6 @@ export class ElectionService {
         }),
         catchError((err: any) => {
           if (err.error) {
-            console.log("ERROR", err.error);
             this.snackbarService.setMessage(err.error.message);
             this.router.navigate(['login']);
             return of(err.error.message);

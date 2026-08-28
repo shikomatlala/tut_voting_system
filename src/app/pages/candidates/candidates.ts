@@ -20,7 +20,6 @@ export class Candidates implements OnInit {
   ballotBox = inject(BallotBoxService);
   constructor(private router: Router)
   {
-    console.log(this.ballotBox.getCandidates());
   }
 
   onSubmit(ballotPaperForm: NgForm)
@@ -29,7 +28,6 @@ export class Candidates implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("CANDIDATES", this.ballotBox.getCandidates());
   }
 
 }

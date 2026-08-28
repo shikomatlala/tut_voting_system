@@ -21,13 +21,13 @@
   <p>Property Name: {{property.getPropertyName()}}</p>
   <p>Property Campus Code {{property.getCampusCode()}}</p>
 
-  @if(elections.getHasVoted())
+  @if(!elections.getHasVoted())
   {
-    <button (click)="goToCandidates()">Begin To Vote {{elections.getHasVoted()}}</button>
+    <button (click)="goToCandidates()">Begin To Vote </button>
   }
   @else
   {
 
-    <button disabled>Vote Completed</button>
+    <button disabled>Vote Completed </button>
   }
 </section>
