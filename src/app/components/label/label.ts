@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'label[uiLabel]',
+  selector: 'label[ui-label]',
   imports: [],
   templateUrl: './label.html',
   styleUrl: './label.css',

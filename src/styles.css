@@ -5,11 +5,11 @@
   /* ----------------------------------------------------------------
   -- COLORS ---
   ---------------------------------------------------------------- */
-  --theme-color                   : black;
-  --theme-color-focus             : black;
-  --theme-border-color            : black;
-  --theme-background-color        : black;
-  --theme-border-color-focus      : black;
+  --theme-color                   : #004e93;
+  --theme-color-focus             : #004e93;
+  --theme-border-color            : #e7e7e7;
+  --theme-background-color        : white;
+  --theme-border-color-focus      : #004393;
 
   /* ----------------------------------------------------------------
   -- BORDER ---
@@ -34,10 +34,9 @@
   /* ----------------------------------------------------------------
   -- FOCUS & EVENTS ---
   ---------------------------------------------------------------- */
-  --theme-on-focus                : black;
+  --theme-on-focus                : var(--theme-color-focus);
   --theme-out-focus               : black;
-  --theme-color-focus             : black;
-  --theme-border-color-focus      : black;
+  --theme-color-focus             : var(--theme-color);
 
   /* ----------------------------------------------------------------
   -- INPUTS ---
@@ -137,36 +136,78 @@ input[type=password],
 input[type=datetime-local]
 {
   color                            : var(--theme-input-color);
-  width                            : calc(100% - 15px);
+  width                            : calc(100% - 50px);
   border                           : none;
   height                           : var(--theme-input-height);
   outline                          : var(--them-input-outline);
   font-size                        : var(--theme-input-font-size);
   transition                       : 0.5s;
+  padding:0;
   margin-left                      : 2px;
-  padding-left                     : 10px;
+  padding-left                     : 50px;
   border-radius                    : var(--theme-border-radius);
   -webkit-transition               : 0.5s;
   border-top-right-radius          : 3px;
   border-bottom-right-radius       : 3px;
+  grid-area: input;
+  margin:0;
 }
 
-input[type=tel],
-input[type=url],
-input[type=text],
-input[type=date],
-input[type=file],
-input[type=time],
-input[type=week],
-input[type=email],
-input[type=month],
-input[type=image],
-input[type=number],
-input[type=search],
-input[type=submit],
-input[type=password],
+input[type=tel]:focus,
+input[type=url]:focus,
+input[type=text]:focus,
+input[type=date]:focus,
+input[type=file]:focus,
+input[type=time]:focus,
+input[type=week]:focus,
+input[type=email]:focus,
+input[type=month]:focus,
+input[type=image]:focus,
+input[type=number]:focus,
+input[type=search]:focus,
+input[type=submit]:focus,
+input[type=password]:focus,
 input[type=datetime-local]:focus
 {
+  color: var(--theme-color);
   transition                       : 0.5s;
   -webkit-transition               : 0.5s;
+}
+
+/* Target the parent div when the its internal input is on focus*/
+div:has(input[type=text]:focus),
+div:focus-within
+{
+
+  border:  1px solid var(--theme-color);
+  transition                       : 0.5s;
+  -webkit-transition               : 0.5s;
+}
+
+
+h1{
+  color: var(--theme-color);
+  font-weight:400;
+}
+
+p{
+  color: var(--theme-color);
+}
+@keyframes oscillate {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(0px,0px) rotate(10deg); }
+  50% { transform: translate(0px,0px) rotate(0deg); }
+  75% { transform: translate(0px,0px) rotate(-10deg); }
+  100% { transform: translate(0px,0px) rotate(0deg); }
+}
+
+
+@keyframes pulsade
+{
+    0% {transform: scale(1.0);}
+    25% {transform: scale(1.1); }
+    50% {transform: scale(1.3); }
+    75% {transform: scale(1.1); }
+    100% {transform: scale(1.0); }
+
 }

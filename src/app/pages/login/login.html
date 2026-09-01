@@ -1,10 +1,31 @@
-<h1>Login</h1>
-<p>Login to cast your vote</p>
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" >
-  <div>
-    <label>Student Number</label>
+<section style="width:calc(100dvw - 40px); height: calc(100dvh - 40px); padding: 20px; display: grid; justify-items: center;align-content: start;">
+  <div name="heading" style="display:grid;justify-items: center;">
+    <ui-icon
+      code="tutFullLogo"
+      id="tut-logo"
+      name="tut-logo"
+      width="240"
+      height="80"
+      alt="TUT Logo"
+      type="logo"
+      />
+    <h1>Login</h1>
+    <p>Login to cast your vote</p>
+  </div>
+<form
+  ui-form
+  #loginForm="ngForm"
+  (ngSubmit)="onSubmit(loginForm)" >
+  <div
+    ui-input-field
+    iconCode="person"
+    [iconType]="isStudentNumberInputSelected() ? 'blue': 'grey'"
+    [isFocus]="false"
+    [hasIcon]="true" >
     <input
       ngModel
+      (focus)="isStudentNumberInputSelected.set(true)"
+      (focusout)="isStudentNumberInputSelected.set(false)"
       name="username"
       #username="ngModel"
       id="username"
@@ -13,20 +34,29 @@
       placeholder="Student Number"
       required>
   </div>
-  <div>
-    <label>Password</label>
-    <input
-      ngModel
-      minlength="6"
-      name="password"
-      #password="ngModel"
-      id="password"
-      type="password"
-      placeholder="Password"
-      required>
+  <div
+    ui-input-field
+    iconCode="lock"
+    [isPasswordType]="true"
+    [iconType]="isPasswordInputSelected()? 'blue': 'grey'"
+    [isFocus]="false"
+    [hasIcon]="true" >
+      <input
+        (focus)="isPasswordInputSelected.set(true)"
+        (focusout)="isPasswordInputSelected.set(false)"
+        ngModel
+        minlength="6"
+        aria-describedby="passwordrules"
+        name="password"
+        #password="ngModel"
+        id="password"
+        [type]="passwordController.getIsShowPassword() ? 'text' : 'password'"
+        placeholder="Password"
+        required>
   </div>
   <button [disabled]="!loginForm.valid" type="submit">Login</button>
 </form>
 <li>
   <a routerLink="../forgot-password">Forgot Password</a>
 </li>
+</section>

@@ -1,22 +1,30 @@
-@if(hasLabel())
+@if(hasIcon())
 {
-  <label uiLabel>{{label()}}</label>
+  <ui-icon
+    class="icon"
+    [type]="iconType()"
+    [code]="iconCode()"
+  />
 }
-<div
-  class=""
-  [ngClass]="{
-    'flex': isFlex(),
-    'icon': hasIcon(),
-    'focus': isFocus()
-  }"
-  >
-  @if(hasIcon())
-  {
-    <uiIcon [attributes]="{
-      icon: '',
-      alt: '',
-      code: ''
-    }"/>
-  }
-  <ng-content></ng-content>
-</div>
+<ng-content></ng-content>
+@if(isPasswordType())
+{
+  <button
+    class="show-hide-password-button"
+    [ngClass]="{
+      'isShowPasswordButtonFocused()' : ''
+
+    }"
+    (click)="passwordControllor.toggleShowPassword()"
+    (focus)="isShowPasswordButtonFocused.set(true)"
+    (focusout)="isShowPasswordButtonFocused.set(false)"
+    (focusout)="passwordControllor.hidePassword()"
+    type="button">
+    <ui-icon
+      class="icon"
+      [code]="passwordControllor.getIsShowPassword() ? 'visibility' : 'visibilityOff'"
+      [type]="isShowPasswordButtonFocused() ? 'blue' : 'grey'"
+      />
+
+  </button>
+}

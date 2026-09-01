@@ -1,0 +1,9 @@
+:host
+{
+  user-select: none;
+  height: fit-content;
+  width: fit-content;
+  padding:0;
+  margin:0;
+  display: block;
+}

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
-  selector: 'uiSnackbar',
+  selector: 'ui-snackbar',
   imports: [],
   templateUrl: './snackbar.html',
   styleUrl: './snackbar.css',
