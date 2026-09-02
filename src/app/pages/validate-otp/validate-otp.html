@@ -1,10 +1,54 @@
-<h1>Validate OTP</h1>
-<p>To proceed validate your OTP</p>
-<form #validateOTPForm="ngForm" (ngSubmit)="onSubmit(validateOTPForm)" >
-  <div>
-    <label>OTP</label>
-    <input ngModel #otp="ngModel" name="otp" type="text" maxlength="6" pattern="[0-9]{6}" minlength="6" placeholder="OTP" required>
+
+<section  class="page-section">
+  <div ui-card class="header" name="heading">
+    <ui-header/>
+    <h1>Validate OTP</h1>
+    <p style="text-align: center;">
+      Dear student.<br>An OTP code has been sent to your <strong>tut4life.ac.za</strong> email address please enter that code to proceed.
+    </p>
   </div>
-  <button [disabled]="!validateOTPForm.valid" type="submit">Submit</button>
+<form
+  ui-form
+  #otpForm="ngForm"
+  (ngSubmit)="onSubmit(otpForm)"
+  >
+  <div
+    ui-input-field
+    iconCode="tag"
+    [iconType]="isOTPInputSelected() ? 'blue': 'grey'"
+    [hasIcon]="true" >
+    <input
+      ngModel
+      /* style="font-size: large;letter-spacing: 5px;" */
+      (focus)="isOTPInputSelected.set(true)"
+      (focusout)="isOTPInputSelected.set(false)"
+      name="otp"
+      #otp="ngModel"
+      maxlength="6"
+      id="otp"
+      pattern="[0-9]{6}"
+      minlength="6"
+      type="text"
+      placeholder="OTP"
+      required>
+  </div>
+  <button
+    ui-button
+    class="width-200px"
+    [ngClass]="{'disabled' : !otpForm.valid}"
+    /* [disabled]="!otpForm.valid" */
+    (click)=" !otpForm.valid ? showError(otpForm) : ''"
+    type="submit"
+    >
+    Submit
+  </button>
 </form>
-<button (click)="resendOTP()" type="button">Resend OTP</button>
+<button
+  ui-button
+  [ngClass]="{'disabled': isResendPasswordLocked()}"
+  (click)="resendOTP()"
+  /* [disabled]="isResendPasswordLocked()" */
+  type="button">
+    Resend OTP
+    {{ isResendPasswordLocked() ?  'in ' + countDownSecondsLeft() : ''}}
+</button>

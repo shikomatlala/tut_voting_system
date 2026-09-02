@@ -9,6 +9,13 @@ import { LoaderService } from '../../services/loader.service';
 import { Icon } from "../../components/icon/icon";
 import { UiForm } from "../../components/ui-form/ui-form";
 import { PasswordControllerService } from '../../services/password-controller.service';
+import { UiButton } from "../../components/ui-button/ui-button";
+import { NgClass } from '@angular/common';
+import { Snackbar } from '../../components/snackbar/snackbar';
+import { SnackbarService } from '../../services/snackbar.service';
+import { loginGuard } from '../../guards/login-guard';
+import { Header } from "../../components/header/header";
+import { CardModule } from "../../components/card/card.module";
 
 
 @Component({
@@ -16,9 +23,12 @@ import { PasswordControllerService } from '../../services/password-controller.se
   imports: [
     FormsModule,
     RouterLink,
-    Icon,
     UiForm,
-    InputField
+    InputField,
+    UiButton,
+    NgClass,
+    Header,
+    CardModule
 ],
   templateUrl: './login.html',
   styleUrl: './login.css',
@@ -31,6 +41,7 @@ export class Login {
   loginResponseMessage = signal<String>("");
   isPasswordInputSelected = signal<boolean>(false);
   isStudentNumberInputSelected= signal<boolean>(false);
+  snackbar = inject(SnackbarService);
 
 
   passwordController = inject(PasswordControllerService)
@@ -48,6 +59,19 @@ export class Login {
         this.loginResponseMessage.set(message);
       });
     }
+  }
+  showError(loginForm: NgForm)
+  {
+    var controls = loginForm.controls;
+    if(!controls['password'].valid)
+    {
+      this.snackbar.setMessage("please enter password");
+    }
+    if(!controls['username'].valid)
+    {
+      this.snackbar.setMessage("please enter student number");
+    }
+    this.snackbar.startSnackBar();
   }
 
 }

@@ -3,10 +3,13 @@ import { Router } from '@angular/router';
 import { BallotBoxService } from '../../services/ballotBox.service';
 import { ElectionService } from '../../services/election.service';
 import { PropertyService } from '../../services/property.service';
+import { Icon } from '../icon/icon';
 
 @Component({
   selector: 'uiBallotBox',
-  imports: [],
+  imports: [
+    Icon
+  ],
   templateUrl: './ballot-box.html',
   styleUrl: './ballot-box.css',
 })

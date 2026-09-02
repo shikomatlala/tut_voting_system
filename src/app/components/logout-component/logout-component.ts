@@ -1,9 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { LoginService } from '../../services/login.service';
+import { UiButton } from '../ui-button/ui-button';
 
 @Component({
-  selector: 'uiLogout',
-  imports: [],
+  selector: 'ui-logout',
+  imports: [
+    UiButton
+  ],
   templateUrl: './logout-component.html',
   styleUrl: './logout-component.css',
 })

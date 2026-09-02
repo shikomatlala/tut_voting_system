@@ -1,0 +1,8 @@
+Document explains how to create svg file
+
+1. download the svg
+2. change to the icons directory
+3. run the command tree /f > items.txt
+4. copy the items in the items list
+5. add the items in the icons list typescript.
+

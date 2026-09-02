@@ -5,5 +5,7 @@
   width: fit-content;
   padding:0;
   margin:0;
-  display: block;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }

@@ -1,14 +1,6 @@
-<section style="width:calc(100dvw - 40px); height: calc(100dvh - 40px); padding: 20px; display: grid; justify-items: center;align-content: start;">
-  <div name="heading" style="display:grid;justify-items: center;">
-    <ui-icon
-      code="tutFullLogo"
-      id="tut-logo"
-      name="tut-logo"
-      width="240"
-      height="80"
-      alt="TUT Logo"
-      type="logo"
-      />
+<section  class="page-section">
+  <div ui-card class="header" name="heading">
+    <ui-header/>
     <h1>Login</h1>
     <p>Login to cast your vote</p>
   </div>
@@ -20,7 +12,6 @@
     ui-input-field
     iconCode="person"
     [iconType]="isStudentNumberInputSelected() ? 'blue': 'grey'"
-    [isFocus]="false"
     [hasIcon]="true" >
     <input
       ngModel
@@ -39,7 +30,6 @@
     iconCode="lock"
     [isPasswordType]="true"
     [iconType]="isPasswordInputSelected()? 'blue': 'grey'"
-    [isFocus]="false"
     [hasIcon]="true" >
       <input
         (focus)="isPasswordInputSelected.set(true)"
@@ -54,9 +44,20 @@
         placeholder="Password"
         required>
   </div>
-  <button [disabled]="!loginForm.valid" type="submit">Login</button>
+  <button
+    ui-button
+    class="width-200px"
+    [ngClass]="{'disabled' : !loginForm.valid}"
+    /* [disabled]="!loginForm.valid" */
+    (click)=" !loginForm.valid ? showError(loginForm) : ''"
+    type="submit"
+    >
+    Login
+  </button>
 </form>
-<li>
-  <a routerLink="../forgot-password">Forgot Password</a>
-</li>
+<ul>
+  <li>
+    <a routerLink="../forgot-password">Forgot Password?</a>
+  </li>
+</ul>
 </section>

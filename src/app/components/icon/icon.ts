@@ -4,6 +4,7 @@ import { IconConstanctInterface } from '../../Interfaces/iconConstant.interface'
 import { BLUE_ICONS } from '../../constants/icon-constants/blue.icons';
 import { GREY_ICONS } from '../../constants/icon-constants/grey.icons';
 import { LOGO_ICONS } from '../../constants/icon-constants/logo.icon';
+import { WHITE_ICONS } from '../../constants/icon-constants/white.icons';
 
 @Component({
   selector: 'ui-icon',
@@ -58,6 +59,8 @@ export class Icon  implements OnInit{
     //-----------------------------------------------------------------
     switch(this.type())
     {
+      case "white"           : this.iconList = WHITE_ICONS;
+        break;
       case "logo"           : this.iconList = LOGO_ICONS;
         break;
       case "blue"           : this.iconList = BLUE_ICONS;

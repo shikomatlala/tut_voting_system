@@ -1,25 +1,91 @@
-<section title="Ballot Box" [id]="ballotBox.getId()" >
-  <!-- ELECTIONS DATA -->
-  <p>Year: {{elections.getYear()}}</p>
-  <p>My Vote Status: {{elections.getHasVoted() ? "Voted" : "Not Voted"}}</p>
-  <p>Date of vote: {{elections.getTimeBallotBoxWasOpened().toLocaleDateString()}}</p>
-  <p>Time of vote: {{elections.getTimeBallotBoxWasOpened().toLocaleTimeString()}}</p>
 
-  <!-- BALLOT BOX DATA -->
-  <p>{{ballotBox.getBallotBoxName()}}</p>
-  <p>Start Date: {{ballotBox.getStartDate().toDateString()}}</p>
-  <p>Start Time: {{ballotBox.getStartDate().toLocaleTimeString()}}</p>
-  <p>End Date: {{ballotBox.getEndDate().toDateString()}}</p>
-  <p>End Time: {{ballotBox.getEndDate().toLocaleTimeString()}}</p>
-  <p>Status : {{ballotBox.getIsOpen() ? "Open": "Closed"}}</p>
-  <p>Candidates Count: {{ballotBox.getCandidatesCount()}}</p>
+  <div class="ballot-box-containter" title="Ballot Box" [id]="ballotBox.getId()">
+    <div class="ballot-box-content">
+      <div>
+        <!-- BALLOT BOX DATA -->
+        <div class="ballot-box-content-container">
+          <p class="ballot-box-content-header">
+            <span>Ballot Box Information</span>
+            <ui-icon code="arrowDropDown" type="grey"/>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="howToVote" type="blue"/>
+            <span>Ballot Box Name</span>
+            <span class="justify-end"> {{ballotBox.getBallotBoxName()}}</span>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="info" type="blue"/>
+            <span>Status</span>
+            <span class="justify-end">{{ballotBox.getIsOpen() ? "open": "closed"}}</span>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="dateRange" type="blue"/>
+            <span>Year</span>
+            <span class="justify-end">{{elections.getYear()}}</span>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="dateRange" type="blue"/>
+            <span> Start date </span>
+            <span class="justify-end">{{ballotBox.getStartDate().toDateString()}}</span>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="dateRange" type="blue"/>
+            <span> Closing date</span>
+            <span class="justify-end">{{ballotBox.getEndDate().toDateString()}}</span>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="calendarClock" type="blue"/>
+            <span> Closing time</span>
+            <span class="justify-end">{{ballotBox.getEndDate().toLocaleTimeString()}}</span>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="group" type="blue"/>
+            <span>Candidates Count </span>
+            <span class="justify-end">{{ballotBox.getCandidatesCount()}}</span>
+          </p>
+        </div>
+        <!-- VOTE RECORD -->
+        <div class="ballot-box-content-container">
+         <p class="ballot-box-content-header">
+            <span>Your vote information</span>
+            <ui-icon code="arrowDropDown" type="grey"/>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon [code]="elections.getHasVoted() ?  'checkCircle' : 'error'" type="blue"/>
+            <span> My Vote Status </span>
+            <span class="justify-end"> {{elections.getHasVoted() ? "Voted" : "Not Voted"}} </span>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="dateRange" type="blue"/>
+            <span> Date of vote </span>
+            <span class="justify-end">{{elections.getTimeBallotBoxWasOpened().toDateString()}}</span>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="calendarClock" type="blue"/>
+            <span> Time of vote </span>
+            <span class="justify-end">{{elections.getTimeBallotBoxWasOpened().toLocaleTimeString()}}</span>
+          </p>
+        </div>
+        <div class="ballot-box-content-container">
+         <p class="ballot-box-content-header">
+            <span>Property Information</span>
+            <ui-icon code="arrowDropDown" type="grey"/>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="apartment" type="blue"/>
+            <span> Property Name</span>
+            <span class="justify-end">{{property.getPropertyName()}}</span>
+          </p>
+          <p class="ballot-box-content-list">
+            <ui-icon code="school" type="blue"/>
+            <span>Campus Code</span>
+            <span class="justify-end">{{property.getCampusCode()}}</span>
+          </p>
+        </div>
+      </div>
 
-  <!-- VOTER DATA & PROPERTY DATA -->
-  <p>Full Name: {{"Shiko Matlala"}}</p>
-  <p>Sex: {{"Shiko Matlala"}}</p>
-  <p>Student Number : {{"Shiko Matlala"}}</p>
-  <p>Property Name: {{property.getPropertyName()}}</p>
-  <p>Property Campus Code {{property.getCampusCode()}}</p>
+    </div>
+  </div>
 
   @if(!elections.getHasVoted())
   {
@@ -30,4 +96,3 @@
 
     <button disabled>Vote Completed </button>
   }
-</section>

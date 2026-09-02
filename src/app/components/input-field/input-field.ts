@@ -19,7 +19,6 @@ export class InputField {
   readonly BLANK_ICON = { type: "", src: "", code: "" , alt: "" };
   iconCode = input<string>("");
   iconType = input<string>("");
-  isFocus = input.required<boolean>();
   hasIcon = input<boolean>(false);
   isPasswordType = input<boolean>(false);
   isShowPasswordButtonFocused = signal<boolean>(false);

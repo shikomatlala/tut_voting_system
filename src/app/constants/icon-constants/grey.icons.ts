@@ -108,6 +108,7 @@ export const GREY_ICONS =
     { type: "grey", code: "sortByAlpha", src: "assets/grey/sortByAlpha.svg", alt: "sortByAlpha icon"},
     { type: "grey", code: "stairs2", src: "assets/grey/stairs2.svg", alt: "stairs2 icon"},
     { type: "grey", code: "swapVert", src: "assets/grey/swapVert.svg", alt: "swapVert icon"},
+    { type: "grey", code: "tag", src: "assets/grey/tag.svg", alt: "tag icon"},
     { type: "grey", code: "textAd", src: "assets/grey/textAd.svg", alt: "timeLine icon"},
     { type: "grey", code: "timeLine", src: "assets/grey/timeLine.svg", alt: "timeLine icon"},
     { type: "grey", code: "today", src: "assets/grey/today.svg", alt: "today icon"},

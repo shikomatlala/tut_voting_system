@@ -6,6 +6,7 @@ import { Snackbar } from "./components/snackbar/snackbar";
 import { SnackbarService } from './services/snackbar.service';
 import { StudentSessionService } from './services/studentSession.service';
 import { LoginService } from './services/login.service';
+import { Footer } from "./components/footer/footer";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ import { LoginService } from './services/login.service';
   imports: [
     Loader,
     RouterOutlet,
-    Snackbar
+    Snackbar,
+    Footer
 ]
 })
 export class App implements OnInit{

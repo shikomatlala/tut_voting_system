@@ -6,7 +6,7 @@ import {
  } from '@angular/core';
 
 @Component({
-  selector: 'div[uiCard]',
+  selector: 'div[ui-card]',
   standalone: false,
   templateUrl: './card.html',
   styleUrl: './card.css',

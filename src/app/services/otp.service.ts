@@ -127,7 +127,6 @@ export class OTPService{
             this.router.navigate(["login"]);
             if(err.error.message){
               this.snackbarService.setMessage(err.error.message);
-              // this.router.navigate(["login"]);
               return err.error.message;
             }
             else {

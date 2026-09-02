@@ -6,9 +6,10 @@
   -- COLORS ---
   ---------------------------------------------------------------- */
   --theme-color                   : #004e93;
-  --theme-color-focus             : #004e93;
+  --theme-color-focus             : #023664;
   --theme-border-color            : #e7e7e7;
-  --theme-background-color        : white;
+  --theme-background-color        : #004e93;
+  --theme-background-color-focus  : #002b51;
   --theme-border-color-focus      : #004393;
 
   /* ----------------------------------------------------------------
@@ -43,6 +44,17 @@
   ---------------------------------------------------------------- */
   --theme-input-color             : black;
   --theme-input-height            : 50px;
+  --theme-input-outline           : none;
+  --theme-input-font-size         : 1rem;
+
+  /* ----------------------------------------------------------------
+  -- BUTTONS ---
+  ---------------------------------------------------------------- */
+  --theme-button-color                  : white;
+  --theme-button-background-color       :  var(--theme-color);
+  --theme-button-background-color-focus: var(--theme-background-color-focus);
+  --theme-disabled-button-background-color: grey;
+  --theme-disabled-button-background-color-focus: darkgrey;
   --theme-input-outline           : none;
   --theme-input-font-size         : 1rem;
 }
@@ -210,4 +222,32 @@ p{
     75% {transform: scale(1.1); }
     100% {transform: scale(1.0); }
 
+}
+
+ul
+{
+  list-style: none;
+  list-style-type: none;
+  padding:0;
+}
+
+li
+{
+  color: var(--theme-color);
+}
+
+a{
+  color: var(--theme-color);
+}
+
+.page-section
+{
+  margin-top: 10px;
+  width:calc(100dvw - 40px);
+  height: calc(100dvh - 110px);
+  overflow: scroll;
+  padding: 20px;
+  display: grid;
+  justify-items: center;
+  align-content: start;
 }

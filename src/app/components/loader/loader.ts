@@ -4,7 +4,6 @@ import { Icon } from "../icon/icon";
 
 @Component({
   selector: 'ui-loader',
-  imports: [Icon],
   templateUrl: './loader.html',
   styleUrl: './loader.css',
 })

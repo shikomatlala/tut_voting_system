@@ -3,10 +3,11 @@ import { BallotBox } from "../../components/ballot-box/ballot-box";
 import { ElectionService } from '../../services/election.service';
 import { LogoutComponent } from "../../components/logout-component/logout-component";
 import { BallotBoxService } from '../../services/ballotBox.service';
+import { Header } from "../../components/header/header";
 
 @Component({
   selector: 'app-elections',
-  imports: [BallotBox, LogoutComponent],
+  imports: [BallotBox, LogoutComponent, Header],
   templateUrl: './elections.html',
   styleUrl: './elections.css',
 })

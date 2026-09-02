@@ -1,0 +1,71 @@
+:host
+{
+  user-select: none;
+  -webkit-user-drag: none;
+  background-color: var(--theme-button-background-color);
+  border-radius: var(--theme-border-radius);
+  user-select: none;
+  transition: background-color 0.2 ease-in;
+  word-break: keep-all;
+  animation: fade-in 1s;
+  padding: 8px;
+  outline: none;
+  display: flex;
+  border: 1px solid transparent;
+  cursor: pointer;
+  align-items: center;
+  gap:10px;
+  margin: 5px;
+  color: var(--theme-button-color);
+  width: fit-content;
+  font-size: 1rem;
+}
+:host(.circle){
+
+  border-radius: 50px;
+  background-color: aliceblue;
+  height: 50px;
+  width: 50px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+:host(.icon)
+{
+
+
+
+}
+
+:host(.width-200px)
+{
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+}
+:host(:hover)
+{
+  background-color: var(--theme-button-background-color-focus);
+}
+
+:host(:focus)
+{
+  background-color: var(--theme-button-background-color-focus);
+}
+:host(.disabled)
+{
+
+  background-color: var(--theme-disabled-button-background-color);
+  /* background-color: black; */
+}
+
+:host(.disabled:focus)
+{
+  background-color: var(--theme-disabled-button-background-color);
+}
+
+:host(.disabled:hover)
+{
+  background-color: var(--theme-disabled-button-background-color);
+}

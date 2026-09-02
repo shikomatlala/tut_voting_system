@@ -149,7 +149,7 @@ export class LoginService {
       .post(this.url + "/initiate", loginCredentials)
         .pipe(
           map((response:any)=>{
-            this.snackbarService.setMessage(response.message);
+            this.snackbarService.setMessage("Login initiated successfully");
             if(response.result)
             {
               this.isOTPSent = true;
@@ -178,8 +178,6 @@ export class LoginService {
   }
   setIsLoggedIn(isLoggedIn:boolean)
   {
-    //Set LocalStorage
-    // localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
     this.isLoggedIn = isLoggedIn;
   }
   setIsLoginAttempted(value:boolean)
