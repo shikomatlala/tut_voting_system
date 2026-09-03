@@ -1,5 +1,13 @@
-<h1>Vote Successfully Cast</h1>
 
-<p>Dear Student your vote has been added to the ballot box</p>
-<p>Your vote receipt will be sent to you via email</p>
-<button (click)="goBackHome()">Close</button>
+<section class="page-section">
+<div style="display:flex; width:100%;">
+  <ui-header style="width:100%; justify-items: start;"></ui-header>
+  <ui-logout style="width:100%; justify-items: end;" ></ui-logout>
+</div>
+<div style="display:grid; justify-items: center;">
+  <h2>Vote Successfully Cast</h2>
+  <p style="text-align:center">Dear <strong>{{studentService.getFirstName()}} {{studentService.getLastName()}}</strong> your vote has been added to the ballot box.</p>
+  <p style="text-align: center;">Your vote receipt will be sent to your <strong>tut4life.ac.za</strong> email address</p>
+  <button ui-button (click)="goBackHome()">Close</button>
+</div>
+</section>

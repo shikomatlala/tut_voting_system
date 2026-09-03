@@ -11,6 +11,7 @@ import { LoginService } from "./login.service";
 import { Router } from "@angular/router";
 import { BallotBoxService } from "./ballotBox.service";
 import { PropertyService } from "./property.service";
+import { StudentService } from "./student.service";
 
 
 @Injectable({ providedIn: "root" })
@@ -22,6 +23,7 @@ export class ElectionService {
   // **** INJECTED SERVICES ****
   //-----------------------------------
   private snackbarService = inject(SnackbarService);
+  private studentService = inject(StudentService);
   private studentSessionService = inject(StudentSessionService);
   private loaderService = inject(LoaderService);
   private loginService = inject(LoginService);
@@ -107,6 +109,11 @@ export class ElectionService {
       .post(this.url + "/cast-vote" + this.studentSessionService.getSessionURLQuery(), data)
       .pipe(
         map((response:any)=>{
+          const studentData = response.data.election.student;
+          this.studentService.setEmailAddress(studentData.email_address);
+          this.studentService.setFirstName(studentData.first_name);
+          this.studentService.setLastName(studentData.last_name);
+          this.studentService.setStudentNumber(studentData.student_number);
           this.snackbarService.setMessage(response.message);
           if(response.status) {
             this.router.navigate(['vote-complete']);

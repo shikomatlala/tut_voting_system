@@ -200,6 +200,12 @@ input[type=datetime-local]:focus
 h1{
   color: var(--theme-color);
   font-weight:400;
+  text-align: center;
+}
+h2{
+  color: var(--theme-color);
+  font-weight:300;
+  text-align: center;
 }
 
 p{
