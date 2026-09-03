@@ -187,8 +187,8 @@ input[type=datetime-local]:focus
 }
 
 /* Target the parent div when the its internal input is on focus*/
-div:has(input[type=text]:focus),
-div:focus-within
+.ui-div:has(input[type=text]:focus),
+.ui-div:focus-within
 {
 
   border:  1px solid var(--theme-color);
@@ -243,11 +243,12 @@ a{
 .page-section
 {
   margin-top: 10px;
-  width:calc(100dvw - 40px);
+  width:calc(100dvw - 20px);
   height: calc(100dvh - 110px);
-  overflow: scroll;
-  padding: 20px;
+  padding: 10px;
   display: grid;
   justify-items: center;
   align-content: start;
+  position:fixed;
+
 }

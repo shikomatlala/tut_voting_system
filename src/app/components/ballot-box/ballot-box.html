@@ -1,9 +1,18 @@
 
-  <div class="ballot-box-containter" title="Ballot Box" [id]="ballotBox.getId()">
+  <div style="padding-bottom:60px; height: calc(100dvh - 230px); overflow: scroll;" class="ballot-box-containter" [id]="ballotBox.getId()">
     <div class="ballot-box-content">
-      <div>
         <!-- BALLOT BOX DATA -->
         <div class="ballot-box-content-container">
+          <div class="vote-button-container" >
+            @if(!elections.getHasVoted())
+            {
+              <button class="width-200px"  type="button" ui-button (click)="goToCandidates()">Begin To Vote</button>
+            }
+            @else
+            {
+              <button class="width-200px disabled" type="button" (click)="showError()" ui-button disabled>Vote Completed </button>
+            }
+          </div>
           <p class="ballot-box-content-header">
             <span>Ballot Box Information</span>
             <ui-icon code="arrowDropDown" type="grey"/>
@@ -58,12 +67,12 @@
           <p class="ballot-box-content-list">
             <ui-icon code="dateRange" type="blue"/>
             <span> Date of vote </span>
-            <span class="justify-end">{{elections.getTimeBallotBoxWasOpened().toDateString()}}</span>
+            <span class="justify-end">{{ elections.getHasVoted() ? elections.getTimeBallotBoxWasOpened().toDateString() : ' -- '}}</span>
           </p>
           <p class="ballot-box-content-list">
             <ui-icon code="calendarClock" type="blue"/>
             <span> Time of vote </span>
-            <span class="justify-end">{{elections.getTimeBallotBoxWasOpened().toLocaleTimeString()}}</span>
+            <span class="justify-end">{{ elections.getHasVoted() ?  elections.getTimeBallotBoxWasOpened().toLocaleTimeString() : ' -- '}}</span>
           </p>
         </div>
         <div class="ballot-box-content-container">
@@ -83,16 +92,4 @@
           </p>
         </div>
       </div>
-
-    </div>
   </div>
-
-  @if(!elections.getHasVoted())
-  {
-    <button (click)="goToCandidates()">Begin To Vote </button>
-  }
-  @else
-  {
-
-    <button disabled>Vote Completed </button>
-  }

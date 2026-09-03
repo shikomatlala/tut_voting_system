@@ -74,6 +74,7 @@ export const BLUE_ICONS = [
     { type: "blue", code: "circleCircle", src: "assets/blue/circleCircle.svg", alt: "circleCircle icon"},
     { type: "blue", code: "clarify", src: "assets/blue/clarify.svg", alt: "clarify icon"},
     { type: "blue", code: "close", src: "assets/blue/close.svg", alt: "close icon"},
+    { type: "blue", code: "cognition2", src: "assets/blue/cognition2.svg", alt: "cognition2 icon"},
     { type: "blue", code: "construction", src: "assets/blue/construction.svg", alt: "construction icon"},
     { type: "blue", code: "contactMail", src: "assets/blue/contactMail.svg", alt: "contactMail icon"},
     { type: "blue", code: "contactPage", src: "assets/blue/contactPage.svg", alt: "contactPage icon"},
@@ -230,5 +231,6 @@ export const BLUE_ICONS = [
     { type: "blue", code: "visibilityLock", src: "assets/blue/visibilityLock.svg", alt: "visibilityLock icon"},
     { type: "blue", code: "visibilityOff", src: "assets/blue/visibilityOff.svg", alt: "visibilityOff icon"},
     { type: "blue", code: "warning", src: "assets/blue/warning.svg", alt: "warning icon"},
+    { type: "blue", code: "wc", src: "assets/blue/wc.svg", alt: "wc icon"},
     { type: "blue", code: "zoomIn", src: "assets/blue/zoomIn.svg", alt: "zoomIn icon"},
 ]

@@ -5,12 +5,17 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Candidate } from "../../components/candidate/candidate";
 import { ElectionService } from '../../services/election.service';
 import { BallotBoxService } from '../../services/ballotBox.service';
+import { Header } from '../../components/header/header';
+import { LogoutComponent } from '../../components/logout-component/logout-component';
+
 
 @Component({
   selector: 'app-candidates',
   imports: [
     FormsModule,
-    Candidate
+    Candidate,
+    Header,
+    LogoutComponent
 ],
   templateUrl: './candidates.html',
   styleUrl: './candidates.css',

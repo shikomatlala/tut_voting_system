@@ -1,8 +1,28 @@
-<div>
-  <p>{{candidate().getFirstName()}} {{candidate().getLastName()}} </p>
-  <p>{{candidate().getSex()}}</p>
-  <p>{{candidate().getYear()}}</p>
-  <p>{{candidate().getCampaignTitle()}}</p>
-  <p>{{candidate().getCampaignMessage()}}</p>
-  <button (click)="onSubmit(candidate().getId())">Vote</button>
+<div class="candidate-container">
+  <div class="candidate-information">
+    <div class="candidate-image">
+      <ui-icon class="border-radius-10px" [src]="getRamdonPicture()" height="120" width="120"/>
+    </div>
+    <div class="candidate-content">
+      <p class="candidate-content-list">
+        <ui-icon  code="person" type="blue"/>
+        <span class="justify-start">{{candidate().getFirstName()}} {{candidate().getLastName()}}</span>
+      </p>
+      <p class="candidate-content-list">
+        <ui-icon code="wc" type="blue"/>
+        <span class="justify-start">{{candidate().getSex() == 'M' ? 'Male' : 'Female'}}</span>
+      </p>
+      <!-- @if(candidate().getCampaignTitle() != null) -->
+        <p class="candidate-content-list">
+          <ui-icon code="cognition2" type="blue"/>
+          <span class="justify-start">{{candidate().getCampaignTitle()}}</span>
+        </p>
+      <!-- <p>{{candidate().getFirstName()}} {{candidate().getLastName()}} </p>
+      <p>{{candidate().getSex()}}</p>
+      <p>{{candidate().getYear()}}</p>
+      <p>{{candidate().getCampaignTitle()}}</p>
+      <p>{{candidate().getCampaignMessage()}}</p> -->
+    </div>
+  </div>
+  <button style="margin-top: 20px;;margin-left: auto; margin-right: auto;width:calc(100% - 50px); justify-content: center;" ui-button  (click)="onSubmit(candidate().getId())">Choose Candidate</button>
 </div>

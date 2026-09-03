@@ -4,12 +4,15 @@ import { BallotBoxService } from '../../services/ballotBox.service';
 import { ElectionService } from '../../services/election.service';
 import { PropertyService } from '../../services/property.service';
 import { Icon } from '../icon/icon';
+import { UiButton } from "../ui-button/ui-button";
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'uiBallotBox',
   imports: [
-    Icon
-  ],
+    Icon,
+    UiButton
+],
   templateUrl: './ballot-box.html',
   styleUrl: './ballot-box.css',
 })
@@ -20,6 +23,7 @@ export class BallotBox {
 
   }
 
+  snackbar = inject(SnackbarService);
   elections = inject(ElectionService);
   ballotBox = inject(BallotBoxService);
   property = inject(PropertyService);
@@ -28,6 +32,14 @@ export class BallotBox {
   {
     console.log("clicked");
     this.router.navigate(["candidates"]);
+  }
+  showError()
+  {
+    if(this.elections.getHasVoted())
+    {
+      this.snackbar.setMessage("You have already voted");
+    }
+    this.snackbar.startSnackBar();
   }
 
 }

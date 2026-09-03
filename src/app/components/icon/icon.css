@@ -9,3 +9,22 @@
   align-items: center;
   justify-items: center;
 }
+
+
+:host(.border-radius-50px) > img
+{
+  border-radius: 50px;
+}
+:host(.border-radius-25px)
+{
+
+  border-radius: 25px;
+}
+:host(.border-radius-10px) > img
+{
+  border-radius: 10px;
+}
+:host(.border-radius-2px) > img
+{
+  border-radius: 2px;
+}

@@ -1,6 +1,12 @@
-<section>
+<section class="page-section">
+  <div style="display:flex; width:100%;">
+    <ui-header style="width:100%; justify-items: start;"></ui-header>
+    <ui-logout style="width:100%; justify-items: end;" ></ui-logout>
+  </div>
+  <div style="height: 100%; overflow: scroll;">
   @for(candidate of ballotBox.getCandidates(); track $index)
   {
     <uiCandidate [candidate]="candidate"></uiCandidate>
   }
+  </div>
 </section>

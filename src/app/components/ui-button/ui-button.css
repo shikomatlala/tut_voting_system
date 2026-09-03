@@ -57,7 +57,6 @@
 {
 
   background-color: var(--theme-disabled-button-background-color);
-  /* background-color: black; */
 }
 
 :host(.disabled:focus)
