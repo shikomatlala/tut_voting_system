@@ -20,9 +20,7 @@ export class Candidate {
 
   onSubmit(candidateId:number)
   {
-    this.election.voteForCandidate(candidateId).subscribe((result:any)=>{
-      console.log(result);
-    });
+    this.election.voteForCandidate(candidateId).subscribe();
   }
 
   getRamdonPicture() : string

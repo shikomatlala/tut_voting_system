@@ -35,6 +35,7 @@ export class ValidateOtp implements OnInit{
   timerValue: number = 60;
   snackbar = inject(SnackbarService);
   otpService = inject(OTPService);
+
   loginService = inject(LoginService);
 
 

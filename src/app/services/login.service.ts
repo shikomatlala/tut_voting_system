@@ -68,7 +68,6 @@ export class LoginService {
             }
             else
             {
-              console.log(err);
               this.snackbarService.setMessage("an error occured, please refresh the page and try again");
               return of(err);
             }
@@ -76,6 +75,7 @@ export class LoginService {
           finalize(()=>{
             this.loaderService.stopLoader();
             this.snackbarService.startSnackBar();
+            window.location.reload();
           })
         )
   }
@@ -105,12 +105,28 @@ export class LoginService {
             .get(this.url + `/get-login-data?sessionName=${sessionName}`)
               .pipe(
                 map((response:any)=>{
+                  console.log(response);
                   if(response.result)
                   {
                     this.setIsLoggedIn(response.data.isLoggedIn);
                     this.setIsOTPSent(response.data.isOTPSent);
                     this.setIsLoginAttempted(response.data.isLoginAttempted);
                     this.sessionService.setSessionStatus(response.data.sessionStatus);
+                  }
+                  else
+                  {
+                    const sessionData = response.data;
+                    this.sessionService.setIsLoggedIn(sessionData.isLoggedIn);
+                    this.sessionService.setIsLoginAttempted(sessionData.isLoginAttempted);
+                    this.sessionService.setIsOTPSent(sessionData.isOTPSent);
+                    this.sessionService.setSessionName(sessionData.sessionName);
+                    this.sessionService.setSessionStatus(sessionData.sessionStatus);
+                    if(this.router.url != "/login")
+                    {
+                      this.logout();
+                      this.snackbarService.setMessage("Please login to access this service");
+                      this.snackbarService.startSnackBar();
+                    }
                   }
                   this.loaderService.stopLoader();
                   return response;

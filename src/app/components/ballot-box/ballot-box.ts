@@ -19,7 +19,6 @@ import { SnackbarService } from '../../services/snackbar.service';
 export class BallotBox {
   constructor( private router: Router)
   {
-    console.log("constructor");
 
   }
 
@@ -30,7 +29,6 @@ export class BallotBox {
 
   goToCandidates()
   {
-    console.log("clicked");
     this.router.navigate(["candidates"]);
   }
   showError()

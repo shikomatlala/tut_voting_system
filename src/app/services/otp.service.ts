@@ -11,7 +11,7 @@ import { SnackbarService } from './snackbar.service';
 import { StudentSessionService } from './studentSession.service';
 
 @Service()//This tells typescript that you can use the class as an injectable depedency
-export class OTPService{
+export class OTPService {
 
   private snackbarService = inject(SnackbarService);
   private studentSessionService = inject(StudentSessionService);
@@ -25,71 +25,61 @@ export class OTPService{
 
 
 
-  getIsOTPRecieved():boolean
-  {
+  getIsOTPRecieved(): boolean {
     return this.isOTPRecieved;
   }
 
-  getIsOTPValid():boolean
-  {
+  getIsOTPValid(): boolean {
     return this.isOTPValid;
   }
 
-  completeLogin(otpData:OTPInterface):Observable<any>
-  {
-      console.log("IS LOGIN ATTEMTPED", this.loginService.getIsLoginAttempted());
-      console.log(!this.loginService.getIsLoggedIn());
-      console.log(this.loginService.getIsOTPSent());
-    if(
-        !this.loginService.getIsLoggedIn() &&
-        this.loginService.getIsOTPSent() &&
-        this.loginService.getIsLoginAttempted() &&
-        otpData.otp.length === 6
-      )
-    {
+  completeLogin(otpData: OTPInterface): Observable<any> {
+    if (
+      !this.loginService.getIsLoggedIn() &&
+      this.loginService.getIsOTPSent() &&
+      this.loginService.getIsLoginAttempted() &&
+      otpData.otp.length === 6
+    ) {
       return this.http
         .post(this.url + "/complete", otpData)
-          .pipe(
-            map((response:any)=>{
-              this.snackbarService.setMessage(response.message);
-              if(response.result)
-              {
-                this.studentSessionService.setSessionKey(response.data.studentSession.sessionKey);
-                this.studentSessionService.setSessionName(response.data.studentSession.sessionName);
-                this.studentSessionService.saveToLocalStorage();
-                this.loginService.setIsLoggedIn(true);
-                this.isOTPValid = true;
-                this.isOTPRecieved = true;
-                this.router.navigate(["elections"])
-              }
-              else
-              {
-                this.loginService.setIsLoggedIn(false);
-                this.isOTPValid = false;
-                this.isOTPRecieved = false;
-              }
-              this.loaderService.stopLoader();
-              return of(response.message);
-            }),
-            catchError((err)=>{
-              if(err.error.message){
-                this.snackbarService.setMessage(err.error.message);
-                return of(err.error.message);
-              }
-              else {
-                this.snackbarService.setMessage("an error occured, please refresh the page and try again");
-              }
-              return of(err);
-            }),
-            finalize(()=>{
-              this.loaderService.stopLoader();
-              this.snackbarService.startSnackBar();
-            })
+        .pipe(
+          map((response: any) => {
+            this.snackbarService.setMessage(response.message);
+            if (response.result) {
+              this.studentSessionService.setSessionKey(response.data.studentSession.sessionKey);
+              this.studentSessionService.setSessionName(response.data.studentSession.sessionName);
+              this.studentSessionService.saveToLocalStorage();
+              this.loginService.setIsLoggedIn(true);
+              this.isOTPValid = true;
+              this.isOTPRecieved = true;
+              this.router.navigate(["elections"])
+            }
+            else {
+              this.loginService.setIsLoggedIn(false);
+              this.isOTPValid = false;
+              this.isOTPRecieved = false;
+            }
+            this.loaderService.stopLoader();
+            return of(response.message);
+          }),
+          catchError((err) => {
+            if (err.error.message) {
+              this.snackbarService.setMessage(err.error.message);
+              return of(err.error.message);
+            }
+            else {
+              this.snackbarService.setMessage("an error occured, please refresh the page and try again");
+            }
+            return of(err);
+          }),
+          finalize(() => {
+            this.loaderService.stopLoader();
+            this.snackbarService.startSnackBar();
+          })
 
-          )
+        )
     }
-    else
-    {
+    else {
 
       this.snackbarService.setMessage("Cannot submit OTP before login");
       this.snackbarService.startSnackBar();
@@ -98,51 +88,47 @@ export class OTPService{
     }
   }
 
-  resendOTP():Observable<string>
-  {
-    if(
+  resendOTP(): Observable<string> {
+    if (
       this.loginService.getIsLoginAttempted() &&
       !this.loginService.getIsLoggedIn() &&
       this.loginService.getIsOTPSent()
-    )
-    {
+    ) {
       this.loaderService.startLoader();
       this.loginService.setIsOTPSent(false);
       return this.http
-      .get(this.url + "/resend-otp")
+        .get(this.url + "/resend-otp")
         .pipe(
-          map((response:any)=>{
+          map((response: any) => {
             this.snackbarService.setMessage(response.message);
-            if(response.result){
+            if (response.result) {
               this.loginService.setIsOTPSent(true);
             }
-            else{
+            else {
               this.router.navigate(["login"]);
               this.loginService.setIsOTPSent(false);
             }
             this.loaderService.stopLoader();
             return response.message;
           }),
-          catchError((err)=>{
+          catchError((err) => {
             this.router.navigate(["login"]);
-            if(err.error.message){
+            if (err.error.message) {
               this.snackbarService.setMessage(err.error.message);
               return err.error.message;
             }
             else {
-              console.log(err);
               this.snackbarService.setMessage("an error occured, please refresh the page and try again");
             }
             return err;
           }),
-          finalize(()=>{
+          finalize(() => {
             this.loaderService.stopLoader();
             this.snackbarService.startSnackBar();
           })
         );
     }
-    else
-    {
+    else {
       this.router.navigate(["login"]);
       this.snackbarService.setMessage("Cannot resend OTP you must login first");
       this.snackbarService.startSnackBar();
