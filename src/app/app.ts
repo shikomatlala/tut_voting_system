@@ -1,33 +1,32 @@
 import { Component, signal, inject, OnDestroy, HostListener, OnInit } from '@angular/core';
-import { RouterOutlet} from '@angular/router';
-import { Loader } from './components/loader/loader';
+import { RouterOutlet } from '@angular/router';
+import { UiLoader } from './components/ui-loader/ui-loader';
 import { LoaderService } from './services/loader.service';
-import { Snackbar } from "./components/snackbar/snackbar";
 import { SnackbarService } from './services/snackbar.service';
 import { StudentSessionService } from './services/studentSession.service';
 import { LoginService } from './services/login.service';
 import { Footer } from "./components/footer/footer";
 import { Router } from "@angular/router";
+import { UiSnackbar } from './components/ui-snackbar/ui-snackbar';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
   imports: [
-    Loader,
+    UiLoader,
     RouterOutlet,
-    Snackbar,
+    UiSnackbar,
     Footer
-]
+  ]
 })
-export class App implements OnInit{
+export class App implements OnInit {
 
-  constructor()
-  {
+  constructor() {
   }
 
 
-  loaderService  = inject(LoaderService);
+  loaderService = inject(LoaderService);
   snackBarService = inject(SnackbarService);
   studentSessionService = inject(StudentSessionService);
   loginService = inject(LoginService);
@@ -36,12 +35,12 @@ export class App implements OnInit{
 
 
   ngOnInit(): void {
-    this.loginService.getLoginData().subscribe((response)=>{
+    this.loginService.getLoginData().subscribe((response) => {
     });
 
 
     //The purpose of this is to clear all session data when this page loads.
-    
+
 
 
   }

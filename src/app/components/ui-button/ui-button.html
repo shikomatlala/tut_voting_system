@@ -1,5 +1,5 @@
 @if(iconCode() != "")
 {
-  <ui-icon [code]="iconCode()" [type]="iconType()"/>
+  <ui-icon [code]="iconCode()" [color]="iconColor()" [filled]="isIconfilled()" ></ui-icon>
 }
 <ng-content/>

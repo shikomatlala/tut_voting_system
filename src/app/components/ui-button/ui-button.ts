@@ -1,11 +1,11 @@
 import { Component, input } from '@angular/core';
-import { Icon } from '../icon/icon';
+import { UiIcon } from '../ui-icon/ui-icon';
 import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'button[ui-button]',
   imports: [
-    Icon,
+    UiIcon
   ],
   templateUrl: './ui-button.html',
   styleUrl: './ui-button.css',
@@ -13,6 +13,7 @@ import { NgClass } from '@angular/common';
 export class UiButton {
 
   iconCode = input<string>("");
-  iconType = input<string>("");
+  iconColor = input<string>("blue");
+  isIconfilled = input<boolean>(false);
 
 }

@@ -1,21 +1,21 @@
 <div class="candidate-container">
   <div class="candidate-information">
     <div class="candidate-image">
-      <ui-icon class="border-radius-10px" [src]="getRamdonPicture()" height="120" width="120"/>
+      <img [id]="getRamdonPicture()" [src]="getRamdonPicture()" alt="candidate" width="120" height="120" />
     </div>
     <div class="candidate-content">
       <p class="candidate-content-list">
-        <ui-icon  code="person" type="blue"/>
+        <img class="border-radius-10px" >
         <span class="justify-start">{{candidate().getFirstName()}} {{candidate().getLastName()}}</span>
       </p>
       <p class="candidate-content-list">
-        <ui-icon code="wc" type="blue"/>
+        <img class="border-radius-10px" >
         <span class="justify-start">{{candidate().getSex() == 'M' ? 'Male' : 'Female'}}</span>
       </p>
       <!-- @if(candidate().getCampaignTitle() != null) -->
         <p class="candidate-content-list">
-          <ui-icon code="cognition2" type="blue"/>
-          <span class="justify-start">{{candidate().getCampaignTitle()}}</span>
+        <img class="border-radius-10px" >
+        <span class="justify-start">{{candidate().getCampaignTitle()}}</span>
         </p>
       <!-- <p>{{candidate().getFirstName()}} {{candidate().getLastName()}} </p>
       <p>{{candidate().getSex()}}</p>

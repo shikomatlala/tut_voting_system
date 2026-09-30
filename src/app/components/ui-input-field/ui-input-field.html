@@ -1,0 +1,31 @@
+@if(hasIcon())
+{
+  <ui-icon
+    class="icon"
+    [filled]="isIconFilled()"
+    [color]="iconColor()"
+    [code]="iconCode()"
+  />
+}
+<ng-content></ng-content>
+@if(isPasswordType())
+{
+  <button
+    class="show-hide-password-button"
+    [ngClass]="{
+      'isShowPasswordButtonFocused()' : ''
+    }"
+    (click)="passwordControllor.toggleShowPassword()"
+    (focus)="isShowPasswordButtonFocused.set(true)"
+    (focusout)="isShowPasswordButtonFocused.set(false)"
+    (focusout)="passwordControllor.hidePassword()"
+    type="button">
+    <ui-icon
+      class="icon"
+      [filled]="true"
+      [code]="passwordControllor.getIsShowPassword() ? 'visibility' : 'visibilityOff'"
+      [color]="isShowPasswordButtonFocused() ? 'blue' : 'grey'"
+      />
+
+  </button>
+}
