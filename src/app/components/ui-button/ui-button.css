@@ -4,13 +4,12 @@
   -webkit-user-drag: none;
   background-color: var(--theme-button-background-color);
   border-radius: var(--theme-border-radius);
-  user-select: none;
   transition: background-color 0.2 ease-in;
   word-break: keep-all;
   animation: fade-in 1s;
   padding: 8px;
   outline: none;
-  display: flex;
+  display: grid;
   border: 1px solid transparent;
   cursor: pointer;
   align-items: center;
@@ -19,7 +18,76 @@
   color: var(--theme-button-color);
   width: fit-content;
   font-size: 1rem;
+  justify-items: center;
 }
+
+:host(.title-bottom[title]):hover:after
+{
+  content: attr(title);
+  position:absolute;
+  left: -50%;
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: fit-content;
+  height: fot-content;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 10px;
+  top: 100%;
+  color: white;
+}
+
+:host(.title-left[left]):hover::after
+{
+  content: attr(title);
+  position: absolute;
+  left: -60px;
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 10px;
+  bottom: 0;
+  color:white;
+}
+
+:host(.remove-margin)
+{
+  margin: 0;
+}
+
+:host(.reduce-padding)
+{
+  padding: 5px;
+}
+
+:host(.button-icon)
+{
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: var(--theme-border-radius);
+  display:grid;
+  border: 1px solid transparent;
+}
+
+:host(.button-icon):hover
+{
+  background-color: aliceblue;
+  border: 1px solid transparent;
+}
+:host(.button-icon):focus
+{
+  background-color: transparent;
+  border-radius: var(--theme-border-radius);
+  display: grid;
+
+}
+
+
+:host(button-text)
+
 :host(.circle){
 
   border-radius: 50px;
@@ -36,6 +104,34 @@
 
 
 
+}
+:host(.grey)
+{
+  background-color: rgb(227, 227, 227);
+  color:black;
+}
+:host(.grey):focus
+{
+  background-color: rgb(220, 220, 220);
+}
+
+:host(.grey):hover
+{
+  background-color: rgb(220, 220, 220);
+}
+:host(.red)
+{
+  background-color: rgb(255, 32, 32);
+}
+:host(.red):hover
+{
+  background-color: rgb(166, 0, 0);
+  background-color: rgb(255, 32, 32);
+}
+:host(.red):focus
+{
+  background-color: rgb(166, 0, 0);
+  background-color: rgb(255, 32, 32);
 }
 
 :host(.width-200px)
@@ -67,4 +163,9 @@
 :host(.disabled:hover)
 {
   background-color: var(--theme-disabled-button-background-color);
+}
+:host(.fill)
+{
+  width: 100%;;
+
 }

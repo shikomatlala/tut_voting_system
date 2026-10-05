@@ -8,7 +8,7 @@ import { UiButton } from "../../components/ui-button/ui-button";
 import { UiInputField } from "../../components/ui-input-field/ui-input-field";
 import { UiForm } from "../../components/ui-form/ui-form";
 import { Header } from "../../components/header/header";
-import { CardModule } from '../../components/card/card.module';
+import { UiCardModule } from '../../components/ui-card/ui-card.module';
 import { NgClass } from '@angular/common';
 import { SnackbarService } from '../../services/snackbar.service';
 
@@ -21,7 +21,7 @@ import { SnackbarService } from '../../services/snackbar.service';
     UiInputField,
     UiForm,
     Header,
-    CardModule,
+    UiCardModule,
     NgClass
   ],
   templateUrl: './forgot-password.html',

@@ -1,0 +1,14 @@
+:host
+{
+  font-family: "Inter", sans-serif;
+  font-size: var(--theme-header-font-size);
+  font-style: var(--theme-font-style);
+  color: var(--theme-color);
+  text-shadow: 0 0 1.5px #004e936c;
+  color:black;
+}
+
+:host(.title)
+{
+  grid-area: title;
+}

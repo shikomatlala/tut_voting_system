@@ -1,0 +1,301 @@
+:host
+{
+  cursor:pointer;
+  transition: background-color 0.2s ease-in;
+  animation: fade-in 1s;
+  user-select: none;
+  color:var(--theme-color);
+  width: fit-content;
+  background-color: transparent;
+  margin:var(--theme-margin);
+  padding:var(--theme-padding);
+}
+
+:host:hover
+{
+  background-color: rgb(195, 195, 195);
+  border:1px solid transparent;
+}
+
+:host:focus
+{
+  background-color: rgb(228, 228, 228);
+  border:1px solid transparent;
+
+}
+
+:host(.button-circle)
+{
+  border-radius: 50px;
+}
+
+:host(.button-circle):hover
+{
+  background-color: aliceblue;
+}
+
+:host(.button-circle):focus
+{
+  background-color: aliceblue;
+}
+
+:host(.button-icon[title]):hover::after
+{
+  content: attr(title);
+  position: absolute;
+  right: 0;
+  left: 50px;
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 10px;
+  bottom:0;
+  color: white;
+}
+
+:host(.button-icon)
+{
+  display: grid;
+  color: rgb(228, 228, 228);
+}
+
+:host(.button-icon):hover
+{
+  border:1px solid transparent;
+  background-color: aliceblue;
+}
+:host(.button-icon):focus
+{
+  border:1px solid transparent;
+  background-color: aliceblue;
+}
+:host(.button-text){
+  border-radius: var(--theme-border-radius);
+  display: grid;
+}
+
+:host(.button-text):hover{
+
+  background-color: aliceblue;
+  border: 1px solid var(--theme-border-color);
+}
+
+:host(.button-text):focus{
+
+  background-color: aliceblue;
+  border: 1px solid var(--theme-border-color);
+}
+:host(.button-link){
+  background-color: transparent;
+  border-radius: var(--theme-border-radius);
+  display: grid;
+}
+
+:host(.button-link):hover{
+
+  background-color       : aliceblue;
+  border              : 1px solid aliceblue;
+}
+
+:host(.button-link):focus{
+
+  background-color          : aliceblue;
+  border              : 1px solid aliceblue;
+}
+:host(.button-contained)
+{
+  cursor: pointer;
+  padding             : 8px;
+  border-radius       : var(--app-border-radius);
+  background-color    : var(--theUrimSubmitButton-background-color);
+  border              : 1px solid transparent;
+  color               : var(--theUrimSubmitButton-color);
+}
+
+:host(.button-contained):hover
+{
+  cursor: pointer;
+  background-color    : var(--theUrimSubmitButton-hover-background-color);
+}
+:host(.button-contained):focus
+{
+
+  cursor: pointer;
+  background-color    : var(--theUrimSubmitButton-hover-background-color);
+}
+
+:host(.button-outlined){
+
+  display             : grid;
+  height              : none;
+  cursor              : pointer;
+  transition          : background-color 0.2s ease-in;
+  animation           : fade-in 1s;
+  user-select         : none;
+  border-radius       : var(--app-border-radius);
+  border              : 1px solid var(--theme-color);
+  color               : var(--theUrimSubmitButton-background-color);;
+  background-color    : transparent;
+  width               : fit-content;
+  margin              : 5px;
+  padding             : 8px;
+}
+
+:host(.button-outlined):hover{
+
+  background-color          : aliceblue;
+  border              : 1px solid var(--theme-color);
+}
+:host(.button-outlined):focus{
+
+  background-color          : aliceblue;
+  border              : 1px solid var(--theme-color);
+}
+
+
+
+:host(.button-outlined)
+{
+
+}
+
+:host(.button-outlined):hover
+{
+
+}
+
+:host(.button-outlined):focus
+{
+
+}
+
+:host(.button-outlined)
+{
+  display: grid;
+}
+
+
+:host(.button-text)
+{
+
+}
+
+:host(.button-text):hover
+{
+
+}
+
+:host(.button-text):focus
+{
+
+}
+
+:host(.button-sidenav)
+{
+  position: relative;
+  margin: var(--theme-margin);
+  gap: 5px;
+  padding: var(--theme-padding);
+  width: 60px;
+  justify-content: center;
+  font-size: 0.7rem;
+  text-overflow: "...";
+  color: grey;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 2px solid transparent;
+}
+:host(.button-sidenav[title]):hover::after
+{
+  content: attr(title);
+  position:absolute;
+  right:0;
+  left:70px;
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 10px;
+  bottom: 0;
+  color: white;
+}
+:host(.button-sidenav):hover
+{
+  background-color: rgb(199, 229, 255);
+  background-color: #d6ebfb;
+  border-bottom: 2px solid var(--theme-color);
+}
+:host(.button-sidenav):focus
+{
+  background-color: rgb(199, 229, 255);
+  background-color: #d6ebfb;
+  border-bottom: 2px solid var(--theme-color);
+  color: var(--theme-color)
+}
+:host(.button-submit)
+{
+  background-color: var(--theme-color);
+  color: white;
+}
+:host(.button-submit)
+{
+  background-color: var(--theme-color-focus);
+}
+:host(.button-submit)
+{
+  background-color: var(--theme-color-focus);
+}
+:host(.button-toggle)
+{
+  border: none;
+  color: grey;
+  align-items: center;
+  background-color: none;
+  display:flex;
+  height: 40px;
+  margin: 5px;
+  background-color: aliceblue;
+}
+:host(.button-toggle):hover
+{
+  color: var(--theme-color)
+}
+:host(.button-toggle):focus
+{
+  color: var(--theme-color)
+}
+
+:host(.title-bottom[title]):hover::after
+{
+  content: attr(title);
+  position: absolute;
+  left: -50%;
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 5px;
+  padding: 10px;
+  top: 100%;
+  color: white;
+}
+
+:host(.title-left[title]):hover::after
+{
+  content: attr(title);
+  position: absolute;
+  left: -60px;
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 5px;
+  padding: 10px;
+  top: 100%;
+  color: white;
+}

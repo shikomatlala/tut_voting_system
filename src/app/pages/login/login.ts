@@ -1,5 +1,4 @@
 import { Component, inject, signal } from '@angular/core';
-import { Input } from "../../components/input/input";
 import { UiInputField } from "../../components/ui-input-field/ui-input-field";
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -10,11 +9,10 @@ import { UiForm } from "../../components/ui-form/ui-form";
 import { PasswordControllerService } from '../../services/password-controller.service';
 import { UiButton } from "../../components/ui-button/ui-button";
 import { NgClass } from '@angular/common';
-import { UiSnackbar } from '../../components/ui-snackbar/ui-snackbar';
 import { SnackbarService } from '../../services/snackbar.service';
-import { loginGuard } from '../../guards/login-guard';
 import { Header } from "../../components/header/header";
-import { CardModule } from "../../components/card/card.module";
+import { UiCardModule } from "../../components/ui-card/ui-card.module";
+import { UIDialogService } from '../../services/ui-dialog.service';
 
 
 @Component({
@@ -27,8 +25,8 @@ import { CardModule } from "../../components/card/card.module";
     UiButton,
     NgClass,
     Header,
-    CardModule
-  ],
+    UiCardModule
+],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -40,6 +38,7 @@ export class Login {
   isPasswordInputSelected = signal<boolean>(false);
   isStudentNumberInputSelected = signal<boolean>(false);
   snackbar = inject(SnackbarService);
+  uiDialogService = inject(UIDialogService);
 
 
   passwordController = inject(PasswordControllerService)
@@ -56,6 +55,15 @@ export class Login {
       });
     }
   }
+  onCancel()
+  {
+
+
+  }
+  onDelete()
+  {
+
+  }
   showError(loginForm: NgForm) {
     var controls = loginForm.controls;
     if (!controls['password'].valid) {
@@ -67,4 +75,8 @@ export class Login {
     this.snackbar.startSnackBar();
   }
 
+  confirmMe()
+  {
+    console.log(confirm("hithere"));
+  }
 }

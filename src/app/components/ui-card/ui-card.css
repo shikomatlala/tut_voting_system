@@ -1,0 +1,25 @@
+:host
+{
+  width:250px;
+  border-radius: var(--theme-border-radius);
+  padding:var(--theme-padding);
+  margin: var(--theme-margin);
+}
+
+:host(.background-color-aliceblue)
+{
+  background-color: aliceblue;
+}
+:host(.justify-center)
+{
+  display:grid;
+  justify-items: center;
+  justify-content: center;
+}
+
+:host(.align-center)
+{
+  display:grid;
+  align-items: center;
+  align-items: center;
+}

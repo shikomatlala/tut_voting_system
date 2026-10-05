@@ -8,7 +8,6 @@ import { PasswordControllerService } from '../../services/password-controller.se
 @Component({
   selector: 'app-view-components',
   imports: [
-    UiIcon,
     UiInputField,
     FormsModule,
   ],

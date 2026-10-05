@@ -1,0 +1,42 @@
+:host
+{
+  position: fixed;
+  width: 100dvw;
+  height: 100dvh;
+  display:grid;
+  align-items: center;
+  justify-items: center;
+  background-color: rgba(218, 238, 255, 0.278);
+  backdrop-filter: blur(5px);
+  z-index: 1;
+}
+:host > div
+{
+  background-color: white;
+  display:grid;
+  align-items: center;
+  justify-items: center;
+  border:none;
+  border-radius: var(--theme-border-radius);
+  padding: var(--theme-padding);
+  max-width: 250px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index:0;
+}
+
+dialog::backdrop
+{
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+}
+.flex-buttons
+{
+  display:grid;
+  justify-items: center;
+  gap:10px;
+  width: 100%;;
+  grid-template-columns: calc(50% - 5px) calc(50% - 5px);
+
+}
+

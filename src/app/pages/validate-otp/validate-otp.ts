@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { OTPService } from '../../services/otp.service';
 import { LoginService } from '../../services/login.service';
 import { StudentSessionService } from '../../services/studentSession.service';
-import { CardModule } from '../../components/card/card.module';
+import { UiCardModule } from '../../components/ui-card/ui-card.module';
 import { Header } from '../../components/header/header';
 import { UiForm } from '../../components/ui-form/ui-form';
 import { UiInputField } from '../../components/ui-input-field/ui-input-field';
@@ -16,7 +16,7 @@ import { UiButton } from '../../components/ui-button/ui-button';
   selector: 'app-validate-otp',
   imports: [
     FormsModule,
-    CardModule,
+    UiCardModule,
     Header,
     UiForm,
     UiInputField,

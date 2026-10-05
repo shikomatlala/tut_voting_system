@@ -1,0 +1,4 @@
+:host(.circle) > img
+{
+  border-radius: 50px;
+}

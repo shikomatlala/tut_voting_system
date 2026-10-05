@@ -1,4 +1,36 @@
 <router-outlet></router-outlet>
+<!-- <div ui-card >
+  <div ui-card-header class="avatar-and-tags">
+    <div ui-chip-set class="tag">
+      <span ui-chip class="urim-purple">student</span>
+    </div>
+    <div ui-card-avatar class="avatar">
+      <ui-image class="circle " width="100" height="100" [src]="getRamdonPicture()"></ui-image>
+    </div>
+    <div ui-card-header-title class="title">UI/UX Design
+      <div ui-card-header-subtitle>Master the principle of user interface and user experience design</div>
+    </div>
+  </div>
+  <div ui-card-content style="background-color: white; margin:10px; padding: 10px">
+    content goes here
+  </div>
+  <div ui-card-footer>
+    <div ui-card-actions>
+      <button
+        ui-button
+        class="width-200px"
+        type="submit"
+        >
+        Login
+      </button>
+    </div>
+  </div>
+</div> -->
+@if(uiDialogService.getIsShowingModal())
+{
+  <div ui-dialog></div>
+}
+
 @if(loaderService.getLoaderStatus())
 {
   <ui-loader></ui-loader>

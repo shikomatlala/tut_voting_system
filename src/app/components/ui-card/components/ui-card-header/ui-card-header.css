@@ -1,0 +1,21 @@
+:host(.title)
+{
+  display:grid;
+  grid-template-columns: auto;
+  gap:10px
+}
+:host(.avatar-and-title)
+{
+  display:grid;
+  grid-template-columns: 100px auto;
+  gap:10px
+}
+
+:host(.avatar-and-tags)
+{
+  gap:10px;
+  display:grid;
+  grid-template-areas:
+      "tag tag"
+      "avatar title";
+}

@@ -1,6 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-
-:root
+/* You can add global styles to this file, and also import other style files */ :root
 {
   /* ----------------------------------------------------------------
   -- COLORS ---
@@ -11,12 +9,20 @@
   --theme-background-color        : #004e93;
   --theme-background-color-focus  : #002b51;
   --theme-border-color-focus      : #004393;
-
+  --theme-text-shadow-color       : #004e936c;
   /* ----------------------------------------------------------------
   -- BORDER ---
   ---------------------------------------------------------------- */
   --theme-border                  : 1px solid var(--theme-border-color);
   --theme-border-radius           : 5px;
+
+  /* ----------------------------------------------------------------
+  -- FONTS: SIZES, SHADOW SIZES, WEIGHTS ---
+  ---------------------------------------------------------------- */
+  --theme-header-font-size        : 1.5rem;
+  --theme-font-style              : normal;
+  --theme-text-shadow-size        : 3px;
+
 
   /* ----------------------------------------------------------------
   -- SPACING & PADDING, MARGIN ---
@@ -117,6 +123,7 @@ html
                                     "wdth" 100,
                                     "GRAD" 0,
                                     "ROND" 0;
+  font-optical-sizing: auto;
 }
 
 
@@ -257,4 +264,26 @@ a{
   align-content: start;
   position:fixed;
 
+}
+
+.pill-shape-padding
+{
+  padding-left: 10px;
+  padding-left: 10px;
+  border-radius: 50px;
+}
+
+.flex
+{
+  display:flex;
+  gap:5px;
+}
+
+.remove-margin
+{
+  margin:0 !important;
+}
+.reduce-padding
+{
+  padding: 5px;
 }

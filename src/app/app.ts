@@ -8,17 +8,22 @@ import { LoginService } from './services/login.service';
 import { Footer } from "./components/footer/footer";
 import { Router } from "@angular/router";
 import { UiSnackbar } from './components/ui-snackbar/ui-snackbar';
+import { UiCardModule } from './components/ui-card/ui-card.module';
+import { UIDialogService } from './services/ui-dialog.service';
+import { UiDialog } from './components/ui-dialog/ui-dialog';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
   imports: [
+    UiCardModule,
     UiLoader,
     RouterOutlet,
     UiSnackbar,
-    Footer
-  ]
+    Footer,
+    UiDialog
+]
 })
 export class App implements OnInit {
 
@@ -26,15 +31,22 @@ export class App implements OnInit {
   }
 
 
+
   loaderService = inject(LoaderService);
   snackBarService = inject(SnackbarService);
   studentSessionService = inject(StudentSessionService);
   loginService = inject(LoginService);
+  uiDialogService = inject(UIDialogService);
   private router = inject(Router);
   protected readonly title = signal('TUT Voting System');
 
+  getRamdonPicture(): string {
+    return `https://avatars.githubusercontent.com/u/525${Math.floor(Math.random() * (999 - 1) + 2)}?v=4&size=150`;
+  }
+
 
   ngOnInit(): void {
+    // this.uiDialogService.showModal();
     this.loginService.getLoginData().subscribe((response) => {
     });
 
@@ -49,6 +61,10 @@ export class App implements OnInit {
   //   this.studentSessionService.clearLocalStorage();
   // }
 
+  confirmMe()
+  {
+   confirm("HI there");
+  }
 
 
 }
