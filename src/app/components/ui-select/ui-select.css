@@ -1,0 +1,40 @@
+:host
+{
+  width:250px;
+  height:45px;
+  outline:none;
+  padding:10px;
+  display:flex;
+  align-items: center;
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--theme-border-radius);
+}
+
+:host:hover
+{
+  border: 1px solid var(--theme-border-color-focus);
+  color: var(--theme-color);
+}
+
+:host:focus
+{
+  border: 1px solid var(--theme-border-color-focus);
+  color: var(--theme-color);
+}
+
+:host(.left-border)
+{
+  border:none;
+  border-left: 2px solid var(--theme-border-color);
+  border-radius: 0px;
+}
+:host(.left-border):hover
+{
+  border-left: 2px solid var(--theme-border-color-focus);
+}
+
+
+:host, ::picker(select)
+{
+  appearance: base-select;
+}

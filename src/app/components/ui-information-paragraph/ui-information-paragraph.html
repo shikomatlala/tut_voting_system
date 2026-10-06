@@ -1,0 +1,16 @@
+<ui-icon code="info" color="blue"/>
+<div>
+  @if(title().length != 0)
+  {
+    @if(isTitleBold())
+    {
+      <strong>{{title()}}</strong>
+    }
+    @else
+    {
+      {{title()}}
+    }
+  }
+  <ng-content/>
+</div>
+

@@ -1,0 +1,29 @@
+:host
+{
+  background-color              : #e8f1f8;
+  overflow                      : hidden;
+  position                      : fixed;
+  padding                       : var(--theme-padding);
+  bottom                        : 0;
+  height                        : 100dvh;
+  width                         : 70px;
+  display                       : grid;
+  justify-items                 : center;
+  justify-content               : center;
+}
+
+:host > ul
+{
+  padding-top                   : 70px;
+  user-select                   : none;
+  list-style                    : none;
+  font-size                     : small;
+  padding                       : 0;
+  margin                        : 0;
+}
+
+:host > li
+{
+  display                       : grid;
+  justify-items                 : center;
+}
