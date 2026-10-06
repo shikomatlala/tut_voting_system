@@ -13,8 +13,8 @@ export class UiButtonIcon {
   iconWidth = input<string>("24");
   iconHeight= input<string>("24");
   iconCode = input.required<string>();
-  iconColor = input.required<string>();
-  isIconFilled = input<boolean>(false);
+  iconColor = input<string>("blue");
+  isIconFilled = input<boolean>(true);
 
 
 

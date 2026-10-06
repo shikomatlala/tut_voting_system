@@ -83,6 +83,7 @@ export const GREY_FILLED_ICONS = [
     { color: "grey", state: "filled", code: "contractEdit", src: "assets/icons/filled/grey/contractEdit.svg", alt: "contractEdit icon"},
     { color: "grey", state: "filled", code: "crisisAlert", src: "assets/icons/filled/grey/crisisAlert.svg", alt: "crisisAlert icon"},
     { color: "grey", state: "filled", code: "dangerous", src: "assets/icons/filled/grey/dangerous.svg", alt: "dangerous icon"},
+    { color: "grey", state: "filled", code: "dashboard", src: "assets/icons/filled/grey/dashboard.svg", alt: "dashboard icon"},
     { color: "grey", state: "filled", code: "database", src: "assets/icons/filled/grey/database.svg", alt: "database icon"},
     { color: "grey", state: "filled", code: "dateRange", src: "assets/icons/filled/grey/dateRange.svg", alt: "dateRange icon"},
     { color: "grey", state: "filled", code: "delete", src: "assets/icons/filled/grey/delete.svg", alt: "delete icon"},

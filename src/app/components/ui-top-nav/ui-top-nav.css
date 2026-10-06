@@ -1,0 +1,12 @@
+:host
+{
+  display                       : flex;
+  width                         : 100%;
+  position                      : fixed;
+  top                           : 0;
+  padding                       : 5px;
+  background-color              : blue;
+  background-color              : aliceblue;
+  z-index                       : 3;
+
+}

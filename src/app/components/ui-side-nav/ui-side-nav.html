@@ -1,3 +1,26 @@
 <ul>
-  <ng-content/>
+  <li>
+    <button
+      ui-button-icon
+      (click)="goTo('dashboard')"
+      class="button-sidenav"
+      iconCode="dashboard"
+      [iconColor]="getActiveTab('dashboard') ? 'blue' :'grey'"
+      [ngClass]="{'button-sidenav-active': getActiveTab('dashboard')}"
+      >
+      Dashboard
+    </button>
+  </li>
+  <li>
+    <button
+      ui-button-icon
+      (click)="goTo('account')"
+      class="button-sidenav"
+      iconCode="person"
+      [iconColor]="getActiveTab('account') ? 'blue' :'grey'"
+      [ngClass]="{'button-sidenav-active': getActiveTab('account')}"
+      >
+      Account
+    </button>
+  </li>
 </ul>

@@ -10,6 +10,9 @@
   display                       : grid;
   justify-items                 : center;
   justify-content               : center;
+  z-index                       : 2;
+  left                          : 0;
+
 }
 
 :host > ul
@@ -18,7 +21,7 @@
   user-select                   : none;
   list-style                    : none;
   font-size                     : small;
-  padding-top                   : 70px;
+  padding-top                   : 120px;
   margin                        : 0;
 }
 
@@ -26,4 +29,5 @@
 {
   display                       : grid;
   justify-items                 : center;
+  margin-bottom                 : var(--theme-margin-large);
 }

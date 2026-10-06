@@ -83,6 +83,7 @@ export const BLUE_UNFILLED_ICONS = [
     { color: "blue", state: "unfilled", code: "contractEdit", src: "assets/icons/unfilled/blue/contractEdit.svg", alt: "contractEdit icon"},
     { color: "blue", state: "unfilled", code: "crisisAlert", src: "assets/icons/unfilled/blue/crisisAlert.svg", alt: "crisisAlert icon"},
     { color: "blue", state: "unfilled", code: "dangerous", src: "assets/icons/unfilled/blue/dangerous.svg", alt: "dangerous icon"},
+    { color: "blue", state: "unfilled", code: "dashboard", src: "assets/icons/unfilled/blue/dashboard.svg", alt: "dashboard icon"},
     { color: "blue", state: "unfilled", code: "database", src: "assets/icons/unfilled/blue/database.svg", alt: "database icon"},
     { color: "blue", state: "unfilled", code: "dateRange", src: "assets/icons/unfilled/blue/dateRange.svg", alt: "dateRange icon"},
     { color: "blue", state: "unfilled", code: "delete", src: "assets/icons/unfilled/blue/delete.svg", alt: "delete icon"},

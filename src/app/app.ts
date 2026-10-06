@@ -43,28 +43,9 @@ export class App implements OnInit {
   getRamdonPicture(): string {
     return `https://avatars.githubusercontent.com/u/525${Math.floor(Math.random() * (999 - 1) + 2)}?v=4&size=150`;
   }
-
-
   ngOnInit(): void {
-    // this.uiDialogService.showModal();
-    this.loginService.getLoginData().subscribe((response) => {
-    });
-
-
-    //The purpose of this is to clear all session data when this page loads.
-
-
-
+    console.log("We are here");
+    this.loginService.getLoginData().subscribe();
   }
-
-  // ngOnDestroy(): void {
-  //   this.studentSessionService.clearLocalStorage();
-  // }
-
-  confirmMe()
-  {
-   confirm("HI there");
-  }
-
 
 }

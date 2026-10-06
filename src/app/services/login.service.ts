@@ -24,6 +24,7 @@ export class LoginService {
   private router = inject(Router);
   private sessionService = inject(StudentSessionService);
   private url = URL + "/student/login";
+  private desiredUrl = "";
   //How do we want to login.
   //1. Get the login data.
   //2. Validate the login data
@@ -120,10 +121,11 @@ export class LoginService {
                     this.sessionService.setIsOTPSent(sessionData.isOTPSent);
                     this.sessionService.setSessionName(sessionData.sessionName);
                     this.sessionService.setSessionStatus(sessionData.sessionStatus);
+                    this.desiredUrl = this.router.url.replace('/', '');
                     if(this.router.url != "/login")
                     {
                       this.logout();
-                      this.snackbarService.setMessage("Please login to access this service");
+                      this.snackbarService.setMessage(`Please login first to access this page`);
                       this.snackbarService.startSnackBar();
                     }
                   }

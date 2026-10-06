@@ -268,18 +268,29 @@
 
 :host(.button-sidenav)
 {
-  position: relative;
-  margin: var(--theme-margin);
-  gap: 5px;
-  padding: var(--theme-padding);
-  width: 60px;
-  justify-content: center;
-  font-size: 0.7rem;
-  text-overflow: "...";
-  color: grey;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: 2px solid transparent;
+  position                              : relative;
+  margin                                : var(--theme-margin);
+  gap                                   : 5px;
+  padding                               : var(--theme-padding);
+  justify-content                       : center;
+  font-size                             : 0.7rem;
+  white-space                           : nowrap;
+  overflow                              : hidden;
+  width                                 : 60px;
+  text-overflow                         : "...";
+  color                                 : grey;
+  border-top-left-radius                : var(--theme-border-radius);
+  border-top-right-radius               : var(--theme-border-radius);
+  border-bottom-left-radius             : 0;
+  border-bottom-right-radius            : 0;
+  border                                : 2px solid transparent;
+  border-top                            : none;
+  border-left                           : none;
+  border-right                          : none;
+  border-bottom                         : 2px solid transparent;
+  display                               : grid;
+  justify-items                         : center;
+
 }
 :host(.button-sidenav[title]):hover::after
 {
@@ -301,7 +312,7 @@
 {
   background-color: rgb(199, 229, 255);
   background-color: #d6ebfb;
-  border-bottom: 2px solid var(--theme-color);
+  border-bottom: 2px solid grey;
 }
 :host(.button-sidenav):focus
 {
@@ -309,6 +320,12 @@
   background-color: #d6ebfb;
   border-bottom: 2px solid var(--theme-color);
   color: var(--theme-color)
+}
+:host(.button-sidenav-active)
+{
+  border-bottom:2px solid var(--theme-background-color);;
+  background-color: #d6ebfb;
+  color               : var(--theme-background-color);
 }
 :host(.button-submit)
 {
