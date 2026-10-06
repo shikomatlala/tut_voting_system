@@ -1,4 +1,20 @@
 :host(.circle) > img
 {
-  border-radius: 50px;
+  border-radius             : 50px;
+}
+
+:host(.border-radius) > img
+{
+  border-radius             : 5px;
+}
+:host(.image-slider) > img
+{
+  border-radius             : var(--theme-border-radius);
+  object-fit                : contain;
+  position                  : fixed;
+  display                   : block;
+  z-index                   : -1;
+  height                    : 100%;
+  width                     : 100%;
+  top                       : 0;
 }

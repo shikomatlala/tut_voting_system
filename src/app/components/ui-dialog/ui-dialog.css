@@ -13,12 +13,14 @@
 :host > div
 {
   background-color: white;
+
   display:grid;
   align-items: center;
   justify-items: center;
   border:none;
   border-radius: var(--theme-border-radius);
-  padding: var(--theme-padding);
+  padding: var(--theme-padding-large);
+  padding: 20px;
   max-width: 250px;
   width: 90%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

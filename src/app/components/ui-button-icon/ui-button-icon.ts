@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { UiIcon } from '../ui-icon/ui-icon';
 
 @Component({
-  selector: 'app-ui-button-icon',
+  selector: 'button[ui-button-icon]',
   imports: [
     UiIcon
   ],

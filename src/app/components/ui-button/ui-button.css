@@ -11,6 +11,7 @@
   padding                   : var(--theme-padding-large);
   outline                   : none;
   display                   : grid;
+  align-content             : center ;
   height                    : none;
   border                    : 1px solid transparent;
   cursor                    : pointer;
@@ -83,6 +84,8 @@
 
 :host(.btn-outlined){
   background-color          : transparent;
+  color                     : var(--theme-color);
+  border                    : 1px solid var(--theme-color);
   padding                   : 8px;
 }
 
@@ -172,6 +175,22 @@
   right                      : 0;
   width                      : fit-content;
   left                       : 70px;
+}
+:host(.btn-danger){
+  background-color          : rgb(206, 65, 65);
+  display                   : grid;
+  color                     : white;
+}
+:host(.btn-danger):hover{
+  background-color          : rgb(255, 240, 240);
+  background-color          : rgb(206, 65, 65);
+  border                    : 1px solid var(--theme-border-color);
+}
+
+:host(.btn-danger):focus{
+  background-color          : rgb(255, 240, 240);
+  background-color          : rgb(206, 65, 65);
+  border                    : 1px solid var(--theme-border-color);
 }
 
 :host(.btn-sidenav):hover {

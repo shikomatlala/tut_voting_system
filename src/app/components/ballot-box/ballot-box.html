@@ -23,7 +23,7 @@
             <span class="justify-end"> {{ballotBox.getBallotBoxName()}}</span>
           </p>
           <p class="ballot-box-content-list">
-            <ui-icon code="info" color="blue"/>
+            <ui-icon code="info" color="blue" [filled]="false"/>
             <span>Status</span>
             <span class="justify-end">{{ballotBox.getIsOpen() ? "open": "closed"}}</span>
           </p>
@@ -38,7 +38,7 @@
             <span class="justify-end">{{ballotBox.getStartDate().toDateString()}}</span>
           </p>
           <p class="ballot-box-content-list">
-            <ui-icon code="dateRange" color="blue"/>
+            <ui-icon [code]="`dateRange`" color="blue"/>
             <span> Closing date</span>
             <span class="justify-end">{{ballotBox.getEndDate().toDateString()}}</span>
           </p>
@@ -60,7 +60,7 @@
             <ui-icon code="arrowDropDown" color="grey"/>
           </p>
           <p class="ballot-box-content-list">
-            <ui-icon [code]="elections.getHasVoted() ?  'checkCircle' : 'error'" color="blue"/>
+            <ui-icon [filled]="false" [code]="elections.getHasVoted() ?  'checkCircle' : 'error'" color="blue" />
             <span> My Vote Status </span>
             <span class="justify-end"> {{elections.getHasVoted() ? "Voted" : "Not Voted"}} </span>
           </p>

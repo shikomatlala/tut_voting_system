@@ -3,7 +3,7 @@
     <ui-header style="width:100%; justify-items: start;"></ui-header>
     <ui-logout style="width:100%; justify-items: end;" ></ui-logout>
   </div>
-  <div style="height: 100%; overflow: scroll;">
+  <div style="height: 100%; overflow: scroll; display:flex; flex-wrap: wrap; justify-content: center;">
   @for(candidate of ballotBox.getCandidates(); track $index)
   {
     <uiCandidate [candidate]="candidate"></uiCandidate>

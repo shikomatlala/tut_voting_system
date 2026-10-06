@@ -18,6 +18,10 @@
 
 }
 
+.ballot-box-content
+{
+  margin: 5px;
+}
 
 .ballot-box-header-status-open {
   color:white;

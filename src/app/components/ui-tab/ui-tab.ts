@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-ui-tab',
-  imports: [],
-  templateUrl: './ui-tab.html',
+  selector: 'li[ui-tab]',
+  template: `<ng-content>`,
   styleUrl: './ui-tab.css',
 })
 export class UiTab {}

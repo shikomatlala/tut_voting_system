@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { UiIcon } from '../ui-icon/ui-icon';
 
 @Component({
-  selector: 'buttton[ui-tab-button]',
+  selector: 'button[ui-tab-button]',
   imports: [UiIcon],
   templateUrl: './ui-tab-button.html',
   styleUrl: './ui-tab-button.css',

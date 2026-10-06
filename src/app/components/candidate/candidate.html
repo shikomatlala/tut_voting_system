@@ -12,17 +12,11 @@
         <img class="border-radius-10px" >
         <span class="justify-start">{{candidate().getSex() == 'M' ? 'Male' : 'Female'}}</span>
       </p>
-      <!-- @if(candidate().getCampaignTitle() != null) -->
-        <p class="candidate-content-list">
+      <p class="candidate-content-list">
         <img class="border-radius-10px" >
         <span class="justify-start">{{candidate().getCampaignTitle()}}</span>
-        </p>
-      <!-- <p>{{candidate().getFirstName()}} {{candidate().getLastName()}} </p>
-      <p>{{candidate().getSex()}}</p>
-      <p>{{candidate().getYear()}}</p>
-      <p>{{candidate().getCampaignTitle()}}</p>
-      <p>{{candidate().getCampaignMessage()}}</p> -->
+      </p>
     </div>
   </div>
-  <button style="margin-top: 20px;;margin-left: auto; margin-right: auto;width:calc(100% - 50px); justify-content: center;" ui-button  (click)="onSubmit(candidate().getId())">Choose Candidate</button>
+  <button class="choose-candidate-button" ui-button (click)="onSubmit(candidate().getId(), `${candidate().getFirstName()} ${candidate().getLastName()}`)">Choose Candidate</button>
 </div>

@@ -24,13 +24,13 @@ export class UiDialog implements OnInit {
   }
   cancel():void
   {
-    this.uiDialogService.setResponse(false);
+    this.uiDialogService.confirm(false);
     this.uiDialogService.hideModal();
   }
 
   confirm(): void
   {
-    this.uiDialogService.setResponse(true);
+    this.uiDialogService.confirm(true);
     this.uiDialogService.hideModal();
   }
 

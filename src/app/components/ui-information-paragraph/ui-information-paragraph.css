@@ -1,0 +1,44 @@
+:host
+{
+  background-color                    : #d8edff;
+  border-radius                       : 5px;
+  font-weight                         : normal;
+  font-size                           : 1rem;
+  margin                              : 5px;
+  color                               : #004078;
+  padding                             : 10px;
+  padding-right                       : 12px;
+  display                             : grid;
+  grid-template-columns               : 30px auto;
+  align-items                         : center;
+}
+:host(.border)
+{
+
+  border                              : 1px solid #9dafbf;
+}
+:host(.text)
+{
+
+  background-color                    : unset;
+}
+
+:host(.warning)
+{
+  background-color                    : transparent;
+  border-radius                       : 5px;
+  font-weight                         : normal;
+  margin                              : 5px;
+  color                               : orange;
+  font-size                           : 1rem;
+  padding                             : var(--theme-padding-large);
+  padding-right                       : 12px;
+  display                             : grid;
+  grid-template-columns               : 30px auto;
+  align-items                         :start;
+}
+
+:host(.align-centre)
+{
+  align-items                         : center;
+}

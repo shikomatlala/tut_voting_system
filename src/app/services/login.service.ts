@@ -105,7 +105,6 @@ export class LoginService {
             .get(this.url + `/get-login-data?sessionName=${sessionName}`)
               .pipe(
                 map((response:any)=>{
-                  console.log(response);
                   if(response.result)
                   {
                     this.setIsLoggedIn(response.data.isLoggedIn);

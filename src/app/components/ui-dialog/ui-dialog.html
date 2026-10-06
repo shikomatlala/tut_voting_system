@@ -1,10 +1,10 @@
 
 <div>
-  <h2>{{uIDialogTitle()}}</h2>
-  <p>{{uIDialogMessage()}}</p>
+  <h2>{{uiDialogService.getTitle()}}</h2>
+  <p style="color:black;text-align: center;">{{uiDialogService.getMessage()}}</p>
   <div class="flex-buttons">
-    <button ui-button class="grey fill" style="width: calc(100% - 5px)" (click)="cancel()">Cancel</button>
-    <button ui-button class="red fill"  style="width: calc(100% - 5px)" (click)="confirm()">Yes</button>
+    <button ui-button class="btn-outlined fill" style="width: calc(100% - 5px)" (click)="cancel()">Cancel</button>
+    <button ui-button class="fill"  style="width: calc(100% - 5px)" (click)="confirm()">Yes</button>
   </div>
 </div>
 

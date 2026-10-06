@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { UiIcon } from '../ui-icon/ui-icon';
 
 @Component({
-  selector: 'app-ui-information-paragraph',
+  selector: 'p[ui-information-paragraph]',
   imports: [
     UiIcon
   ],

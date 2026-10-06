@@ -1,0 +1,43 @@
+<div class="slideshow-container" #newItem tabindex="0" autofocus  (keyup)="arrowClickListener($event)">
+  <div class="image-controls-container">
+    <button
+      ui-button-icon
+      iconWidth="40"
+      iconHeight="40"
+      title="previous"
+      class="
+        button
+        button-icon
+        button-circle
+        button-grid-location-arrow-back"
+      iconCode="arrowBack"
+      iconColor="grey"
+      (click)="nextImage(-1)">
+      </button>
+    <div class="image-slideshow-slides fade">
+      <div style="position: fixed;" class="number-text">{{currentImageIndex + 1}}/{{images().length}}</div>
+      <ui-image
+        #slideView
+        class="image-slider"
+        [src]="currentImage.src"
+        alt="A picture"
+      />
+    </div>
+    <button iconWidth="50" iconHeight="50"  title="next" class="button button-icon button-circle  button-grid-location-arrow-forward title-left" theUrimIconButton icon="arrowForward" iconType="grey" (click)="nextImage(1)"></button>
+
+  </div>
+  <div class="image-thumbnail-container">
+    @for(image of images(); track image)
+    {
+      <div #slideThumbnail class="image-thumbnail" (click)="currentSlide($index)">
+          <ui-image
+            class="img border-radius"
+            width="48"
+            height="48"
+            [src]="image.src"
+            icon="image"
+          />
+      </div>
+    }
+  </div>
+</div>

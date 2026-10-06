@@ -8,13 +8,85 @@
   width: fit-content;
   background-color: transparent;
   margin:var(--theme-margin);
-  padding:var(--theme-padding);
+  padding:var(--theme-padding-large);
+  border:1px solid transparent;
+}
+:host([tooltip]):active::after
+{
+  content: attr(tooltip);
+  position: absolute;
+  right: 0;
+  left: calc(100dvw - 130px);
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  border-radius: 5px;
+  bottom:0px;
+  bottom:calc(100% - 55px);
+  padding: 10px;
+  color: white;
+}
+:host([tooltip]):hover::after
+{
+  content: attr(tooltip);
+  position: absolute;
+  right: 0;
+  left: calc(100dvw - 130px);
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  border-radius: 5px;
+  bottom:0px;
+  bottom:calc(100% - 55px);
+  padding: 10px;
+  color: white;
 }
 
 :host:hover
 {
   background-color: rgb(195, 195, 195);
   border:1px solid transparent;
+}
+:host(.btn-circle)
+{
+  border-radius: 50px;
+  background-color: rgb(240, 248, 255);
+}
+
+:host(.btn-circle):hover
+{
+  background-color: rgb(210, 235, 255);
+  /* background-color: aliceblue; */
+  /* border:1px solid rgb(210, 235, 255); */
+}
+
+:host(.btn-circle):focus
+{
+  background-color: rgb(231, 244, 255);
+  /* background-color: rgb(210, 235, 255); */
+  background-color: aliceblue;
+  /* border:1px solid rgb(210, 235, 255); */
+}
+
+:host(.btn-icon[title]):hover::after
+{
+  content: attr(title);
+  position: absolute;
+  right: 0;
+  left: 50px;
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 10px;
+  bottom:0;
+  color: white;
 }
 
 :host:focus
@@ -27,16 +99,17 @@
 :host(.button-circle)
 {
   border-radius: 50px;
+  background-color: rgb(240, 248, 255);
 }
 
 :host(.button-circle):hover
 {
-  background-color: aliceblue;
+  background-color: rgb(231, 244, 255);
 }
 
 :host(.button-circle):focus
 {
-  background-color: aliceblue;
+  background-color: rgb(231, 244, 255);
 }
 
 :host(.button-icon[title]):hover::after
