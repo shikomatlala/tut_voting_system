@@ -14,6 +14,18 @@
   <li>
     <button
       ui-button-icon
+      (click)="goTo('elections')"
+      class="button-sidenav"
+      iconCode="howToVote"
+      [iconColor]="getActiveTab('elections') ? 'blue' :'grey'"
+      [ngClass]="{'button-sidenav-active': getActiveTab('elections')}"
+      >
+      Elections
+    </button>
+  </li>
+  <li>
+    <button
+      ui-button-icon
       (click)="goTo('account')"
       class="button-sidenav"
       iconCode="person"

@@ -133,8 +133,12 @@ export class LoginService {
                   return response;
               }),
               catchError((err)=>{
-                return of(err);
-              }),
+                this.logout();
+                // this.snackbarService.setMessage(`Error: ${err.error.message}, please try again`);
+                this.snackbarService.setMessage(`There is a problem from our side, please try again`);
+                this.snackbarService.startSnackBar();
+              return of(err);
+            }),
               finalize(()=>{
                 this.loaderService.stopLoader();
               }));

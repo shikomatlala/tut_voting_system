@@ -18,6 +18,7 @@ export class UiSideNav implements OnInit {
   private tabs = [
     {name: "account", isActive: false},
     {name: "dashboard", isActive: false},
+    {name: "elections", isActive: false},
   ]
 
   goTo(page:string)

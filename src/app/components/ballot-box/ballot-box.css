@@ -1,3 +1,32 @@
+.vote-button-container
+{
+  background-color: rgba(78, 12, 12, 0);
+  backdrop-filter: blur(5px);
+  display:grid;
+  align-items: center;
+  justify-items: center;
+  position:relative;
+  bottom:calc(120px - 100dvh);
+  height: 70px;
+  border-radius: 5px;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 480px)
+{
+  .vote-button-container
+  {
+    width: 100%;
+  }
+}
+
+:host
+{
+  margin:0;
+  padding:0;
+}
+
 .ballot-box-header
 {
   border: 1px solid grey;
@@ -10,69 +39,39 @@
 
 .ballot-box-container
 {
-  margin:0;
-  width:100%;
-  display:grid;
-  align-items: center;
-  justify-items: center;
-
+  padding-bottom              : 0px;
+  height                      : calc(100dvh - 160px);
+  overflow                    : scroll;
 }
 
 .ballot-box-content
 {
   margin: 5px;
+  margin-bottom: 70px;
+  margin-top: 0;
 }
 
 .ballot-box-header-status-open {
   color:white;
-  /* background-color: rgb(242, 252, 242); */
-  /* color:darkgreen; */
   color: white;
   background-color: darkgreen;
   width:fit-content;
-  /* border: 1px solid darkgreen; */
   border-radius: var(--theme-border-radius);
 }
 .ballot-box-header-status-closed{
   color:white;
-  /* background-color: rgb(244, 244, 244); */
-  /* color: rgb(91, 91, 91); */
   color: white;
   background-color: rgb(91, 91, 91);
   width:fit-content;
-  /* border: 1px solid rgb(91, 91, 91); */
-  /* padding:var(--theme-padding); */
   border-radius: var(--theme-border-radius);
 }
 
-.ballot-box-header-vote-status{
-
-
-}
-
-.vote-button-container
-{
-  background-color: rgba(78, 12, 12, 0);
-  backdrop-filter: blur(5px);
-  height:50px;
-  display:grid;
-  align-items: center;
-  justify-items: center;
-  position:fixed;
-  bottom: 20px;
-  width: calc(100% - 40px);
-  height: 100px;
-  border-radius: 5px;
-  left:50%;
-  transform: translate(-50%, -50%);
-}
 
 .ballot-box-header-year{
 
   color:white;
   background-color: maroon;
   width:fit-content;
-  /* padding:var(--theme-padding); */
   border-radius: var(--theme-border-radius);
 }
 
@@ -82,11 +81,9 @@
   align-items: center;
   gap:10px;
   grid-template-columns: 25px auto auto;
-  /* background-color: aliceblue; */
   background-color: white;
   border-radius: var(--theme-border-radius);
   padding: 10px;
-  /* border: 1px solid var(--theme-color); */
 }
 .justify-end
 {
@@ -108,14 +105,6 @@
   border:none;
   padding: 10px;
   border-radius: 10px;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
-.ballot-box-content-header
-{
-  color:grey;
-  font-size: normal;
-  display: grid;
-  grid-template-columns: auto 25px;
-
-}

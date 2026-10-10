@@ -1,4 +1,56 @@
 <section class="page-section">
   <ui-top-nav/>
   <ui-side-nav/>
+  <ui-content-section>
+    <form
+      ui-form
+      #loginForm="ngForm"
+      (ngSubmit)="onSubmit(loginForm)" >
+      <div
+        ui-input-field
+        iconCode="person"
+        [iconColor]="isStudentNumberInputSelected() ? 'blue': 'grey'"
+        [hasIcon]="true" >
+        <input
+          ngModel
+          (focus)="isStudentNumberInputSelected.set(true)"
+          (focusout)="isStudentNumberInputSelected.set(false)"
+          name="username"
+          #username="ngModel"
+          id="username"
+          pattern="[0-9]{6,9}"
+          type="text"
+          placeholder="Student Number"
+          required>
+      </div>
+      <div
+        ui-input-field
+        iconCode="lock"
+        [isPasswordType]="true"
+        [iconColor]="isPasswordInputSelected()? 'blue': 'grey'"
+        [hasIcon]="true" >
+          <input
+            (focus)="isPasswordInputSelected.set(true)"
+            (focusout)="isPasswordInputSelected.set(false)"
+            ngModel
+            minlength="6"
+            aria-describedby="passwordrules"
+            name="password"
+            #password="ngModel"
+            id="password"
+            [type]="passwordController.getIsShowPassword() ? 'text' : 'password'"
+            placeholder="Password"
+            required>
+      </div>
+      <button
+        ui-button
+        class="width-200px"
+        [ngClass]="{'disabled' : !loginForm.valid}"
+        (click)=" !loginForm.valid ? showError(loginForm) : ''"
+        type="submit"
+        >
+        Login
+      </button>
+    </form>
+  </ui-content-section>
 </section>

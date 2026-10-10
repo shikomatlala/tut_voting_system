@@ -44,7 +44,6 @@ export class App implements OnInit {
     return `https://avatars.githubusercontent.com/u/525${Math.floor(Math.random() * (999 - 1) + 2)}?v=4&size=150`;
   }
   ngOnInit(): void {
-    console.log("We are here");
     this.loginService.getLoginData().subscribe();
   }
 

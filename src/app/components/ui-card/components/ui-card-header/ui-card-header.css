@@ -1,3 +1,8 @@
+:host
+{
+  margin-top                : var(--theme-margin-large);
+  margin-bottom             : var(--theme-margin-large);
+}
 :host(.title)
 {
   display:grid;
@@ -18,4 +23,12 @@
   grid-template-areas:
       "tag tag"
       "avatar title";
+}
+
+:host(.title-and-icon)
+{
+  color                       : grey;
+  font-size                   : normal;
+  display                     : grid;
+  grid-template-columns       : auto 25px;
 }

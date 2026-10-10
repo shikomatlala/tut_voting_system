@@ -6,13 +6,15 @@ import { PropertyService } from '../../services/property.service';
 import { UiIcon } from '../ui-icon/ui-icon';
 import { UiButton } from "../ui-button/ui-button";
 import { SnackbarService } from '../../services/snackbar.service';
+import { UiCardModule } from '../ui-card/ui-card.module';
 
 @Component({
   selector: 'uiBallotBox',
   imports: [
     UiIcon,
-    UiButton
-  ],
+    UiButton,
+    UiCardModule
+],
   templateUrl: './ballot-box.html',
   styleUrl: './ballot-box.css',
 })

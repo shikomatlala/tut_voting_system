@@ -28,3 +28,16 @@
   display:grid;
   justify-items: center;
 }
+
+
+
+:host(.list-items-card-container)
+{
+
+  margin                     : 0;
+  width                      : 100%;
+  display                    : grid;
+  align-items                : center;
+  justify-items              : center;
+
+}

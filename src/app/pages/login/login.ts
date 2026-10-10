@@ -34,7 +34,7 @@ export class Login {
 
   constructor(private router: Router) { }
 
-  loginResponseMessage = signal<String>("");
+  loginResponseMessage = signal<string>("");
   isPasswordInputSelected = signal<boolean>(false);
   isStudentNumberInputSelected = signal<boolean>(false);
   snackbar = inject(SnackbarService);
@@ -75,8 +75,4 @@ export class Login {
     this.snackbar.startSnackBar();
   }
 
-  confirmMe()
-  {
-    console.log(confirm("hithere"));
-  }
 }

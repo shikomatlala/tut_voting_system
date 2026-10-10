@@ -6,6 +6,7 @@ import { UiSideNav } from '../../components/ui-side-nav/ui-side-nav';
 import { UiButtonIcon } from '../../components/ui-button-icon/ui-button-icon';
 import { UiTopNav } from '../../components/ui-top-nav/ui-top-nav';
 import { NgClass } from '@angular/common';
+import { UiContentSection } from '../../components/ui-content-section/ui-content-section';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,7 @@ import { NgClass } from '@angular/common';
     BallotBox,
     UiSideNav,
     UiTopNav,
+    UiContentSection
 ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
