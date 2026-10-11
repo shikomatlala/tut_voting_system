@@ -1,26 +1,17 @@
 <ul>
-  <li>
-    <button
-      ui-button-icon
-      (click)="goTo('dashboard')"
-      class="button-sidenav"
-      iconCode="dashboard"
-      [iconColor]="getActiveTab('dashboard') ? 'blue' :'grey'"
-      [ngClass]="{'button-sidenav-active': getActiveTab('dashboard')}"
-      >
-      Dashboard
-    </button>
-  </li>
-  <li>
-    <button
-      ui-button-icon
-      (click)="goTo('account')"
-      class="button-sidenav"
-      iconCode="person"
-      [iconColor]="getActiveTab('account') ? 'blue' :'grey'"
-      [ngClass]="{'button-sidenav-active': getActiveTab('account')}"
-      >
-      Account
-    </button>
-  </li>
+  @for(tab of tabs; track $index)
+  {
+    <li>
+      <button
+        ui-button-icon
+        (click)="goTo(tab.name)"
+        class="button-sidenav"
+        [iconCode]="tab.iconCode"
+        [iconColor]="getActiveTab(tab.name) ? 'blue' :'grey'"
+        [ngClass]="{'button-sidenav-active': getActiveTab(tab.name)}"
+        >
+        {{tab.label}}
+      </button>
+    </li>
+  }
 </ul>

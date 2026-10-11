@@ -213,6 +213,7 @@ export const GREY_FILLED_ICONS = [
     { color: "grey", state: "filled", code: "settings", src: "assets/icons/filled/grey/settings.svg", alt: "settings icon"},
     { color: "grey", state: "filled", code: "settingsAccountBox", src: "assets/icons/filled/grey/settingsAccountBox.svg", alt: "settingsAccountBox icon"},
     { color: "grey", state: "filled", code: "shoppingCartCheckout", src: "assets/icons/filled/grey/shoppingCartCheckout.svg", alt: "shoppingCartCheckout icon"},
+    { color: "grey", state: "filled", code: "shoppingCart", src: "assets/icons/filled/grey/shoppingCart.svg", alt: "shoppingCart icon"},
     { color: "grey", state: "filled", code: "sort", src: "assets/icons/filled/grey/sort.svg", alt: "sort icon"},
     { color: "grey", state: "filled", code: "stackedEmail", src: "assets/icons/filled/grey/stackedEmail.svg", alt: "stackedEmail icon"},
     { color: "grey", state: "filled", code: "star", src: "assets/icons/filled/grey/star.svg", alt: "star icon"},

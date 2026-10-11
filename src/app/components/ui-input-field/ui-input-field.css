@@ -53,3 +53,9 @@
   padding:0;
 
 }
+:host(.flex)
+{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
