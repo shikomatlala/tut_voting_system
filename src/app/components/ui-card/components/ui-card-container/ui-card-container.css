@@ -1,0 +1,8 @@
+:host
+{
+  margin                  : 5px;
+  margin-bottom           : 10px;
+  background-color        : aliceblue ;
+  padding                 : var(--theme-padding-large);
+  border-radius           : var(--theme-border-radius);
+}

@@ -1,0 +1,16 @@
+:host
+{
+  min-width                   : 10px;
+  display                     : grid;
+  justify-content             : center;
+  align-items                 : center;
+  align-content               : center;
+  position                    : absolute;
+  right                       : 0px;
+  bottom                      : 25px;
+  background-color            : red;
+  padding                     : var(--theme-padding);
+  border-radius               : 50px;
+  font-size                   : 11px;
+  color                       : white;
+}

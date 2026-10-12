@@ -1,0 +1,14 @@
+:host
+{
+  width: 100%;
+  user-select: none;
+  border-radius: var(--theme-border-radius);
+  border-collapse: collapse;
+  overflow: scroll;
+  height: fit-content;
+}
+:host(.margin-10)
+{
+  margin-top: var(--theme-margin-large);
+  border-radius:var(--theme-border-radius)
+}

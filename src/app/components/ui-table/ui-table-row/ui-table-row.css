@@ -1,0 +1,44 @@
+:host
+{
+  align-items: center;
+  height: 40px;
+  background-color: #f6f9fc;
+  border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+:host:hover
+{
+  background-color: #e8f1f8;
+}
+
+
+
+:host:active
+{
+  background-color: #e8f1f8;
+}
+:host(.header)
+{
+  position: sticky;
+  top:0;
+  background-color: white;
+  z-index: 1;
+}
+
+:host(.header-no-sticky)
+{
+   background-color: white;
+}
+:host(.white-background)
+{
+   background-color: white;
+}
+
+:host(.white-background):hover
+{
+  background-color:#f5fbff;
+}
+:host(.no-hover):hover
+{
+  background-color: white !important;
+}

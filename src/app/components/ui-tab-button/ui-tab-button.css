@@ -1,0 +1,41 @@
+:host{
+  background-color              : transparent;
+  align-items                   : center;
+  user-select                   : none;
+  transition                    : background-color 0.2s ease-in;
+  word-break                    : keep-all;
+  animation                     : fade-in 1s;
+  padding                       : 8px;
+  outline                       : none;
+  height                        : none;
+  cursor                        : pointer;
+  margin                        : var(--theme-margin);
+  color                         : rgb(195, 195, 195);
+  display                       : flex;
+  gap                           : 5px;
+  border                        : none;
+  border-radius                 : 0;
+  border-bottom                 : 2px solid var(--theme-border-color);
+  border-top-left-radius        : 5px;
+  border-top-right-radius       : 5px;
+}
+
+.button-tab:hover{
+
+  border-bottom                 : 2px solid var(--theme-color);
+  background-color              : var(--theme-background-color-focus);
+}
+
+.button-tab:focus{
+
+  color                         : var(--theme-color-focus);
+  border-bottom                 : 2px solid var(--theme-color);
+  background-color              : var(--theme-background-color-focus);
+}
+
+.button-tab-active{
+  background-color              : var(--theme-background-color-focus);
+  border-bottom                 : 2px solid var(--theme-color);
+  border                        : none;
+  color                         : var(--theme-color-focus);
+}

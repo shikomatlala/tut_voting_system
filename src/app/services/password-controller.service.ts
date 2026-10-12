@@ -19,7 +19,6 @@ export class PasswordControllerService
   {
     this.isShowPassword.set(false);
   }
-
   getIsShowPassword()
   {
     return this.isShowPassword();

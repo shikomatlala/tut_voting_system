@@ -1,0 +1,28 @@
+:host
+{
+  margin-top                          : var(--theme-margin);
+  position                            : fixed;
+  height                              : calc(100dvh - 80px);
+  left                                : 0;
+  top                                 : 0;
+}
+
+
+@media screen and (max-width:480px)
+{
+  :host
+  {
+    padding                             : var(--theme-padding);
+    width                               : calc(100dvw - 10px);
+  }
+}
+
+
+@media screen and (min-width:481px)
+{
+  :host
+  {
+    margin-left                         : 80px;
+    width                               : calc(100dvw - 95px);
+  }
+}

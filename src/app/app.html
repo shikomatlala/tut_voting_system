@@ -1,12 +1,14 @@
 <router-outlet></router-outlet>
+@if(uiDialogService.getIsShowingModal())
+{
+  <div ui-dialog></div>
+}
 @if(loaderService.getLoaderStatus())
 {
   <ui-loader></ui-loader>
 }
-
 @if(snackBarService.getIsShowing())
 {
   <ui-snackbar></ui-snackbar>
 }
-
 <ui-footer/>

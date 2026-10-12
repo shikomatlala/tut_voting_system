@@ -1,7 +1,14 @@
-
+.choose-candidate-button
+{
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width:calc(100% - 50px);
+  justify-content: center;
+}
 .candidate-container
 {
-  margin:0;
+  margin:var(--theme-margin);
   margin-bottom:10px;
   background-color: rgb(248, 248, 248);
   border: 1px solid rgb(243, 243, 243);
@@ -14,6 +21,7 @@
   border-radius: 10px;
   margin-top: 30px;
   /* border: 1px solid var(--theme-color); */
+  max-width:370px;
 
 }
 .candidate-information

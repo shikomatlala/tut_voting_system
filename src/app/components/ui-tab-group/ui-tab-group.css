@@ -1,0 +1,48 @@
+:host
+{
+  margin: 0;
+  align-items: center;
+  display: flex;
+  background-color: rgba(240, 240, 240, 0.399);
+  list-style: none;
+  padding: 0;
+  background-color: inherit;
+}
+
+:host a
+{
+  padding: 5px;
+  display: flex;;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: var(--app-transition);
+  -webkit-transition: var(--app-transition);
+}
+:host a:focus
+{
+  color: inherit;
+  text-decoration: none;
+  background-color: rgb(224, 224, 224);
+  padding: 5px;
+}
+:host a:hover
+{
+  color: inherit;
+  text-decoration: none;
+  background-color: rgb(224, 224, 224);
+  padding: 5px;
+}
+:host a:active
+{
+  color: inherit;
+  text-decoration: none;
+  background-color: rgb(224, 224, 224);
+  padding: 5px;
+}
+
+:host a:visited
+{
+  text-decoration: none;
+  color: black;
+}
+

@@ -39,10 +39,10 @@ export class ElectionService {
   private studentPropertyId = signal<number>(0);
   private voteId = signal<number>(0);
   private propertyId = signal<number>(0);
+  private hasCompletedTheVote = signal<boolean>(false);
   private hasVoted = signal<boolean>(false);
   private ballotBoxId = signal<number>(0);
   private hasStartedTheVote = signal<boolean>(false);
-  private hasCompletedTheVote = signal<boolean>(false);
 
   private timeBallotBoxWasOpened = signal<Date>( new Date());
   private timeBallotBoxWasClosed = signal<Date>(new Date());
@@ -52,6 +52,18 @@ export class ElectionService {
   // **** CONSTANT VARIABLES ****
   //-----------------------------------
   private url = URL + "/student/vote";
+
+  setHasCompletedTheVote(value:number)
+  {
+    if(value == 1)
+    {
+      this.hasCompletedTheVote.set(true);
+    }
+    else
+    {
+      this.hasCompletedTheVote.set(false);
+    }
+  }
 
   getYear()
   {
@@ -126,7 +138,6 @@ export class ElectionService {
             return of(err.error.message);
           }
           else {
-            console.log(err);
             this.snackbarService.setMessage("An error occured, please refresh the page");
           }
           return of(err);
@@ -182,7 +193,6 @@ export class ElectionService {
             this.ballotBox.setId(ballotBox.id);
             this.ballotBox.setIsOpen(ballotBox.is_open);
 
-            this.hasCompletedTheVote = election.has_completed_the_vote;
             for(var candidate of election.ballot_box.candidates)
             {
               this.ballotBox.addCandidate({
@@ -213,7 +223,6 @@ export class ElectionService {
             return of(err.error.message);
           }
           else {
-            console.log(err);
             this.snackbarService.setMessage("An error occured, please refresh the page");
           }
           return of(err);

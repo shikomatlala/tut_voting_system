@@ -11,7 +11,7 @@
   <div
     ui-input-field
     iconCode="person"
-    [iconType]="isStudentNumberInputSelected() ? 'blue': 'grey'"
+    [iconColor]="isStudentNumberInputSelected() ? 'blue': 'grey'"
     [hasIcon]="true" >
     <input
       ngModel
@@ -29,7 +29,7 @@
     ui-input-field
     iconCode="lock"
     [isPasswordType]="true"
-    [iconType]="isPasswordInputSelected()? 'blue': 'grey'"
+    [iconColor]="isPasswordInputSelected()? 'blue': 'grey'"
     [hasIcon]="true" >
       <input
         (focus)="isPasswordInputSelected.set(true)"

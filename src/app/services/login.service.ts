@@ -24,6 +24,7 @@ export class LoginService {
   private router = inject(Router);
   private sessionService = inject(StudentSessionService);
   private url = URL + "/student/login";
+  private desiredUrl = "";
   //How do we want to login.
   //1. Get the login data.
   //2. Validate the login data
@@ -68,7 +69,6 @@ export class LoginService {
             }
             else
             {
-              console.log(err);
               this.snackbarService.setMessage("an error occured, please refresh the page and try again");
               return of(err);
             }
@@ -76,6 +76,7 @@ export class LoginService {
           finalize(()=>{
             this.loaderService.stopLoader();
             this.snackbarService.startSnackBar();
+            window.location.reload();
           })
         )
   }
@@ -112,12 +113,32 @@ export class LoginService {
                     this.setIsLoginAttempted(response.data.isLoginAttempted);
                     this.sessionService.setSessionStatus(response.data.sessionStatus);
                   }
+                  else
+                  {
+                    const sessionData = response.data;
+                    this.sessionService.setIsLoggedIn(sessionData.isLoggedIn);
+                    this.sessionService.setIsLoginAttempted(sessionData.isLoginAttempted);
+                    this.sessionService.setIsOTPSent(sessionData.isOTPSent);
+                    this.sessionService.setSessionName(sessionData.sessionName);
+                    this.sessionService.setSessionStatus(sessionData.sessionStatus);
+                    this.desiredUrl = this.router.url.replace('/', '');
+                    if(this.router.url != "/login")
+                    {
+                      this.logout();
+                      this.snackbarService.setMessage(`Please login first to access this page`);
+                      this.snackbarService.startSnackBar();
+                    }
+                  }
                   this.loaderService.stopLoader();
                   return response;
               }),
               catchError((err)=>{
-                return of(err);
-              }),
+                this.logout();
+                // this.snackbarService.setMessage(`Error: ${err.error.message}, please try again`);
+                this.snackbarService.setMessage(`There is a problem from our side, please try again`);
+                this.snackbarService.startSnackBar();
+              return of(err);
+            }),
               finalize(()=>{
                 this.loaderService.stopLoader();
               }));

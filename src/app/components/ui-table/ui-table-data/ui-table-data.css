@@ -1,0 +1,60 @@
+:host
+{
+  font-size: 14px;
+  height: 40px;
+  padding-left: 8px;
+  padding-right: 8px;
+  align-items: center;
+  height:auto;
+}
+
+:host(.header)
+{
+  font-size: 12px;
+  font-weight: bold;
+  color: grey;
+  letter-spacing: 1.5px;
+}
+:host(.header-color)
+{
+  background-color: aliceblue;
+}
+:host(.border)
+{
+  border-left: 1px solid rgb(234, 234, 234);
+}
+
+:host(.split-items)
+{
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+  justify-items: start;
+  width: 120px;
+}
+:host(.align-centre)
+{
+  display:flex;
+  height: 100%;
+  align-content: center;
+  justify-content: center;
+}
+:host(.width-50px)
+{
+  width:50px;
+}
+:host(.justify-end)
+{
+  display:grid;
+  justify-content: end;
+  align-content: center;
+  height:100%;
+}
+:host(.justify-start)
+{
+  display:grid;
+  grid-template-rows: auto;
+  align-content: center;
+  justify-content: start;
+  height:100%;
+}

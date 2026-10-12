@@ -1,0 +1,121 @@
+
+:host
+{
+  width:fit-content;
+  border-radius: 2.5px;
+  display: flex;
+  justify-items:center;
+  padding: var(--theme-padding);
+  margin: var(--theme-margin);
+  align-items: center;
+  background-color: #7885cc;
+}
+:host(.error)
+{
+  background-color: rgb(255, 223, 223);
+  border-radius: 5px;color: red;
+  color:red;
+}
+
+
+:host(.warning)
+{
+  background-color: rgb(255, 239, 208);
+  color: orange;
+}
+
+:host(.new)
+{
+  color: white;
+  background-color: #053b8357;
+}
+
+:host(.grey)
+{
+  color: grey;
+  background-color: rgb(245, 245, 245);
+
+}
+:host(.theme-color)
+{
+  color: var(--theme-color);
+  color: white;
+  background-color: var(--theme-color);
+}
+:host(.color-lightgrey)
+{
+  color:rgb(236, 236, 236)
+}
+
+:host(.text-larger)
+{
+  font-size: larger;
+}
+:host(.text-large)
+{
+  font-size: large;
+}
+:host(.text-small)
+{
+  font-size: small;
+}
+:host(.text-smaller)
+{
+  font-size: smaller;
+}
+:host(.success)
+{
+
+  width:fit-content;
+  background-color: rgb(211, 255, 215);
+  color: green;
+}
+:host(.italic)
+{
+  font-style:italic;
+}
+:host(.gentle-)
+
+:host(.outlined)
+{
+  background-color: unset;
+}
+:host(.max-content)
+{
+  width:max-content;
+}
+
+:host(.aliceblue)
+{
+  background-color: aliceblue;
+  color:var(--theme-color);
+}
+
+:host(.purple)
+{
+  background-color: rgb(234, 234, 234);
+  color:white;
+  background-color: rgb(171, 36, 255);
+  background-color: #7885cc;
+  color: #eef0fb;
+  background-color: unset;
+  border: 1px solid #7885cc;
+  color: #7885cc;
+}
+
+:host(.grey-outlined)
+{
+  color:rgb(128, 128, 128);
+  border:1px solid rgba(226, 226, 226, 0.937);
+  background-color: transparent;
+}
+:host(.urim-purple)
+{
+  background-color:rgb(190, 149, 255);
+  color:white;
+}
+
+:host(.text)
+{
+  background-color: unset;;
+}
