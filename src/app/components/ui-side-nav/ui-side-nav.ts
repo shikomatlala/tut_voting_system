@@ -1,7 +1,7 @@
 import { NgClass} from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { UiButtonIcon } from '../ui-button-icon/ui-button-icon';
-import { Router } from '@angular/router';
+import { isActive, Router } from '@angular/router';
 
 @Component({
   selector: 'ui-side-nav',
@@ -15,10 +15,10 @@ import { Router } from '@angular/router';
 export class UiSideNav implements OnInit {
 
   private router = inject(Router);
-  private tabs = [
-    {name: "account", isActive: false},
-    {name: "dashboard", isActive: false},
-    {name: "elections", isActive: false},
+  public tabs = [
+
+    { name : "product", isActive: false, iconCode: "shoppingCart", label: "Products" }
+
   ]
 
   goTo(page:string)

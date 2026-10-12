@@ -1,0 +1,30 @@
+
+  <div style="padding-bottom:60px; height: calc(100dvh - 230px); overflow: scroll;" class="ballot-box-containter">
+    <div style="margin:5px">
+      <div class="ballot-box-content-container">
+
+      </div>
+      <table ui-table>
+        <tr ui-table-row class="header">
+          @for(column of productListService.getColumnTitles(); track column)
+          {
+            <td ui-table-data class="header">
+              <button
+                style=" display:flex; font-size: 12px; justify-items:left; justify-content: left; font-weight: bold; align-items: center; color: grey; letter-spacing: 1.5px; border:none; background-color: unset;"
+                ui-button
+                class="btn-text">
+                @if(column.caption != "")
+                {
+                  {{column.caption | uppercase}}
+                  <ui-icon color="grey" [code]="column.isSortAscending ? column.ascendingIcon: column.descendingIcon">
+
+                  </ui-icon>
+                }
+              </button>
+            </td>
+          }
+
+        </tr>
+      </table>
+    </div>
+  </div>

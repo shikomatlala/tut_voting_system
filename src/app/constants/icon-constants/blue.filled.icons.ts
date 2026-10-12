@@ -212,6 +212,7 @@ export const BLUE_FILLED_ICONS = [
     { color: "blue", state: "filled", code: "settings", src: "assets/icons/filled/blue/settings.svg", alt: "settings icon"},
     { color: "blue", state: "filled", code: "settingsAccountBox", src: "assets/icons/filled/blue/settingsAccountBox.svg", alt: "settingsAccountBox icon"},
     { color: "blue", state: "filled", code: "shoppingCartCheckout", src: "assets/icons/filled/blue/shoppingCartCheckout.svg", alt: "shoppingCartCheckout icon"},
+    { color: "blue", state: "filled", code: "shoppingCart", src: "assets/icons/filled/blue/shoppingCart.svg", alt: "shoppingCart icon"},
     { color: "blue", state: "filled", code: "sort", src: "assets/icons/filled/blue/sort.svg", alt: "sort icon"},
     { color: "blue", state: "filled", code: "stackedEmail", src: "assets/icons/filled/blue/stackedEmail.svg", alt: "stackedEmail icon"},
     { color: "blue", state: "filled", code: "star", src: "assets/icons/filled/blue/star.svg", alt: "star icon"},

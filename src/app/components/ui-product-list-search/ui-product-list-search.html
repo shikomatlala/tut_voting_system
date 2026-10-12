@@ -1,0 +1,52 @@
+  <div ui-input-field
+    class="flex"
+    [hasIcon]="false"
+  >
+    <input
+      style="
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px"
+      (focus)="isSearchInputSelected.set(true)"
+      (focusout)="isSearchInputSelected.set(false)"
+      type="text"
+      ngModel
+      name="search"
+      id="search"
+      #search="ngModel"
+      [(ngModel)]="searchValue"
+      theUrimInput
+      placeholder="Search Schools"
+    />
+    @if(productListService.getSearchStatus())
+    {
+      <button
+        ui-button-icon
+        iconCode="close"
+        [iconColor]="isSearchInputSelected() ? 'blue': 'grey'"
+        title="close"
+        (focus)="isSearchInputSelected.set(true)"
+        (click)="clearSearchInputBox()"
+        /* (click)="productListService.search('')" */
+        (focusout)="isSearchInputSelected.set(false)"
+        type="submit"
+        class="button button-icon button-circle"
+        >
+      </button>
+
+    }
+    @else {
+      <button
+        ui-button-icon
+        iconCode="search"
+        [iconColor]="isSearchInputSelected() ? 'theme-color': 'grey'"
+        title="search"
+        (focus)="isSearchInputSelected.set(true)"
+        (click)="productListService.search(search.value)"
+        (focusout)="isSearchInputSelected.set(false)"
+        type="submit"
+        class="button button-icon button-circle"
+        >
+      </button>
+    }
+  </div>
+
