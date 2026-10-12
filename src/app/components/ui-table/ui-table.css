@@ -1,6 +1,7 @@
 :host
 {
   width: 100%;
+  width                       : calc(100dvw - 130px);
   user-select: none;
   border-radius: var(--theme-border-radius);
   border-collapse: collapse;
