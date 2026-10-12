@@ -24,6 +24,11 @@
   background-color          : var(--theme-button-background-color-focus);
   border                    : 1px solid transparent;
 }
+:host(.small-padding-and-margin)
+{
+  padding: 5px;
+  margin:5px;
+}
 
 :host:focus {
   background-color          : var(--theme-button-background-color-focus);
@@ -259,7 +264,13 @@
 
 :host(.flex) {
   display                    : flex;
+  align-items                : center;
   gap                        : 5px
+}
+
+:host(.no-gap)
+{
+  gap                        : 0px;
 }
 
 :host(.small) {
@@ -354,6 +365,11 @@
   width                     : 200px;
   align-items               : center;
   justify-content           : center;
+}
+
+:host(.table-button)
+{
+ display:flex; font-size: 12px; justify-items:left; justify-content: left; font-weight: bold; align-items: center; color: grey; letter-spacing: 1.5px; border:none; background-color: unset;
 }
 
 

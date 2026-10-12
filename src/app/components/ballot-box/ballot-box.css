@@ -26,7 +26,6 @@
   margin:0;
   padding:0;
 }
-
 .ballot-box-header
 {
   border: 1px solid grey;
@@ -39,20 +38,23 @@
 
 .ballot-box-container
 {
-  padding-bottom              : 0px;
-  height                      : calc(100dvh - 160px);
-  overflow                    : scroll;
+  margin:0;
+  width:100%;
+  display:grid;
+  align-items: center;
+  justify-items: center;
+
 }
 
 .ballot-box-content
 {
   margin: 5px;
-  margin-bottom: 70px;
-  margin-top: 0;
 }
 
 .ballot-box-header-status-open {
   color:white;
+  /* background-color: rgb(242, 252, 242); */
+  /* color:darkgreen; */
   color: white;
   background-color: darkgreen;
   width:fit-content;
@@ -60,6 +62,8 @@
 }
 .ballot-box-header-status-closed{
   color:white;
+  /* background-color: rgb(244, 244, 244); */
+  /* color: rgb(91, 91, 91); */
   color: white;
   background-color: rgb(91, 91, 91);
   width:fit-content;
