@@ -1,18 +1,18 @@
 export interface ProductInterface
 {
     id?: number,
-    name: string,
-    brand: string,
-    count: number,
-    price_per_item: number,
+    name: string ,
+    brand: string | null,
+    count: number | null,
+    price_per_item: number | null,
     price: number,
-    seller: string,
-    quantity: string,
-    description: string,
-    product_type: string,
-    purchase_date: string,
-    created_at?: string,
-    updated_at?: string,
-    classification: string,
-    unit_of_measurement: string
+    seller: string | null,
+    quantity: number| null,
+    description: string | null,
+    product_type: string| null,
+    purchase_date: string| null,
+    created_at?: string| null,
+    updated_at?: string| null,
+    classification: string| null,
+    unit_of_measurement: string| null
   }
