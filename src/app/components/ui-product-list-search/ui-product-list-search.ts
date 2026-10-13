@@ -3,12 +3,14 @@ import { UiInputField } from '../ui-input-field/ui-input-field';
 import { FormsModule, NgModel } from '@angular/forms';
 import { UiButtonIcon } from '../ui-button-icon/ui-button-icon';
 import { ProductListServicve } from '../../services/productList.service';
+import { UiCardModule } from '../ui-card/ui-card.module';
 @Component({
-  selector: 'app-ui-product-list-search',
+  selector: 'ui-product-list-search',
   imports: [
     UiInputField,
     FormsModule,
-    UiButtonIcon
+    UiButtonIcon,
+    UiCardModule
 ],
   templateUrl: './ui-product-list-search.html',
   styleUrl: './ui-product-list-search.css',

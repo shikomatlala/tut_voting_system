@@ -12,6 +12,10 @@
   margin: 10px;
 
 }
+:host(.no-icon) > input
+{
+  padding-left: var(--theme-padding) !important;
+}
 :host(.ui-div:has(input[type=text]:focus)),
 :host(.ui-div:focus-within)
 {
@@ -26,6 +30,17 @@
   border:  1px solid var(--theme-color);
   transition                       : 0.5s;
   -webkit-transition               : 0.5s;
+}
+
+:host(.white-background)
+{
+  background-color: white;
+}
+
+:host(.remove-border)
+{
+  border:1px solid white;
+
 }
 
 .icon

@@ -6,3 +6,12 @@
   margin-bottom: 20px;
   margin-bottom: 0;
 }
+
+.section
+{
+  padding-bottom              : 0px;
+  width                       : calc(100dvw - 90px);
+  margin-top                  : 75px;
+  overflow-y                    : scroll;
+  margin-left                 : 80px;
+}

@@ -6,7 +6,7 @@ import { ProductInterface } from "./product.interface"
 export interface ProductBookInterface{
   page: {
     pageDetails: PageMetadataInterface,
-    page: ProductInterface[]
+    pageData: ProductInterface[]
   }
 }
 

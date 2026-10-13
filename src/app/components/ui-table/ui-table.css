@@ -5,11 +5,10 @@
   user-select: none;
   border-radius: var(--theme-border-radius);
   border-collapse: collapse;
-  overflow: scroll;
-  height: fit-content;
+  /* table-layout: fixed; */
+  table-layout:auto;
 }
 :host(.margin-10)
 {
   margin-top: var(--theme-margin-large);
-  border-radius:var(--theme-border-radius)
 }
