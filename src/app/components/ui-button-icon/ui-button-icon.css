@@ -15,8 +15,9 @@
 {
   content: attr(tooltip);
   position: absolute;
-  right: 0;
-  left: calc(100dvw - 130px);
+  /* right: 0; */
+  /* left: calc(100dvw - 130px); */
+  top:0%;
   background-color: #0015247f;
   backdrop-filter: blur(10px);
   width: fit-content;
@@ -27,6 +28,7 @@
   bottom:calc(100% - 55px);
   padding: 10px;
   color: white;
+  z-index: 3;
 }
 :host([tooltip]):hover::after
 {
@@ -50,6 +52,13 @@
 {
   background-color: rgb(195, 195, 195);
   border:1px solid transparent;
+}
+:host(.btn-circle-tooltip)
+{
+  height: 48px;
+  width: 48px;
+  border-radius: 50px;
+  background-color: rgb(240, 248, 255);
 }
 :host(.btn-circle)
 {
@@ -359,7 +368,20 @@
 {
   color: var(--theme-color)
 }
-
+:host(.tooltip-bottom[tooltip]):hover::after
+{
+  content: attr(tooltip);
+  position: absolute;
+  left: -50%;
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 5px;
+  padding: 10px;
+  top: 100%;
+  color: white;
+}
 :host(.title-bottom[title]):hover::after
 {
   content: attr(title);
@@ -374,12 +396,27 @@
   top: 100%;
   color: white;
 }
+:host(.btn-circle-tooltip[tooltip]):hover::after
+{
+  content: attr(tooltip);
+  position:relative;
+  left:-75px;
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: max-content;
+  height: fit-content;
+  border-radius: 5px;
+  padding: 10px;
+  top: -75%;
+  color: white;
+  z-index: 2;
+}
 
 :host(.title-left[title]):hover::after
 {
   content: attr(title);
   position: absolute;
-  left: -60px;
+  left:0;
   background-color: #0015247f;
   backdrop-filter: blur(10px);
   width: fit-content;
