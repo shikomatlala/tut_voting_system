@@ -8,6 +8,8 @@ import { UiCardModule } from '../ui-card/ui-card.module';
 import { UiInput } from '../ui-input/ui-input';
 import { FormControl, FormGroup, FormsModule, NgForm, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { UiForm } from '../ui-form/ui-form';
+import { UiButtonIcon } from '../ui-button-icon/ui-button-icon';
+import { UIDialogService } from '../../services/ui-dialog.service';
 
 @Component({
   selector: 'ui-product-list-table',
@@ -19,36 +21,51 @@ import { UiForm } from '../ui-form/ui-form';
     UiCardModule,
     FormsModule,
     UiInput,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UiButtonIcon
 ],
   templateUrl: './ui-product-list-table.html',
   styleUrl: './ui-product-list-table.css',
 })
 export class UiProductListTable implements OnInit {
+  uiDialogService = inject(UIDialogService);
   productListService = inject(ProductListServicve);
   productForm : FormGroup = new FormGroup(
     {
       name:  new FormControl(""),
-      pricePerItem:  new FormControl(0.0),
+      price_per_item:  new FormControl(0.0),
       price:  new FormControl(0.0),
       count:  new FormControl(1),
       seller:  new FormControl(""),
-      purchaseDate:  new FormControl(new Date()),
-      productType:  new FormControl(""),
+      purchase_date:  new FormControl(new Date()),
+      product_type:  new FormControl(""),
       brand:  new FormControl("")
     }
   );
+  deleteProduct(product:any)
+  {
+    this.uiDialogService.setTitle("Are you sure?");
+    this.uiDialogService.setMessage(`You are about to delete <br><strong>${product.name}</strong><br> this action is final and cannot be undone.`);
+    this.uiDialogService.showModal();
+    this.uiDialogService.onConfirmEvent$.subscribe(data =>{
+      if(data == true)
+      {
+        this.productListService.deleteProduct({id: product.id}).subscribe();
+      }
+    })
+
+  }
   ngOnInit(): void {
     this.productListService.getProductsFromServer().subscribe();
     this.productForm = new FormGroup(
       {
         name:  new FormControl(""),
-        pricePerItem:  new FormControl(0.0),
+        price_per_item:  new FormControl(0.0),
         price:  new FormControl(0.0),
         count:  new FormControl(1),
         seller:  new FormControl(""),
-        purchaseDate:  new FormControl(new Date()),
-        productType:  new FormControl(""),
+        purchase_date:  new FormControl(new Date()),
+        product_type:  new FormControl(""),
         brand:  new FormControl("")
       }
     );
@@ -65,9 +82,8 @@ export class UiProductListTable implements OnInit {
     let product = {
       product: productForm.value
     };
-    console.log("NEW PRODUCT", product);
-    this.productListService.addProduct(product).subscribe((response)=>{
-      console.log(response);
+    this.productListService.addProduct(product).subscribe(()=>{
+      this.productListService.getProductsFromServer().subscribe();
     });
   }
 

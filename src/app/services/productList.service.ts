@@ -8,6 +8,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { catchError, finalize, map, Observable, of } from "rxjs";
 import { SnackbarService } from "./snackbar.service";
 import { URL } from "../global/url.variable";
+import { UIDialogService } from "./ui-dialog.service";
 
 
 @Injectable({
@@ -17,6 +18,7 @@ import { URL } from "../global/url.variable";
 export class ProductListServicve
 {
   private snackbarService = inject(SnackbarService);
+  private uiDialogService = inject(UIDialogService);
   private url = URL + "/product";
   private http = inject(HttpClient);
   private isSearchOn = signal<boolean>(false);
@@ -58,6 +60,35 @@ export class ProductListServicve
 
     this.setActiveProductCollection();
     this.updateTheTotalNumberOfPages();
+  }
+
+  deleteProduct(product: any) : Observable<any>
+  {
+    return this.http
+      .delete(this.url+ `?id=${product.id}`)
+        .pipe(
+          map((response:any)=>{
+            this.snackbarService.setMessage(response.message);
+            this.getProductsFromServer().subscribe();
+          }),
+          catchError((err)=>{
+            if(err.error.message)
+            {
+              this.snackbarService.setMessage(err.error.message);
+              return err.error.message;
+            }
+            else
+            {
+              this.snackbarService.setMessage("Erorr: an error occured while attempting to delete");
+              return of(err);
+            }
+          }),
+          finalize(()=>{
+            console.log("delete success");
+            this.snackbarService.startSnackBar();
+          })
+        )
+
   }
 
   addProduct(product:any) : Observable<any>
@@ -126,9 +157,10 @@ export class ProductListServicve
 
   }
 
+
   getActiveProductCollection() : ProductInterface[]
   {
-    this.getProductsFromServer().subscribe();
+    // this.getProductsFromServer().subscribe();
     return this.activeProductCollection();
   }
 
