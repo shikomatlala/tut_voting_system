@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { UiTableModule } from '../ui-table/ui-table.module';
 import { ProductListServicve } from '../../services/productList.service';
 import { UiButton } from '../ui-button/ui-button';
-import { UpperCasePipe } from '@angular/common';
+import { DatePipe, UpperCasePipe } from '@angular/common';
 import { UiIcon } from '../ui-icon/ui-icon';
 import { UiCardModule } from '../ui-card/ui-card.module';
 import { UiInput } from '../ui-input/ui-input';
@@ -22,7 +22,8 @@ import { UIDialogService } from '../../services/ui-dialog.service';
     FormsModule,
     UiInput,
     ReactiveFormsModule,
-    UiButtonIcon
+    UiButtonIcon,
+    DatePipe,
 ],
   templateUrl: './ui-product-list-table.html',
   styleUrl: './ui-product-list-table.css',

@@ -46,6 +46,7 @@ export class ProductListServicve
 
   constructor()
   {
+    this.getProductsFromServer();
     this.productBook().push({
       page:{
         pageData: this.getActiveProductCollection(),
@@ -118,6 +119,170 @@ export class ProductListServicve
         )
   }
 
+  sort(key:string)
+  {
+    if(!this.getSearchStatus())
+    {
+      for(let x  = 0; x < this.columnTitles.length; x++)
+      {
+        if(key == this.columnTitles[x].reference)
+        {
+          if(!this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending)
+          {
+            this.resetAllSortOptions();
+            this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending = true;
+            this.activeProductCollection().sort(
+              function (a:ProductInterface, b: ProductInterface)
+              {
+                console.log(typeof a[key as keyof ProductInterface]);
+                switch(typeof a[key as keyof ProductInterface])
+                {
+                  case "number" :
+                    //I want to let the compiler know that this case will always be a number
+                    return Number(a[key as keyof ProductInterface]) - Number(b[key as keyof ProductInterface]);
+                  case "string":
+                    return a[key as keyof ProductInterface]!.toString().localeCompare(b[key as keyof ProductInterface]!.toString());
+                  case "object" :
+                    const dateA = new Date(a[key as keyof ProductInterface]!);
+                    const dateB = new Date(b[key as keyof ProductInterface]!);
+                    return dateA.getTime() - dateB.getTime();
+                    // return a[key as keyof ProductInterface]!.getTime() - Dateb[key as keyof ProductInterface]!.getTime());
+                  default :
+                    return a[key as keyof ProductInterface]!.toString().localeCompare(b[key as keyof ProductInterface]!.toString());
+                }
+              }
+            )
+          }
+          else
+          {
+            this.resetAllSortOptions();
+            this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending = false;
+            this.activeProductCollection().sort(
+              function (a:ProductInterface, b:ProductInterface)
+              {
+                switch(typeof a[key as keyof ProductInterface])
+                {
+                  case "number" :
+                    //I want to let the compiler know that this case will always be a number
+                    return Number(b[key as keyof ProductInterface]) - Number(a[key as keyof ProductInterface]);
+                  case "string":
+                    return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
+                  case "object" :
+                    const dateA = new Date(a[key as keyof ProductInterface]!);
+                    const dateB = new Date(b[key as keyof ProductInterface]!);
+                    return dateB.getTime() - dateA.getTime();
+                    // return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
+                  default :
+                    return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
+                }
+              }
+            )
+          }
+        }
+      }
+    }
+    else
+    {
+      for(let x  = 0; x < this.columnTitles.length; x++)
+      {
+        if(key == this.columnTitles[x].reference)
+        {
+          if(!this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending)
+          {
+            this.resetAllSortOptions();
+            this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending = true;
+            this.productCollection().sort(
+              function (a:ProductInterface, b: ProductInterface)
+              {
+                console.log(typeof a[key as keyof ProductInterface]);
+                switch(typeof a[key as keyof ProductInterface])
+                {
+                  case "number" :
+                    //I want to let the compiler know that this case will always be a number
+                    return Number(a[key as keyof ProductInterface]) - Number(b[key as keyof ProductInterface]);
+                  case "string":
+                    return a[key as keyof ProductInterface]!.toString().localeCompare(b[key as keyof ProductInterface]!.toString());
+                  case "object" :
+                    const dateA = new Date(a[key as keyof ProductInterface]!);
+                    const dateB = new Date(b[key as keyof ProductInterface]!);
+                    return dateA.getTime() - dateB.getTime();
+                    // return a[key as keyof ProductInterface]!.getTime() - Dateb[key as keyof ProductInterface]!.getTime());
+                  default :
+                    return a[key as keyof ProductInterface]!.toString().localeCompare(b[key as keyof ProductInterface]!.toString());
+                }
+              }
+            )
+          }
+          else
+          {
+            this.resetAllSortOptions();
+            this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending = false;
+            this.productCollection().sort(
+              function (a:ProductInterface, b:ProductInterface)
+              {
+                switch(typeof a[key as keyof ProductInterface])
+                {
+                  case "number" :
+                    //I want to let the compiler know that this case will always be a number
+                    return Number(b[key as keyof ProductInterface]) - Number(a[key as keyof ProductInterface]);
+                  case "string":
+                    return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
+                  case "object" :
+                    const dateA = new Date(a[key as keyof ProductInterface]!);
+                    const dateB = new Date(b[key as keyof ProductInterface]!);
+                    return dateB.getTime() - dateA.getTime();
+                    // return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
+                  default :
+                    return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
+                }
+              }
+            )
+          }
+        }
+      }
+
+    }
+
+  }
+  sort1(key:string)
+  {
+    for(let x  = 0; x < this.columnTitles.length; x++)
+    {
+      if(key == this.columnTitles[x].reference)
+      {
+        if(!this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending)
+        {
+          this.resetAllSortOptions();
+          this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending = true;
+          this.productBook()[this.getActivePageIndex()].page.pageData.sort(
+            function (a:ProductInterface, b: ProductInterface)
+            {
+              return a[key as keyof ProductInterface]!.toString().localeCompare(b[key as keyof ProductInterface]!.toString());
+            }
+          );
+        }
+        else
+        {
+          this.resetAllSortOptions();
+          this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending = false;
+          this.productBook()[this.getActivePageIndex()].page.pageData.sort(
+            function (a:ProductInterface, b:ProductInterface)
+            {
+              return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
+            })
+        }
+      }
+    }
+
+  }
+  resetAllSortOptions()
+  {
+    for(let x = 0; x < this.columnTitles.length; x++)
+    {
+      this.columnTitles[x].isSortAscending = true;
+    }
+  }
+
   getColumnTitles()
   {
     return this.columnTitles;
@@ -149,8 +314,15 @@ export class ProductListServicve
       .get(this.url)
         .pipe(
           map((response:any)=>{
-            this.activeProductCollection.set(response.data);
-            console.log("active product collection", this.activeProductCollection())
+            const products = response.data;
+            if(products.length > 0)
+            {
+              for(let x = 0; x < products.length; x++)
+              {
+                products[x].purchase_date = new Date(products[x].purchase_date);
+              }
+            }
+            this.activeProductCollection.set(products);
             return response;
           })
         )

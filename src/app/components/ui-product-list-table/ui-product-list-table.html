@@ -8,7 +8,8 @@
             <td ui-table-data class="header">
               <button
                 ui-button
-                class="small-padding-and-margin table-button">
+                (click)="productListService.sort(column.reference)"
+                class="small-padding-and-margin table-button" >
                 @if(column.caption != "")
                 {
                   {{column.caption | uppercase}}
@@ -23,7 +24,9 @@
         </tr>
           <tr ui-table-row  class="header" [formGroup]="productForm">
             <td ui-table-data>
-              #
+              <p style="display:grid; justify-content: center;">
+                #
+              </p>
             </td>
             <td ui-table-data>
               <input name="name" ui-input formControlName="name" class="table-input outlined small remove-border-radius" type="text" placeholder="Product Name"/>
@@ -68,11 +71,12 @@
               </button>
             </td>
             <td ui-table-data>{{product.name}}</td>
-            <td ui-table-data>{{product.price_per_item}}</td>
-            <td ui-table-data>{{product.price}}</td>
+            <td ui-table-data>R{{product.price_per_item}}</td>
+            <td ui-table-data>R{{product.price}}</td>
             <td ui-table-data>{{product.count}}</td>
             <td ui-table-data>{{product.seller}}</td>
-            <td ui-table-data>{{product.purchase_date}}</td>
+            <!-- <td ui-table-data>{{`${product.purchase_date.getDate()}/${product.purchase_date.getMonth()}/${product.purchase_date.getFullYear()} ${product.purchase_date.getHours()}:${product.purchase_date.getMinutes()}`}}</td> -->
+            <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
             <td ui-table-data>{{product.product_type}}</td>
             <td ui-table-data>{{product.brand}}</td>
             <td ui-table-data>
@@ -92,7 +96,8 @@
             <td ui-table-data>{{product.price}}</td>
             <td ui-table-data>{{product.count}}</td>
             <td ui-table-data>{{product.seller}}</td>
-            <td ui-table-data>{{product.purchase_date}}</td>
+            <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
+            <!-- <td ui-table-data>{{product.purchase_date}}</td> -->
             <td ui-table-data>{{product.product_type}}</td>
             <td ui-table-data>{{product.brand}}</td>
             <td ui-table-data>
