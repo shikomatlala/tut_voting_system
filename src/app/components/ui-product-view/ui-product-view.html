@@ -1,0 +1,178 @@
+<div class="section">
+  <div ui-card-container>
+    <div
+      ui-input-field
+      class="has-label"
+      [hasIcon]="false"
+      >
+      <label ui-input-label>Product ID</label>
+      <input
+        type="text"
+        style="padding-left: 5px;width:auto"
+        class="no-icon"
+        ngModel
+        name="id"
+        disabled
+        #id="ngModel"
+        [value]="productService.getId()"
+        ui-input>
+    </div>
+      <div
+        ui-input-field
+        class="has-label margin-top-large"
+        style="width: auto;"
+        [hasIcon]="false"
+        >
+        <label ui-input-label>Product Name</label>
+        <input
+          type="text"
+          style="padding-left: 5px;width:auto"
+          class="no-icon"
+          ngModel
+          name="productName"
+          #productName="ngModel"
+          [value]="productService.getName()"
+          ui-input>
+      </div>
+    <div style="display:flex;">
+        <div
+          ui-input-field
+        class="has-label margin-top-large"
+        style="width: auto;"
+        [hasIcon]="false"
+        >
+        <label ui-input-label>Price Per Item</label>
+        <input
+          type="text"
+          style="padding-left: 5px;width:auto"
+          class="no-icon"
+          ngModel
+          name="pricePerItem"
+          #pricePerItem="ngModel"
+          [value]="'R' + productService.getPricePerItem()"
+          ui-input>
+      </div>
+      <div
+        ui-input-field
+        class="has-label margin-top-large"
+        style="width: auto;"
+        [hasIcon]="false"
+        >
+        <label ui-input-label>Price</label>
+        <input
+          type="text"
+          style="padding-left: 5px; width:auto"
+          class="no-icon"
+          ngModel
+          name="price"
+          #price="ngModel"
+          [value]="'R' + productService.getPrice()"
+          ui-input>
+      </div>
+      <div
+        ui-input-field
+        class="has-label margin-top-large"
+        style="width: auto;"
+        [hasIcon]="false"
+        >
+        <label ui-input-label>Count</label>
+        <input
+          type="text"
+          style="padding-left: 5px;width:auto"
+          class="no-icon"
+          ngModel
+          name="count"
+          #count="ngModel"
+          [value]="productService.getCount()"
+          ui-input>
+      </div>
+    </div>
+      <div
+        ui-input-field
+        class="has-label margin-top-large"
+        style="width: auto;"
+        [hasIcon]="false"
+        >
+        <label ui-input-label>Purchase Date</label>
+        <input
+          type="text"
+          style="padding-left: 5px;width:auto"
+          class="no-icon"
+          ngModel
+          name="purchaseDate"
+          #purchaseDate="ngModel"
+          [value]="productService.getPurchaseDate()"
+          ui-input>
+      </div>
+      <div>
+        <div
+          ui-input-field
+          class="has-label margin-top-large"
+          style="width: auto;"
+          [hasIcon]="false"
+          >
+          <label ui-input-label>Product Type</label>
+          <input
+            type="text"
+            style="padding-left: 5px;width:auto"
+            class="no-icon"
+            ngModel
+            name="productType"
+            #productType="ngModel"
+            [value]="productService.getProductType()"
+            ui-input>
+        </div>
+      </div>
+        <div
+          ui-input-field
+          class="has-label margin-top-large"
+          style="width: auto;"
+          [hasIcon]="false"
+          >
+          <label ui-input-label>Product Brand</label>
+          <input
+            type="text"
+            style="padding-left: 5px;width:auto"
+            class="no-icon"
+            ngModel
+            name="brand"
+            #brand="ngModel"
+            [value]="productService.getBrand()"
+            ui-input>
+        </div>
+        <div
+          ui-input-field
+          class="has-label margin-top-large"
+          style="width: auto;"
+          [hasIcon]="false"
+          >
+          <label ui-input-label>Classification</label>
+          <input
+            type="text"
+            style="padding-left: 5px;width:auto"
+            class="no-icon"
+            ngModel
+            name="classification"
+            #classification="ngModel"
+            [value]="productService.getClassification()"
+            ui-input>
+        </div>
+        <div
+          ui-input-field
+          class="has-label margin-top-large"
+          style="width: auto;"
+          [hasIcon]="false"
+          >
+          <label ui-input-label>Unit of Measurement</label>
+          <input
+            type="text"
+            style="padding-left: 5px;width:auto"
+            class="no-icon"
+            ngModel
+            name="unitOfMeasurement"
+            #unitOfMeasurement="ngModel"
+            [value]="productService.getUnitOfMeasurement()"
+            ui-input>
+        </div>
+  </div>
+</div>

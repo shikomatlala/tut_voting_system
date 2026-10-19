@@ -4,13 +4,17 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { UiButtonIcon } from '../ui-button-icon/ui-button-icon';
 import { ProductListServicve } from '../../services/productList.service';
 import { UiCardModule } from '../ui-card/ui-card.module';
+import { UiTableLayoutControls } from '../ui-table-layout-controls/ui-table-layout-controls';
+import { UiInput } from '../ui-input/ui-input';
 @Component({
   selector: 'ui-product-list-search',
   imports: [
     UiInputField,
     FormsModule,
     UiButtonIcon,
-    UiCardModule
+    UiCardModule,
+    UiTableLayoutControls,
+    UiInput
 ],
   templateUrl: './ui-product-list-search.html',
   styleUrl: './ui-product-list-search.css',

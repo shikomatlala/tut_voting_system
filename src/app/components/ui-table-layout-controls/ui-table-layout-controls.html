@@ -1,0 +1,5 @@
+<div ui-chip-set>
+  <button class="circle-tooltip-bottom" ui-button-icon tooltip="toggle density" iconCode="densityMedium"></button>
+  <button class="circle-tooltip-bottom" ui-button-icon tooltip="toggle density" iconCode="densitySmall"></button>
+  <button class="circle-tooltip-bottom" ui-button-icon tooltip="toggle split mode" [iconCode]="tableControlsService.getLayout() != 'split' ? 'verticalSplit' : 'formatAlignJustify' "  (click)="tableControlsService.toggleTableLayout()"></button>
+</div>

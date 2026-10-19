@@ -206,7 +206,6 @@ export class ProductListServicve
                     const dateA = new Date(a[key as keyof ProductInterface]!);
                     const dateB = new Date(b[key as keyof ProductInterface]!);
                     return dateA.getTime() - dateB.getTime();
-                    // return a[key as keyof ProductInterface]!.getTime() - Dateb[key as keyof ProductInterface]!.getTime());
                   default :
                     return a[key as keyof ProductInterface]!.toString().localeCompare(b[key as keyof ProductInterface]!.toString());
                 }
@@ -231,7 +230,6 @@ export class ProductListServicve
                     const dateA = new Date(a[key as keyof ProductInterface]!);
                     const dateB = new Date(b[key as keyof ProductInterface]!);
                     return dateB.getTime() - dateA.getTime();
-                    // return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
                   default :
                     return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
                 }
@@ -244,37 +242,6 @@ export class ProductListServicve
     }
 
   }
-  sort1(key:string)
-  {
-    for(let x  = 0; x < this.columnTitles.length; x++)
-    {
-      if(key == this.columnTitles[x].reference)
-      {
-        if(!this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending)
-        {
-          this.resetAllSortOptions();
-          this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending = true;
-          this.productBook()[this.getActivePageIndex()].page.pageData.sort(
-            function (a:ProductInterface, b: ProductInterface)
-            {
-              return a[key as keyof ProductInterface]!.toString().localeCompare(b[key as keyof ProductInterface]!.toString());
-            }
-          );
-        }
-        else
-        {
-          this.resetAllSortOptions();
-          this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending = false;
-          this.productBook()[this.getActivePageIndex()].page.pageData.sort(
-            function (a:ProductInterface, b:ProductInterface)
-            {
-              return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
-            })
-        }
-      }
-    }
-
-  }
   resetAllSortOptions()
   {
     for(let x = 0; x < this.columnTitles.length; x++)
@@ -283,9 +250,33 @@ export class ProductListServicve
     }
   }
 
+  getPages()
+  {
+    return this.pages();
+  }
+
   getColumnTitles()
   {
     return this.columnTitles;
+  }
+
+
+  setShowPerPage(value:number) : number
+  {
+    this.showPerPage.set(value);
+    this.updatePages();
+    return this.showPerPage();
+
+  }
+
+
+  setPageActive(index: number ) : void
+  {
+    for(let x = 0; x < this.productBook().length; x++)
+    {
+      this.productBook()[x].page.pageDetails.isPageActive = false;
+    }
+    this.productBook()[index].page.pageDetails.isPageActive = true;
   }
 
   setActiveProductCollection()
@@ -297,6 +288,34 @@ export class ProductListServicve
   getTheTotalNumberOfPages()
   {
     return this.totalNumberOfPage();
+  }
+  updatePages()
+  {
+    let tempProductCollection = structuredClone(this.getActiveProductCollection());
+    this.productCollection.set(this.getActiveProductCollection());
+    this.pages().length = 0;
+    this.productBook().length = 0;
+    var productCollectionLength = this.productCollection().length;
+    var totalPages = productCollectionLength / this.showPerPage();
+    for(let x = 0; x < totalPages; x++)
+    {
+      this.productBook().push({
+        page:
+        {
+          pageDetails: {
+            pageNumber: x + 1,
+            pageIndex: x,
+            isPageActive: x == 0 ? true: false,
+            recordsPerPage : this.showPerPage()
+          },
+          pageData: tempProductCollection.splice(0, this.showPerPage())
+        }
+      })
+      this.pages().push(this.productBook()[x].page.pageDetails)
+    }
+
+    this.updateTheTotalNumberOfPages();
+    return this.pages();
   }
 
   updateTheTotalNumberOfPages()

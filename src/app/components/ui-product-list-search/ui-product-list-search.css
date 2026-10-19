@@ -12,6 +12,8 @@
   padding-bottom              : 0px;
   width                       : calc(100dvw - 90px);
   margin-top                  : 75px;
-  overflow-y                    : scroll;
+  overflow-y                  : scroll;
   margin-left                 : 80px;
+  display                     : flex;
+  align-items                 : center;
 }

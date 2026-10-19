@@ -1,113 +1,234 @@
-<div class="section">
-  <div ui-card-container>
-    <div ui-card-container class="scrollable-table">
-      <table ui-table>
-        <tr ui-table-row class="header">
-          @for(column of productListService.getColumnTitles(); track column)
+      @switch(uiTableLayoutControlService.getLayout())
+      {
+        @case('split'){
+      <div class="section" style="
+          margin-left: 0;
+          position: relative;
+          width: 100%;
+          margin-top: 0;">
+        <div ui-card-container>
+          <div ui-card-container class="scrollable-table" style="height:calc(100dvh - 330px)">
+          <table ui-table style="width:100%">
+            <tr ui-table-row class="header">
+                <td ui-table-data class="header">
+                  <button
+                    ui-button
+                    (click)="productListService.sort(productListService.getColumnTitles()[0].reference)"
+                    class="small-padding-and-margin table-button" >
+                    @if(productListService.getColumnTitles()[0])
+                    {
+                      {{productListService.getColumnTitles()[0].caption | uppercase}}
+                      <ui-icon color="grey" [code]="productListService.getColumnTitles()[0].isSortAscending ?productListService.getColumnTitles()[0].ascendingIcon: productListService.getColumnTitles()[0].descendingIcon"/>
+                    }
+                  </button>
+                </td>
+                <td ui-table-data class="header">
+                  <button
+                    ui-button
+                    (click)="productListService.sort(productListService.getColumnTitles()[1].reference)"
+                    class="small-padding-and-margin table-button" >
+                    @if(productListService.getColumnTitles()[1])
+                    {
+                      {{productListService.getColumnTitles()[1].caption | uppercase}}
+                      <ui-icon color="grey" [code]="productListService.getColumnTitles()[1].isSortAscending ?productListService.getColumnTitles()[1].ascendingIcon: productListService.getColumnTitles()[1].descendingIcon"/>
+                    }
+                  </button>
+                </td>
+                <td ui-table-data class="header">
+                  <button
+                    ui-button
+                    (click)="productListService.sort(productListService.getColumnTitles()[2].reference)"
+                    class="small-padding-and-margin table-button" >
+                    @if(productListService.getColumnTitles()[2])
+                    {
+                      {{productListService.getColumnTitles()[2].caption | uppercase}}
+                      <ui-icon color="grey" [code]="productListService.getColumnTitles()[2].isSortAscending ?productListService.getColumnTitles()[2].ascendingIcon: productListService.getColumnTitles()[2].descendingIcon"/>
+                    }
+                  </button>
+                </td>
+                <td ui-table-data class="header">
+                  <button
+                    ui-button
+                    (click)="productListService.sort(productListService.getColumnTitles()[6].reference)"
+                    class="small-padding-and-margin table-button" >
+                    @if(productListService.getColumnTitles()[6])
+                    {
+                      {{productListService.getColumnTitles()[6].caption | uppercase}}
+                      <ui-icon color="grey" [code]="productListService.getColumnTitles()[6].isSortAscending ?productListService.getColumnTitles()[6].ascendingIcon: productListService.getColumnTitles()[6].descendingIcon"/>
+                    }
+                  </button>
+                </td>
+                <td ui-table-data class="header">
+                </td>
+            </tr>
+          @if(!productListService.getSearchStatus())
           {
-            <td ui-table-data class="header">
-              <button
-                ui-button
-                (click)="productListService.sort(column.reference)"
-                class="small-padding-and-margin table-button" >
-                @if(column.caption != "")
-                {
-                  {{column.caption | uppercase}}
-                  <ui-icon color="grey" [code]="column.isSortAscending ? column.ascendingIcon: column.descendingIcon">
-
-                  </ui-icon>
-                }
-              </button>
-            </td>
+            @for(product of productListService.getActiveProductCollection();track product)
+            {
+              <tr ui-table-row (click)="productService.setProduct(product)" style="cursor: pointer;">
+                <td ui-table-data>
+                    {{product.id}}
+                </td>
+                <td ui-table-data>
+                  {{product.name}}
+                </td>
+                <td ui-table-data>
+                    R{{product.price}}
+                </td>
+                <td ui-table-data>
+                    {{`${product.purchase_date | date}`}}
+                </td>
+                <td ui-table-data>
+                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button>
+                </td>
+              </tr>
+            }
           }
-          <td ui-table-data class="header">{{'actions' | uppercase}}</td>
-        </tr>
-          <tr ui-table-row  class="header" [formGroup]="productForm">
-            <td ui-table-data>
-              <p style="display:grid; justify-content: center;">
-                #
-              </p>
-            </td>
-            <td ui-table-data>
-              <input name="name" ui-input formControlName="name" class="table-input outlined small remove-border-radius" type="text" placeholder="Product Name"/>
-            </td>
-            <td ui-table-data>
-              <input name="pricePerItem"  ui-input formControlName="price_per_item" class="table-input outlined remove-border-radius"  type="number" placeholder="Price / Item"/>
-            </td>
-            <td ui-table-data>
-              <input name="price" ui-input formControlName="price" class="table-input outlined remove-border-radius" type="number" placeholder="Price"/>
-            </td>
-            <td ui-table-data>
-              <input name="count" ui-input formControlName="count" class="table-input outlined remove-border-radius" type="number" placeholder="Count"/>
-            </td>
-            <td ui-table-data>
-              <input name="seller" ui-input formControlName="seller" class="table-input outlined remove-border-radius"  type="text" placeholder="Seller"/>
-            </td>
-            <td ui-table-data>
-              <input name="purchaseDate" ui-input formControlName="purchase_date" class="table-input outlined remove-border-radius"  type="datetime-local" placeholder="Purchase Date"/>
-            </td>
-            <td ui-table-data>
-              <input name="productType" ui-input  formControlName="product_type" class="table-input outlined remove-border-radius"  type="text" placeholder="Product Type"/>
-            </td>
-            <td ui-table-data>
-              <input name="brand"  ui-input formControlName="brand" class="table-input outlined remove-border-radius"  type="text" placeholder="Brand"/>
-            </td>
-            <td ui-table-data>
-              <div class="flex">
-                <button ui-button (click)="addProduct( productForm)"> Save</button>
-                <button (click)="clear(productForm)" ui-button class="btn-outlined" > Clear </button>
+          @else
+          {
+            @for(product of this.productListService.getProductCollection(); track product)
+            {
+              <tr ui-table-row  (keypress)="productService.setProduct(product) " (click)="productService.setProduct(product) "  style="cursor: pointer;">
+                <td ui-table-data>{{product.id}}</td>
+                <td ui-table-data>{{product.name}}</td>
+                <td ui-table-data>{{product.price_per_item}}</td>
+                <td ui-table-data>{{product.price}}</td>
+                <td ui-table-data>{{product.count}}</td>
+                <td ui-table-data>{{product.seller}}</td>
+                <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
+                <!-- <td ui-table-data>{{product.purchase_date}}</td> -->
+                <td ui-table-data>{{product.product_type}}</td>
+                <td ui-table-data>{{product.brand}}</td>
+                <td ui-table-data>
+                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button>
+                </td>
+              </tr>
+            }
+          }
+          </table>
               </div>
-            </td>
-          </tr>
-      @if(!productListService.getSearchStatus())
-      {
-        <!-- @for(product of this.productListService.getProductBookPage(this.productListService.getActivePageIndex());track product) -->
-        @for(product of productListService.getActiveProductCollection();track product)
-        {
-          <tr ui-table-row>
-            <td ui-table-data>
-              <button ui-button class="btn-text">
-                {{product.id}}
-              </button>
-            </td>
-            <td ui-table-data>{{product.name}}</td>
-            <td ui-table-data>R{{product.price_per_item}}</td>
-            <td ui-table-data>R{{product.price}}</td>
-            <td ui-table-data>{{product.count}}</td>
-            <td ui-table-data>{{product.seller}}</td>
-            <!-- <td ui-table-data>{{`${product.purchase_date.getDate()}/${product.purchase_date.getMonth()}/${product.purchase_date.getFullYear()} ${product.purchase_date.getHours()}:${product.purchase_date.getMinutes()}`}}</td> -->
-            <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
-            <td ui-table-data>{{product.product_type}}</td>
-            <td ui-table-data>{{product.brand}}</td>
-            <td ui-table-data>
-              <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button>
-            </td>
-          </tr>
-        }
-      }
-      @else
-      {
-        @for(product of this.productListService.getProductCollection(); track product)
-        {
-          <tr ui-table-row>
-            <td ui-table-data>{{product.id}}</td>
-            <td ui-table-data>{{product.name}}</td>
-            <td ui-table-data>{{product.price_per_item}}</td>
-            <td ui-table-data>{{product.price}}</td>
-            <td ui-table-data>{{product.count}}</td>
-            <td ui-table-data>{{product.seller}}</td>
-            <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
-            <!-- <td ui-table-data>{{product.purchase_date}}</td> -->
-            <td ui-table-data>{{product.product_type}}</td>
-            <td ui-table-data>{{product.brand}}</td>
-            <td ui-table-data>
-              <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button>
-            </td>
-          </tr>
-        }
+            </div>
+          </div>
 
+        }
+        @case('unsplit')
+        {
+      <div class="section" style="
+          margin-left: 0;
+          position: relative;
+          left: 40px;
+          width: calc(100% - 10px);
+          margin-top: 0;">
+        <div ui-card-container>
+          <div ui-card-container class="scrollable-table" style="height:calc(100dvh - 330px)">
+          <table ui-table>
+            <tr ui-table-row class="header">
+              @for(column of productListService.getColumnTitles(); track column)
+              {
+                <td ui-table-data class="header">
+                  <button
+                    ui-button
+                    (click)="productListService.sort(column.reference)"
+                    class="small-padding-and-margin table-button" >
+                    @if(column.caption != "")
+                    {
+                      {{column.caption | uppercase}}
+                      <ui-icon color="grey" [code]="column.isSortAscending ? column.ascendingIcon: column.descendingIcon">
+
+                      </ui-icon>
+                    }
+                  </button>
+                </td>
+              }
+              <td ui-table-data class="header">{{'actions' | uppercase}}</td>
+            </tr>
+              <tr ui-table-row  class="header" [formGroup]="productForm">
+                <td ui-table-data>
+                  <p style="display:grid; justify-content: center;">
+                    #
+                  </p>
+                </td>
+                <td ui-table-data>
+                  <input name="name" ui-input formControlName="name" class="table-input outlined small remove-border-radius" type="text" placeholder="Product Name"/>
+                </td>
+                <td ui-table-data>
+                  <input name="pricePerItem"  ui-input formControlName="price_per_item" class="table-input outlined remove-border-radius"  type="number" placeholder="Price / Item"/>
+                </td>
+                <td ui-table-data>
+                  <input name="price" ui-input formControlName="price" class="table-input outlined remove-border-radius" type="number" placeholder="Price"/>
+                </td>
+                <td ui-table-data>
+                  <input name="count" ui-input formControlName="count" class="table-input outlined remove-border-radius" type="number" placeholder="Count"/>
+                </td>
+                <td ui-table-data>
+                  <input name="seller" ui-input formControlName="seller" class="table-input outlined remove-border-radius"  type="text" placeholder="Seller"/>
+                </td>
+                <td ui-table-data>
+                  <input name="purchaseDate" ui-input formControlName="purchase_date" class="table-input outlined remove-border-radius"  type="datetime-local" placeholder="Purchase Date"/>
+                </td>
+                <td ui-table-data>
+                  <input name="productType" ui-input  formControlName="product_type" class="table-input outlined remove-border-radius"  type="text" placeholder="Product Type"/>
+                </td>
+                <td ui-table-data>
+                  <input name="brand"  ui-input formControlName="brand" class="table-input outlined remove-border-radius"  type="text" placeholder="Brand"/>
+                </td>
+                <td ui-table-data>
+                  <div class="flex">
+                    <button ui-button (click)="addProduct( productForm)"> Save</button>
+                    <button (click)="clear(productForm)" ui-button class="btn-outlined" > Clear </button>
+                  </div>
+                </td>
+              </tr>
+          @if(!productListService.getSearchStatus())
+          {
+            <!-- @for(product of this.productListService.getProductBookPage(this.productListService.getActivePageIndex());track product) -->
+            @for(product of productListService.getActiveProductCollection();track product)
+            {
+              <tr ui-table-row>
+                <td ui-table-data>
+                  <button ui-button class="btn-text">
+                    {{product.id}}
+                  </button>
+                </td>
+                <td ui-table-data>{{product.name}}</td>
+                <td ui-table-data>R{{product.price_per_item}}</td>
+                <td ui-table-data>R{{product.price}}</td>
+                <td ui-table-data>{{product.count}}</td>
+                <td ui-table-data>{{product.seller}}</td>
+                <!-- <td ui-table-data>{{`${product.purchase_date.getDate()}/${product.purchase_date.getMonth()}/${product.purchase_date.getFullYear()} ${product.purchase_date.getHours()}:${product.purchase_date.getMinutes()}`}}</td> -->
+                <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
+                <td ui-table-data>{{product.product_type}}</td>
+                <td ui-table-data>{{product.brand}}</td>
+                <td ui-table-data>
+                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button>
+                </td>
+              </tr>
+            }
+          }
+          @else
+          {
+            @for(product of this.productListService.getProductCollection(); track product)
+            {
+              <tr ui-table-row>
+                <td ui-table-data>{{product.id}}</td>
+                <td ui-table-data>{{product.name}}</td>
+                <td ui-table-data>{{product.price_per_item}}</td>
+                <td ui-table-data>{{product.price}}</td>
+                <td ui-table-data>{{product.count}}</td>
+                <td ui-table-data>{{product.seller}}</td>
+                <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
+                <!-- <td ui-table-data>{{product.purchase_date}}</td> -->
+                <td ui-table-data>{{product.product_type}}</td>
+                <td ui-table-data>{{product.brand}}</td>
+                <td ui-table-data>
+                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button>
+                </td>
+              </tr>
+            }
+          }
+          </table>
+              </div>
+            </div>
+          </div>
+        }
       }
-      </table>
-    </div>
-  </div>
-</div>
