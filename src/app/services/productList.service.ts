@@ -21,6 +21,10 @@ export class ProductListServicve
   private uiDialogService = inject(UIDialogService);
   private url = URL + "/product";
   private http = inject(HttpClient);
+  private totalEntitiesCount = signal<number>(0);
+  private totalProducts = signal<number>(0);
+  private totalPrice = signal<number>(0.0);
+  private totalPricePerItem = signal<number>(0.0);
   private isSearchOn = signal<boolean>(false);
   private productBook = signal<ProductBookInterface[]>([]);
   private activeProductCollection = signal<ProductInterface[]>(PRODUCT_COLLECTION);
@@ -206,7 +210,6 @@ export class ProductListServicve
                     const dateA = new Date(a[key as keyof ProductInterface]!);
                     const dateB = new Date(b[key as keyof ProductInterface]!);
                     return dateA.getTime() - dateB.getTime();
-                    // return a[key as keyof ProductInterface]!.getTime() - Dateb[key as keyof ProductInterface]!.getTime());
                   default :
                     return a[key as keyof ProductInterface]!.toString().localeCompare(b[key as keyof ProductInterface]!.toString());
                 }
@@ -231,7 +234,6 @@ export class ProductListServicve
                     const dateA = new Date(a[key as keyof ProductInterface]!);
                     const dateB = new Date(b[key as keyof ProductInterface]!);
                     return dateB.getTime() - dateA.getTime();
-                    // return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
                   default :
                     return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
                 }
@@ -244,37 +246,6 @@ export class ProductListServicve
     }
 
   }
-  sort1(key:string)
-  {
-    for(let x  = 0; x < this.columnTitles.length; x++)
-    {
-      if(key == this.columnTitles[x].reference)
-      {
-        if(!this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending)
-        {
-          this.resetAllSortOptions();
-          this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending = true;
-          this.productBook()[this.getActivePageIndex()].page.pageData.sort(
-            function (a:ProductInterface, b: ProductInterface)
-            {
-              return a[key as keyof ProductInterface]!.toString().localeCompare(b[key as keyof ProductInterface]!.toString());
-            }
-          );
-        }
-        else
-        {
-          this.resetAllSortOptions();
-          this.columnTitles[this.columnTitles.findIndex(columnTitles => columnTitles.reference === key)].isSortAscending = false;
-          this.productBook()[this.getActivePageIndex()].page.pageData.sort(
-            function (a:ProductInterface, b:ProductInterface)
-            {
-              return b[key as keyof ProductInterface]!.toString().localeCompare(a[key as keyof ProductInterface]!.toString());
-            })
-        }
-      }
-    }
-
-  }
   resetAllSortOptions()
   {
     for(let x = 0; x < this.columnTitles.length; x++)
@@ -283,9 +254,33 @@ export class ProductListServicve
     }
   }
 
+  getPages()
+  {
+    return this.pages();
+  }
+
   getColumnTitles()
   {
     return this.columnTitles;
+  }
+
+
+  setShowPerPage(value:number) : number
+  {
+    this.showPerPage.set(value);
+    this.updatePages();
+    return this.showPerPage();
+
+  }
+
+
+  setPageActive(index: number ) : void
+  {
+    for(let x = 0; x < this.productBook().length; x++)
+    {
+      this.productBook()[x].page.pageDetails.isPageActive = false;
+    }
+    this.productBook()[index].page.pageDetails.isPageActive = true;
   }
 
   setActiveProductCollection()
@@ -298,6 +293,34 @@ export class ProductListServicve
   {
     return this.totalNumberOfPage();
   }
+  updatePages()
+  {
+    let tempProductCollection = structuredClone(this.getActiveProductCollection());
+    this.productCollection.set(this.getActiveProductCollection());
+    this.pages().length = 0;
+    this.productBook().length = 0;
+    var productCollectionLength = this.productCollection().length;
+    var totalPages = productCollectionLength / this.showPerPage();
+    for(let x = 0; x < totalPages; x++)
+    {
+      this.productBook().push({
+        page:
+        {
+          pageDetails: {
+            pageNumber: x + 1,
+            pageIndex: x,
+            isPageActive: x == 0 ? true: false,
+            recordsPerPage : this.showPerPage()
+          },
+          pageData: tempProductCollection.splice(0, this.showPerPage())
+        }
+      })
+      this.pages().push(this.productBook()[x].page.pageDetails)
+    }
+
+    this.updateTheTotalNumberOfPages();
+    return this.pages();
+  }
 
   updateTheTotalNumberOfPages()
   {
@@ -306,6 +329,21 @@ export class ProductListServicve
   getSearchStatus()
   {
     return this.isSearchOn();
+  }
+
+  getTotalProducts() : number
+  {
+    return this.totalProducts();
+  }
+
+  getTotalPricePerItem() : number
+  {
+    return this.totalPricePerItem();
+  }
+
+  getTotalPrice() : number
+  {
+    return this.totalPrice();
   }
 
   getProductsFromServer() : Observable<any>
@@ -317,10 +355,21 @@ export class ProductListServicve
             const products = response.data;
             if(products.length > 0)
             {
+              let tempTotalPricePerItem: number  = 0.0;
+              let tempTotalPrice: number = 0.0;
+              let tempTotalEntitiesCount: number  = 0;
+              this.totalProducts.set(products.length);
               for(let x = 0; x < products.length; x++)
               {
                 products[x].purchase_date = new Date(products[x].purchase_date);
+                tempTotalPricePerItem += products[x].price_per_item;
+                tempTotalPrice += products[x].price;
+                tempTotalEntitiesCount += products[x].count;
+                products[x].purchase_date = new Date(products[x].purchase_date);
               }
+              this.totalPrice.set(tempTotalPrice);
+              this.totalPricePerItem.set(tempTotalPricePerItem);
+              this.totalEntitiesCount.set(tempTotalEntitiesCount)
             }
             this.activeProductCollection.set(products);
             return response;
@@ -358,6 +407,11 @@ export class ProductListServicve
   getShowPerPage()
   {
     return this.showPerPage();
+  }
+
+  getTotalEntitiesCount()
+  {
+    return this.totalEntitiesCount();
   }
 
   getTotalListCount()

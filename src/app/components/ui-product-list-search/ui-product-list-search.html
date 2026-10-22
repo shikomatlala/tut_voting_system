@@ -1,5 +1,5 @@
 
-  <div class="section">
+  <div class="section" style="overflow:unset;">
     <div ui-card-container>
       <div ui-input-field
         class="flex remove-margin remove-border white-background"
@@ -19,8 +19,8 @@
           id="search"
           #search="ngModel"
           [(ngModel)]="searchValue"
-          theUrimInput
-          placeholder="Search Schools"
+          ui-input
+          placeholder="Search Produts"
         />
         @if(productListService.getSearchStatus())
         {
@@ -55,4 +55,5 @@
         }
       </div>
     </div>
+    <ui-table-layout-controls></ui-table-layout-controls>
   </div>

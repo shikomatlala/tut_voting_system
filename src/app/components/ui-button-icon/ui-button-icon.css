@@ -1,5 +1,6 @@
 :host
 {
+  position: relative;
   cursor:pointer;
   transition: background-color 0.2s ease-in;
   animation: fade-in 1s;
@@ -10,6 +11,7 @@
   margin:var(--theme-margin);
   padding:var(--theme-padding-large);
   border:1px solid transparent;
+  border-radius: var(--theme-border-radius);
 }
 :host([tooltip]):active::after
 {
@@ -55,6 +57,7 @@
 }
 :host(.btn-circle-tooltip)
 {
+
   height: 48px;
   width: 48px;
   border-radius: 50px;
@@ -395,6 +398,37 @@
   padding: 10px;
   top: 100%;
   color: white;
+}
+:host(.circle-tooltip-bottom[tooltip]):hover::after
+{
+  content: attr(tooltip);
+  position:absolute;
+  left:-75%;
+  background-color: #001524a3;
+  backdrop-filter: blur(10px);
+  width: max-content;
+  height: fit-content;
+  border-radius: 5px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  top: 125%;
+  color: white;
+}
+:host(.circle-tooltip[tooltip]):hover::after
+{
+  content: attr(tooltip);
+  position:absolute;
+  left:50px;
+  background-color: #0015247f;
+  backdrop-filter: blur(10px);
+  width: max-content;
+  height: fit-content;
+  border-radius: 5px;
+  padding: 10px;
+  top: 100%;
+  color: white;
+  z-index: 3;
 }
 :host(.btn-circle-tooltip[tooltip]):hover::after
 {

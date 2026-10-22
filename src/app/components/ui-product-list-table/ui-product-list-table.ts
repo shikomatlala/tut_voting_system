@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { UiTableModule } from '../ui-table/ui-table.module';
 import { ProductListServicve } from '../../services/productList.service';
 import { UiButton } from '../ui-button/ui-button';
-import { DatePipe, UpperCasePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, UpperCasePipe } from '@angular/common';
 import { UiIcon } from '../ui-icon/ui-icon';
 import { UiCardModule } from '../ui-card/ui-card.module';
 import { UiInput } from '../ui-input/ui-input';
@@ -10,6 +10,9 @@ import { FormControl, FormGroup, FormsModule, NgForm, NgModel, ReactiveFormsModu
 import { UiForm } from '../ui-form/ui-form';
 import { UiButtonIcon } from '../ui-button-icon/ui-button-icon';
 import { UIDialogService } from '../../services/ui-dialog.service';
+import { TableLayoutControlService } from '../../services/tableLayoutControl.service';
+import { ProductInterface } from '../../Interfaces/product.interface';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'ui-product-list-table',
@@ -24,11 +27,14 @@ import { UIDialogService } from '../../services/ui-dialog.service';
     ReactiveFormsModule,
     UiButtonIcon,
     DatePipe,
+    CurrencyPipe
 ],
   templateUrl: './ui-product-list-table.html',
   styleUrl: './ui-product-list-table.css',
 })
 export class UiProductListTable implements OnInit {
+  productService = inject(ProductService);
+  uiTableLayoutControlService = inject(TableLayoutControlService);
   uiDialogService = inject(UIDialogService);
   productListService = inject(ProductListServicve);
   productForm : FormGroup = new FormGroup(
@@ -88,6 +94,10 @@ export class UiProductListTable implements OnInit {
     });
   }
 
+  greet(product: ProductInterface)
+  {
+    console.log("You have selected" + product.name );
+  }
 
 
 }

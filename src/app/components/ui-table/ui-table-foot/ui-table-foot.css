@@ -1,0 +1,9 @@
+
+:host
+{
+  position                    : sticky !important;
+  bottom                      : 0 !important;
+  background-color            : #e2ebf4 !important;
+  z-index                     : 1 !important;
+}
+
