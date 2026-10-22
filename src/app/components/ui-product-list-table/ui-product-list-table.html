@@ -63,7 +63,7 @@
             </tr>
           @if(!productListService.getSearchStatus())
           {
-            @for(product of productListService.getActiveProductCollection();track product)
+            @for(product of productListService.getActiveProductCollection();track $index)
             {
               <tr ui-table-row (click)="productService.setProduct(product)" style="cursor: pointer;">
                 <td ui-table-data>
@@ -86,7 +86,7 @@
           }
           @else
           {
-            @for(product of this.productListService.getProductCollection(); track product)
+            @for(product of this.productListService.getProductCollection(); track $index)
             {
               <tr ui-table-row  (keypress)="productService.setProduct(product) " (click)="productService.setProduct(product) "  style="cursor: pointer;">
                 <td ui-table-data>{{product.id}}</td>
@@ -123,8 +123,7 @@
           <div ui-card-container class="scrollable-table" style="height:calc(100dvh - 330px)">
           <table ui-table>
             <tr ui-table-row class="header">
-              @for(column of productListService.getColumnTitles(); track column)
-              {
+              @for(column of productListService.getColumnTitles(); track $index) {
                 <td ui-table-data class="header">
                   <button
                     ui-button
@@ -182,7 +181,7 @@
           @if(!productListService.getSearchStatus())
           {
             <!-- @for(product of this.productListService.getProductBookPage(this.productListService.getActivePageIndex());track product) -->
-            @for(product of productListService.getActiveProductCollection();track product)
+            @for(product of productListService.getActiveProductCollection();track $index)
             {
               <tr ui-table-row>
                 <td ui-table-data>
@@ -204,10 +203,25 @@
                 </td>
               </tr>
             }
+            <tfoot ui-table-foot class="sticky-footer">
+              <tr ui-table-row>
+                <td ui-table-data style="background-color: #e2ebf4 ;">
+                  <p style="display:grid; align-items: center; justify-items: center;">
+                    #{{productListService.getTotalListCount()}}
+                  </p>
+                </td>
+                <td ui-table-data style="background-color: #e2ebf4 ;"></td>
+                <td ui-table-data style="background-color: #e2ebf4 ;">{{productListService.getTotalPricePerItem() | currency : 'R'}}</td>
+                <td ui-table-data style="background-color: #e2ebf4 ;">{{productListService.getTotalPrice() | currency : 'R'}}</td>
+                <td ui-table-data style="background-color: #e2ebf4 ;">{{productListService.getTotalEntitiesCount()}}</td>
+                <td ui-table-data style="background-color: #e2ebf4 ;" colspan="5"></td>
+              </tr>
+            </tfoot>
+
           }
           @else
           {
-            @for(product of this.productListService.getProductCollection(); track product)
+            @for(product of this.productListService.getProductCollection(); track $index)
             {
               <tr ui-table-row>
                 <td ui-table-data>{{product.id}}</td>

@@ -21,6 +21,10 @@ export class ProductListServicve
   private uiDialogService = inject(UIDialogService);
   private url = URL + "/product";
   private http = inject(HttpClient);
+  private totalEntitiesCount = signal<number>(0);
+  private totalProducts = signal<number>(0);
+  private totalPrice = signal<number>(0.0);
+  private totalPricePerItem = signal<number>(0.0);
   private isSearchOn = signal<boolean>(false);
   private productBook = signal<ProductBookInterface[]>([]);
   private activeProductCollection = signal<ProductInterface[]>(PRODUCT_COLLECTION);
@@ -327,6 +331,21 @@ export class ProductListServicve
     return this.isSearchOn();
   }
 
+  getTotalProducts() : number
+  {
+    return this.totalProducts();
+  }
+
+  getTotalPricePerItem() : number
+  {
+    return this.totalPricePerItem();
+  }
+
+  getTotalPrice() : number
+  {
+    return this.totalPrice();
+  }
+
   getProductsFromServer() : Observable<any>
   {
     return this.http
@@ -336,10 +355,21 @@ export class ProductListServicve
             const products = response.data;
             if(products.length > 0)
             {
+              let tempTotalPricePerItem: number  = 0.0;
+              let tempTotalPrice: number = 0.0;
+              let tempTotalEntitiesCount: number  = 0;
+              this.totalProducts.set(products.length);
               for(let x = 0; x < products.length; x++)
               {
                 products[x].purchase_date = new Date(products[x].purchase_date);
+                tempTotalPricePerItem += products[x].price_per_item;
+                tempTotalPrice += products[x].price;
+                tempTotalEntitiesCount += products[x].count;
+                products[x].purchase_date = new Date(products[x].purchase_date);
               }
+              this.totalPrice.set(tempTotalPrice);
+              this.totalPricePerItem.set(tempTotalPricePerItem);
+              this.totalEntitiesCount.set(tempTotalEntitiesCount)
             }
             this.activeProductCollection.set(products);
             return response;
@@ -377,6 +407,11 @@ export class ProductListServicve
   getShowPerPage()
   {
     return this.showPerPage();
+  }
+
+  getTotalEntitiesCount()
+  {
+    return this.totalEntitiesCount();
   }
 
   getTotalListCount()

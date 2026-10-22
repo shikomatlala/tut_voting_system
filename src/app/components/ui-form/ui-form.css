@@ -6,3 +6,13 @@
   margin-bottom: 20px;
   width: 100%;
 }
+
+:host(.remove-styles)
+{
+  display: unset;
+  align-items: unset;
+  justify-items: unset;
+  margin-bottom: unset;
+  width: unset;
+
+}
