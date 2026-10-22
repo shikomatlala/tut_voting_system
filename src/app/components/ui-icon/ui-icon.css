@@ -9,8 +9,36 @@
   align-items: center;
   justify-items: center;
 }
+:host > span.rotate
+{
 
+  animation: spin 2s linear infinite;
+}
 
+/* :host > span
+{
+  animation: spin 2s linear infinite;
+} */
+:host(.pulsade)
+{
+
+  user-select: none;
+  height: fit-content;
+  width: fit-content;
+  padding:0;
+  margin:0;
+  display: block;
+  animation: spin 2s linear infinite;
+  animation-iteration-count: infinite;
+  user-select: none;
+  height: fit-content;
+  width: fit-content;
+  padding:0;
+  margin:0;
+  display: block;
+  animation: pulsade 4s;
+  animation-iteration-count: infinite;
+}
 :host(.border-radius-50px) > img
 {
   border-radius: 50px;

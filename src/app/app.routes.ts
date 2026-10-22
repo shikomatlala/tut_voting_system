@@ -10,6 +10,9 @@ import { ViewComponents } from './pages/view-components/view-components';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Account } from './pages/account/account';
 import { Product } from './pages/product/product';
+import { ViewProducts } from './pages/view-products/view-products';
+import { ListProducts } from './pages/list-products/list-products';
+import { ProductsStatistics } from './pages/products-statistics/products-statistics';
 
 export const routes: Routes = [
   { path: "error", component: ErrorPage},
@@ -22,7 +25,15 @@ export const routes: Routes = [
   { path: "vote-complete", component: VoteComplete },
   { path: "dashboard", component: Dashboard },
   { path: "account", component: Account},
-  { path: "product", component: Product},
+  { path: "product",
+    component: Product,
+    children: [
+      { path : "list-products", component: ListProducts},
+      { path : "statistics", component: ProductsStatistics}
+    ]
+
+
+  },
 
 
 

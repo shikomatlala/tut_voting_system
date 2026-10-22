@@ -4,6 +4,12 @@
   position                    : sticky !important;
   bottom                      : 0 !important;
   background-color            : #e2ebf4 !important;
+  background-color            : #f8fbff !important;
+  background-color            : #fdfcfc !important;
+  background-color            : white !important;
+
+  /* background-color            : #fafdff8b !important; */
+  /* backdrop-filter             : blur(10px); */
   z-index                     : 1 !important;
 }
 

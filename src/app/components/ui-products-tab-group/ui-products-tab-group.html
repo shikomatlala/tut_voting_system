@@ -1,0 +1,16 @@
+<ul ui-tab-group>
+  @for(tab of tabs; track $index)
+  {
+    <li ui-tab>
+      <button
+        ui-tab-button
+        [iconCode]="tab.iconCode"
+        [iconColor]="getActiveTab(tab.name) ? 'blue' : 'grey'"
+        (click)="goTo(tab.name)"
+        [ngClass]="{'button-tab-active' : getActiveTab(tab.name)}"
+        >
+        {{tab.label}}
+      </button>
+    </li>
+  }
+</ul>

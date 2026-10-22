@@ -4,6 +4,7 @@
       <div class="section" style="
           margin-left: 0;
           position: relative;
+          left:0;
           width: 100%;
           margin-top: 0;">
         <div ui-card-container>
@@ -116,8 +117,8 @@
       <div class="section" style="
           margin-left: 0;
           position: relative;
-          left: 40px;
-          width: calc(100% - 10px);
+          left: 70px;
+          width: calc(100% - 70px);
           margin-top: 0;">
         <div ui-card-container>
           <div ui-card-container class="scrollable-table" style="height:calc(100dvh - 330px)">
@@ -203,18 +204,18 @@
                 </td>
               </tr>
             }
-            <tfoot ui-table-foot class="sticky-footer">
-              <tr ui-table-row>
-                <td ui-table-data style="background-color: #e2ebf4 ;">
+            <tfoot ui-table-foot class="sticky-footer" >
+              <tr ui-table-row style="background-color: transparent;">
+                <td ui-table-data style="background-color: #f0f8ff00 ;">
                   <p style="display:grid; align-items: center; justify-items: center;">
                     #{{productListService.getTotalListCount()}}
                   </p>
                 </td>
-                <td ui-table-data style="background-color: #e2ebf4 ;"></td>
-                <td ui-table-data style="background-color: #e2ebf4 ;">{{productListService.getTotalPricePerItem() | currency : 'R'}}</td>
-                <td ui-table-data style="background-color: #e2ebf4 ;">{{productListService.getTotalPrice() | currency : 'R'}}</td>
-                <td ui-table-data style="background-color: #e2ebf4 ;">{{productListService.getTotalEntitiesCount()}}</td>
-                <td ui-table-data style="background-color: #e2ebf4 ;" colspan="5"></td>
+                <td ui-table-data style="background-color: #f0f8ff00 ;"></td>
+                <td ui-table-data style="background-color: #f0f8ff00 ;">{{productListService.getTotalPricePerItem() | currency : 'R'}}</td>
+                <td ui-table-data style="background-color: #f0f8ff00 ;">{{productListService.getTotalPrice() | currency : 'R'}}</td>
+                <td ui-table-data style="background-color: #f0f8ff00 ;">{{productListService.getTotalEntitiesCount()}}</td>
+                <td ui-table-data style="background-color: #f0f8ff00 ;" colspan="5"></td>
               </tr>
             </tfoot>
 

@@ -8,10 +8,18 @@ import { UiListPaginator } from '../../components/ui-list-paginator/ui-list-pagi
 import { UiTableLayoutControls } from '../../components/ui-table-layout-controls/ui-table-layout-controls';
 import { TableLayoutControlService } from '../../services/tableLayoutControl.service';
 import { UiProductView } from '../../components/ui-product-view/ui-product-view';
+import { RouterOutlet } from '@angular/router';
+import { UiProductsTabGroup } from '../../components/ui-products-tab-group/ui-products-tab-group';
 
 @Component({
   selector: 'app-product',
-  imports: [UiTopNav, UiSideNav, UiProductListTable, UiProductListSearch, UiListPaginator, UiProductView],
+  imports: [
+    UiTopNav,
+    UiSideNav,
+    RouterOutlet,
+    UiProductListSearch,
+    UiProductsTabGroup
+],
   templateUrl: './product.html',
   styleUrl: './product.css',
 })

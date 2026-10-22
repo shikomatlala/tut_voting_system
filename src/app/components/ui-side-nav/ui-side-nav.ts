@@ -39,10 +39,23 @@ export class UiSideNav implements OnInit {
     return false;
   }
 
+
+
   ngOnInit(): void {
+
+    // 1. Get the router url and remove the 1st slash
+    let urlInitial = this.router.url.substring(this.router.url.indexOf('/') + 1);
+    // 2. Check if another slash exists.
+    if(urlInitial.indexOf('/') > 0)
+    {
+      // 2.a If the slash exists then substring up to that slash.
+      urlInitial = urlInitial.substring(0, urlInitial.indexOf('/'));
+    }
+    // 2.b If the slash does not exists then there is no need to do anything
+
     for(let x = 0; x < this.tabs.length; x++)
     {
-      if(this.tabs[x].name == this.router.url.replace('/', ''))
+      if(this.tabs[x].name == urlInitial)
       {
         this.tabs[x].isActive = true;
       }

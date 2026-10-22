@@ -1,28 +1,7 @@
 <section class="page-section">
   <ui-top-nav/>
   <ui-side-nav/>
-  <ui-product-list-search>
-
-  </ui-product-list-search>
-
-  @switch(uiTableLayoutControlService.getLayout())
-  {
-    @case('split'){
-      <div class="fault-issued-main-window-section">
-        <div class="fault-issued-main-window-column-div">
-          <ui-product-list-table></ui-product-list-table>
-        </div>
-        <div class="fault-issued-main-window-column-div">
-         
-          <ui-product-view></ui-product-view>
-          <!-- <ui-product-list-table></ui-product-list-table> -->
-        </div>
-      </div>
-    }
-    @case('unsplit'){
-      <ui-product-list-table></ui-product-list-table>
-    }
-  }
-  <ui-list-paginator></ui-list-paginator>
+  <ui-products-tab-group></ui-products-tab-group>
+  <router-outlet></router-outlet>
 </section>
 

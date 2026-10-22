@@ -1,0 +1,42 @@
+.fault-issued-controls-section
+{
+  border-bottom: 1px solid rgb(233, 233, 233);
+}
+.fault-issued-controls-list-ul
+{
+  display: flex;
+  list-style:none;
+  align-items: center;
+  justify-items: center;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+.fault-issued-controls-list-paginator
+{
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 100px;
+  user-select: none;
+}
+.fault-issued-main-window-section
+{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: calc(100dvw - 100px);
+  position: relative;
+  left: 35px;
+  height: calc(100dvh - 300px);
+  align-items: center;
+  justify-items: center;
+  border-radius: var(--theme-border-radius);
+  /* padding: var(--theme-padding);
+  margin: var(--theme-margin); */
+}
+.fault-issued-main-window-column-div
+{
+  height: calc(100vh - 200px);
+  overflow-y: scroll;
+  width: 100%;
+}
