@@ -1,8 +1,9 @@
 
   <div class="section" style="overflow:unset;">
-    <div ui-card-container>
+    <div ui-card-container class="remove-margin-and-padding remove-background-color">
       <div ui-input-field
-        class="flex remove-margin remove-border white-background"
+        class="flex remove-margin  white-background"
+        style="width: 450px;"
         [hasIcon]="false"
       >
         <input
@@ -34,6 +35,7 @@
             (click)="productListService.search('')"
             (focusout)="isSearchInputSelected.set(false)"
             type="submit"
+            /* class="button button-icon button-circle" */
             class="button button-icon button-circle"
             >
           </button>
@@ -49,11 +51,17 @@
             (click)="productListService.search(search.value)"
             (focusout)="isSearchInputSelected.set(false)"
             type="submit"
-            class="button button-icon button-circle"
+            /* class="button button-icon button-circle" */
+            class="button-text circle no-border"
             >
           </button>
         }
       </div>
     </div>
     <ui-table-layout-controls></ui-table-layout-controls>
+    <button ui-button-icon (click)="productListService.resetAllFilters()" iconCode="refresh" class="btn-outlined flex rotate-icon small" >Reset All</button>
+    <ui-product-list-filters labelName="Classification" filterType="classification" [dataSource]="productListService.getProductClassifications()"></ui-product-list-filters>
+    <!-- <ui-product-list-filters labelName="Purchase Date" filterType="purchase_date" [dataSource]="productListService.getProductPurchaseDates()"></ui-product-list-filters> -->
+    <ui-product-list-filters labelName="Product Type" filterType="product_type" [dataSource]="productListService.getProductTypes()"></ui-product-list-filters>
+    <ui-product-list-filters labelName="Seller" filterType="seller" [dataSource]="productListService.getProductSellers()"></ui-product-list-filters>
   </div>

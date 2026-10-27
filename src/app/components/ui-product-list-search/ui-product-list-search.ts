@@ -6,6 +6,7 @@ import { ProductListServicve } from '../../services/productList.service';
 import { UiCardModule } from '../ui-card/ui-card.module';
 import { UiTableLayoutControls } from '../ui-table-layout-controls/ui-table-layout-controls';
 import { UiInput } from '../ui-input/ui-input';
+import { UiProductListFilters } from '../ui-product-list-filters/ui-product-list-filters';
 @Component({
   selector: 'ui-product-list-search',
   imports: [
@@ -14,7 +15,8 @@ import { UiInput } from '../ui-input/ui-input';
     UiButtonIcon,
     UiCardModule,
     UiTableLayoutControls,
-    UiInput
+    UiInput,
+    UiProductListFilters
 ],
   templateUrl: './ui-product-list-search.html',
   styleUrl: './ui-product-list-search.css',

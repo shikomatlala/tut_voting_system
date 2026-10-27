@@ -7,3 +7,16 @@
   padding                 : var(--theme-padding-large);
   border-radius           : var(--theme-border-radius);
 }
+
+
+:host(.remove-margin-and-padding)
+{
+  margin                  : 0;
+  padding                 : 0;
+}
+
+
+:host(.remove-background-color)
+{
+  background-color: unset;
+}

@@ -84,6 +84,7 @@ export class UiProductListTable implements OnInit {
     this.productForm.reset();
   }
 
+
   addProduct( productForm: FormGroup)
   {
     let product = {

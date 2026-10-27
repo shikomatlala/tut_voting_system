@@ -1,0 +1,40 @@
+
+:host
+{
+  padding: 0;
+  border-bottom: 1px solid rgb(206, 206, 206);
+  border-bottom: 1px solid #053c8329;
+  border-bottom: 1px solid rgb(235, 235, 235);
+}
+:host > span
+{
+  display: grid;
+  grid-template-columns: 40px calc(100% - 40px);
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: center;
+  height: 40px;
+}
+
+:host:hover
+{
+  background-color:#d8eeff;
+  background-color: #e8f1f8;
+}
+
+:host:active
+{
+  background-color:#d8eeff;
+  background-color: #e8f1f8;
+}
+
+:host(.margin-top)
+{
+  border-top: 1px solid #a4a4a4;
+  margin-top: 5px;
+}
+
+:host(.border-top)
+{
+  border-top: 1px solid rgb(235, 235, 235);
+}

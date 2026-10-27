@@ -296,3 +296,34 @@ a{
     transform: rotate(360deg);
   }
 }
+
+select, ::picker(select)
+{
+  /* appearance: base-select; */
+}
+
+select
+{
+  flex                        : 1;
+  border                      : #0015247f       ;
+  background-color: aliceblue;
+  border-radius: var(--theme-border-radius);
+  padding: var(--theme-padding);
+  width: auto;
+  transition: 0.4s;
+  outline: none;
+
+  /* color: var(--theme-color); */
+}
+
+select:hover,
+select:focus
+{
+
+  background-color: aliceblue;
+  color: var(--theme-color)
+}
+
+option
+{
+}

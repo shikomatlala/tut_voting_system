@@ -17,6 +17,14 @@
   width: fit-content;
   position: relative;
 }
+:host(:has(input[type=text]:focus)),
+:host(:focus-within) > label
+{
+  color: var(--theme-color);
+  transition                       : 0.5s;
+  -webkit-transition               : 0.5s;
+}
+
 :host(.no-icon) > input
 {
   padding-left: var(--theme-padding) !important;

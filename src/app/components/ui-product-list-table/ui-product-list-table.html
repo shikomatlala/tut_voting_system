@@ -7,8 +7,8 @@
           left:0;
           width: 100%;
           margin-top: 0;">
-        <div ui-card-container>
-          <div ui-card-container class="scrollable-table" style="height:calc(100dvh - 330px)">
+        <div ui-card-container class="scrollable-table remove-margin-and-padding remove-background-color">
+          <div ui-card-container class="scrollable-table remove-margin-and-padding remove-background-color" style="height:calc(100dvh - 260px)">
           <table ui-table style="width:100%">
             <tr ui-table-row class="header">
                 <td ui-table-data class="header">
@@ -89,7 +89,7 @@
           {
             @for(product of this.productListService.getProductCollection(); track $index)
             {
-              <tr ui-table-row  (keypress)="productService.setProduct(product) " (click)="productService.setProduct(product) "  style="cursor: pointer;">
+              <tr ui-table-row  (keydown)="productService.setProduct(product) " (click)="productService.setProduct(product) "  style="cursor: pointer;">
                 <td ui-table-data>{{product.id}}</td>
                 <td ui-table-data>{{product.name}}</td>
                 <td ui-table-data>{{product.price_per_item}}</td>
@@ -116,12 +116,13 @@
         {
       <div class="section" style="
           margin-left: 0;
+          border-radius: 0;
           position: relative;
           left: 70px;
           width: calc(100% - 70px);
           margin-top: 0;">
-        <div ui-card-container>
-          <div ui-card-container class="scrollable-table" style="height:calc(100dvh - 330px)">
+        <div ui-card-container class="scrollable-table remove-margin-and-padding remove-background-color">
+          <div ui-card-container class="scrollable-table remove-margin-and-padding remove-background-color" style="height:calc(100dvh - 260px)">
           <table ui-table>
             <tr ui-table-row class="header">
               @for(column of productListService.getColumnTitles(); track $index) {
@@ -149,33 +150,33 @@
                   </p>
                 </td>
                 <td ui-table-data>
-                  <input name="name" ui-input formControlName="name" class="table-input outlined small remove-border-radius" type="text" placeholder="Product Name"/>
+                  <input (keyup.enter)="addProduct(productForm)" name="name" ui-input formControlName="name" class="table-input outlined small remove-border-radius" type="text" placeholder="Product Name"/>
                 </td>
                 <td ui-table-data>
-                  <input name="pricePerItem"  ui-input formControlName="price_per_item" class="table-input outlined remove-border-radius"  type="number" placeholder="Price / Item"/>
+                  <input (keyup.enter)="addProduct(productForm)"  name="pricePerItem"  ui-input formControlName="price_per_item" class="table-input outlined remove-border-radius"  type="number" placeholder="Price / Item"/>
                 </td>
                 <td ui-table-data>
-                  <input name="price" ui-input formControlName="price" class="table-input outlined remove-border-radius" type="number" placeholder="Price"/>
+                  <input (keyup.enter)="addProduct(productForm)"  name="price" ui-input formControlName="price" class="table-input outlined remove-border-radius" type="number" placeholder="Price"/>
                 </td>
                 <td ui-table-data>
-                  <input name="count" ui-input formControlName="count" class="table-input outlined remove-border-radius" type="number" placeholder="Count"/>
+                  <input (keyup.enter)="addProduct(productForm)"  name="count" ui-input formControlName="count" class="table-input outlined remove-border-radius" type="number" placeholder="Count"/>
                 </td>
                 <td ui-table-data>
-                  <input name="seller" ui-input formControlName="seller" class="table-input outlined remove-border-radius"  type="text" placeholder="Seller"/>
+                  <input (keyup.enter)="addProduct(productForm)"  name="seller" ui-input formControlName="seller" class="table-input outlined remove-border-radius"  type="text" placeholder="Seller"/>
                 </td>
                 <td ui-table-data>
-                  <input name="purchaseDate" ui-input formControlName="purchase_date" class="table-input outlined remove-border-radius"  type="datetime-local" placeholder="Purchase Date"/>
+                  <input (keyup.enter)="addProduct(productForm)"  name="purchaseDate" ui-input formControlName="purchase_date" class="table-input outlined remove-border-radius"  type="datetime-local" placeholder="Purchase Date"/>
                 </td>
                 <td ui-table-data>
-                  <input name="productType" ui-input  formControlName="product_type" class="table-input outlined remove-border-radius"  type="text" placeholder="Product Type"/>
+                  <input (keyup.enter)="addProduct(productForm)"  name="productType" ui-input  formControlName="product_type" class="table-input outlined remove-border-radius"  type="text" placeholder="Product Type"/>
                 </td>
                 <td ui-table-data>
-                  <input name="brand"  ui-input formControlName="brand" class="table-input outlined remove-border-radius"  type="text" placeholder="Brand"/>
+                  <input (keyup.enter)="addProduct(productForm)"  name="brand"  ui-input formControlName="brand" class="table-input outlined remove-border-radius"  type="text" placeholder="Brand"/>
                 </td>
                 <td ui-table-data>
                   <div class="flex">
                     <button ui-button (click)="addProduct( productForm)"> Save</button>
-                    <button (click)="clear(productForm)" ui-button class="btn-outlined" > Clear </button>
+                    <button (click)="clear(productForm)" ui-button class=" btn-text" > Clear </button>
                   </div>
                 </td>
               </tr>
@@ -200,22 +201,19 @@
                 <td ui-table-data>{{product.product_type}}</td>
                 <td ui-table-data>{{product.brand}}</td>
                 <td ui-table-data>
-                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button>
+                  <!-- <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button> -->
+                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button iconCode="delete" tooltip="delete" class="btn-text small" >delete</button>
                 </td>
               </tr>
             }
-            <tfoot ui-table-foot class="sticky-footer" >
-              <tr ui-table-row style="background-color: transparent;">
-                <td ui-table-data style="background-color: #f0f8ff00 ;">
-                  <p style="display:grid; align-items: center; justify-items: center;">
-                    #{{productListService.getTotalListCount()}}
-                  </p>
-                </td>
-                <td ui-table-data style="background-color: #f0f8ff00 ;"></td>
-                <td ui-table-data style="background-color: #f0f8ff00 ;">{{productListService.getTotalPricePerItem() | currency : 'R'}}</td>
-                <td ui-table-data style="background-color: #f0f8ff00 ;">{{productListService.getTotalPrice() | currency : 'R'}}</td>
-                <td ui-table-data style="background-color: #f0f8ff00 ;">{{productListService.getTotalEntitiesCount()}}</td>
-                <td ui-table-data style="background-color: #f0f8ff00 ;" colspan="5"></td>
+            <tfoot ui-table-foot class="sticky-footer" style="background-color: transparent !important;">
+              <tr ui-table-row style="background-color: #889fb123;backdrop-filter: blur(25px);">
+                <td ui-table-data> <p style="display:grid; align-items: center; justify-items: center;"> #{{productListService.getTotalListCount()}} </p> </td>
+                <td ui-table-data></td>
+                <td ui-table-data>{{productListService.getTotalPricePerItem() | currency : 'R'}}</td>
+                <td ui-table-data>{{productListService.getTotalPrice() | currency : 'R'}}</td>
+                <td ui-table-data>{{productListService.getTotalEntitiesCount()}}</td>
+                <td ui-table-data colspan="5"></td>
               </tr>
             </tfoot>
 
@@ -232,7 +230,6 @@
                 <td ui-table-data>{{product.count}}</td>
                 <td ui-table-data>{{product.seller}}</td>
                 <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
-                <!-- <td ui-table-data>{{product.purchase_date}}</td> -->
                 <td ui-table-data>{{product.product_type}}</td>
                 <td ui-table-data>{{product.brand}}</td>
                 <td ui-table-data>

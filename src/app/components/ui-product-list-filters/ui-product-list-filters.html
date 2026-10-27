@@ -1,0 +1,22 @@
+<div ui-input-field class="has-label" [hasIcon]="false">
+  <label ui-input-label>{{labelName()}}</label>
+  <select
+    ngModel
+    #filterOptions="ngModel"
+    (change)="filterProductList(filterOptions)"
+    name="filterOptions"
+    id="filterOptions"
+  >
+    @for(data of dataSource(); track $index)
+    {
+      <option
+        ui-option
+        [value]="data.id == undefined ? data.value : data.id"
+        [selected]="$index == 0 ? 'selected': 'false'"
+        [ngClass]="{'margin-top': $index == 0}"
+      >
+        {{data.value}}
+      </option>
+    }
+  </select>
+</div>

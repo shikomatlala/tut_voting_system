@@ -55,6 +55,18 @@
   background-color: rgb(195, 195, 195);
   border:1px solid transparent;
 }
+:host(.circle)
+{
+  border-radius: 50px !important;
+}
+:host(.no-border)
+{
+  border:none !important;
+}
+:host(.no-border):hover
+{
+  border:none !important;
+}
 :host(.btn-circle-tooltip)
 {
 
@@ -357,6 +369,7 @@
   border: none;
   color: grey;
   align-items: center;
+  align-content: center;
   background-color: none;
   display:flex;
   height: 40px;
@@ -459,4 +472,25 @@
   padding: 10px;
   top: 100%;
   color: white;
+}
+
+:host(.flex)
+{
+  display:flex;
+  align-items: center !important;
+  align-content: center !important;
+}
+:host(.rotate-icon):focus > ui-icon
+{
+  display: grid;
+  animation: rotate 1s ease-in-out;
+}
+
+@keyframes rotate{
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

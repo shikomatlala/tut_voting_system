@@ -11,10 +11,13 @@
 
 .scrollable-table
 {
-padding: 0; margin: 0; overflow: hidden; overflow-y: scroll; height: calc(100dvh - 400px);
+padding: 0; margin: 0; overflow: hidden; overflow-y: scroll; height: calc(100dvh - 260px);
 }
 
 .table-input
 {
-  height: 30px;padding:5px; max-width: fit-content;
+  height: 30px;
+  padding:5px;
+   /* max-width: fit-content; */
+  width: 100%;;
 }

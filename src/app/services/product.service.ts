@@ -35,6 +35,10 @@ export class ProductService
   private classification = signal<string | null>("");
   private unitOfMeasurement = signal<string | null>("");
   private isProductSelected = signal<boolean>(false);
+  private productTypes = signal<string[]>([]);
+  private productClassifications = signal<string[]>([]);
+  private productSellers = signal<string[]>([]);
+  private productPurchaseDates = signal<string[]>([]);
 
   constructor()
   {
@@ -46,6 +50,8 @@ export class ProductService
   {
     this.isProductSelected.set(value);
   }
+
+
   update() : Observable<any>
   {
     return this.http

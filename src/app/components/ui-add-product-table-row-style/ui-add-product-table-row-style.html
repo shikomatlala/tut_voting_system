@@ -1,0 +1,39 @@
+<tr ui-table-row  class="header" [formGroup]="productForm">
+  <td ui-table-data>
+    <p style="display:grid; justify-content: center;">
+      #
+    </p>
+  </td>
+  <td ui-table-data>
+    <input (keyup.enter)="addProduct(productForm)"  name="name" ui-input formControlName="name" class="table-input outlined small remove-border-radius" type="text" placeholder="Product Name"/>
+  </td>
+  <td ui-table-data>
+    <input (keyup.enter)="addProduct(productForm)"  name="pricePerItem"  ui-input formControlName="price_per_item" class="table-input outlined remove-border-radius"  type="number" placeholder="Price / Item"/>
+  </td>
+  <td ui-table-data>
+    <input  (keyup.enter)="addProduct(productForm)" name="price" ui-input formControlName="price" class="table-input outlined remove-border-radius" type="number" placeholder="Price"/>
+  </td>
+  <td ui-table-data>
+    <input (keyup.enter)="addProduct(productForm)" name="count" ui-input formControlName="count" class="table-input outlined remove-border-radius" type="number" placeholder="Count"/>
+  </td>
+  <td ui-table-data>
+    <input (keyup.enter)="addProduct(productForm)"  name="seller" ui-input formControlName="seller" class="table-input outlined remove-border-radius"  type="text" placeholder="Seller"/>
+  </td>
+  <td ui-table-data>
+    <input (keyup.enter)="addProduct(productForm)"  name="purchaseDate" ui-input formControlName="purchase_date" class="table-input outlined remove-border-radius"  type="datetime-local" placeholder="Purchase Date"/>
+  </td>
+  <td ui-table-data>
+    <input (keyup.enter)="addProduct(productForm)"  name="productType" ui-input  formControlName="product_type" class="table-input outlined remove-border-radius"  type="text" placeholder="Product Type"/>
+  </td>
+  <td ui-table-data>
+    <input (keyup.enter)="addProduct(productForm)"  name="brand"  ui-input formControlName="brand" class="table-input outlined remove-border-radius"  type="text" placeholder="Brand"/>
+  </td>
+  <td ui-table-data>
+    <div class="flex">
+      <button ui-button (click)="addProduct( productForm)"> Save</button>
+      <button (click)="clear(productForm)" ui-button class="btn-outlined" > Clear </button>
+    </div>
+  </td>
+
+</tr>
+

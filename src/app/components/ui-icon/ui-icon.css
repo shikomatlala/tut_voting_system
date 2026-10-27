@@ -12,7 +12,8 @@
 :host > span.rotate
 {
 
-  animation: spin 2s linear infinite;
+  display:grid;
+  animation: spin 1s linear infinite;
 }
 
 /* :host > span

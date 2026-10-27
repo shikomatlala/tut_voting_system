@@ -21,6 +21,7 @@ export class ProductListServicve
   private uiDialogService = inject(UIDialogService);
   private url = URL + "/product";
   private http = inject(HttpClient);
+  private productListFilterParameter = signal<{field: string, value: string}>({field: "all", value: ""});
   private totalEntitiesCount = signal<number>(0);
   private totalProducts = signal<number>(0);
   private totalPrice = signal<number>(0.0);
@@ -32,6 +33,11 @@ export class ProductListServicve
   private showPerPage = signal<number>(100);
   private totalNumberOfPage = signal<number>(this.productCollection().length / this.showPerPage());
   private pages = signal<PageMetadataInterface[]>([{pageNumber: 1, pageIndex: 0, isPageActive: true, recordsPerPage: 100}]);
+  private productTypes = signal<Array<{id:string, value:string}>>([]);
+  private productClassifications = signal<Array<{id:string, value:string}>>([]);
+  private productSellers = signal<Array<{id:string, value:string}>>([]);
+  private productPurchaseDates = signal<Array<{id:string, value:string}>>([]);
+
   private columnTitles = [
     { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "ID", reference: "id" },
     { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Name", reference: "name" },
@@ -65,6 +71,75 @@ export class ProductListServicve
 
     this.setActiveProductCollection();
     this.updateTheTotalNumberOfPages();
+  }
+
+  setProductTypes(): Observable<any>
+  {
+    return this.http
+      .get(this.url + `/query/group?field=productType`)
+        .pipe(
+          map((response:any)=>{
+            if(response.status)
+            {
+              this.productTypes.set(response.data.product_types);
+            }
+          })
+        )
+  }
+ getProductClassifications() : Array<{id:string, value:string}>
+ {
+  return this.productClassifications();
+ }
+ getProductPurchaseDates(): Array<{id:string, value:string}>
+ {
+  return this.productPurchaseDates();
+ }
+ getProductSellers(): Array<{id:string, value:string}>
+ {
+  return this.productSellers();
+ }
+ getProductTypes(): Array<{id:string, value:string}>
+ {
+  return this.productTypes();
+ }
+  setProductSellers(): Observable<any>
+  {
+    return this.http
+      .get(this.url + `/query/group?field=seller`)
+        .pipe(
+          map((response:any)=>{
+            if(response.status)
+            {
+              this.productSellers.set(response.data.sellers);
+            }
+          })
+        )
+  }
+  setProductPurchaseDates(): Observable<any>
+  {
+    return this.http
+      .get(this.url + `/query/group?field=purchaseDate`)
+        .pipe(
+          map((response:any)=>{
+            if(response.status)
+            {
+              this.productPurchaseDates.set(response.data.purchase_dates);
+            }
+          })
+        )
+  }
+  setProductClassifications(): Observable<any>
+  {
+    return this.http
+      .get(this.url + `/query/group?field=classification`)
+        .pipe(
+          map((response:any)=>{
+            if(response.status)
+            {
+              this.productClassifications.set(response.data.classifications);
+            }
+          })
+        )
   }
 
   deleteProduct(product: any) : Observable<any>
@@ -121,6 +196,14 @@ export class ProductListServicve
             this.snackbarService.startSnackBar();
           })
         )
+  }
+
+  resetAllFilters()
+  {
+    this.getProductsFromServer().subscribe((response=>{
+      this.snackbarService.setMessage("Filters have been removed");
+      this.snackbarService.startSnackBar()
+    }));
   }
 
   sort(key:string)
@@ -346,12 +429,81 @@ export class ProductListServicve
     return this.totalPrice();
   }
 
+  setProductListFilterParameter(queryParams: {field: string, value: string})
+  {
+    this.productListFilterParameter.set(queryParams);
+  }
+
+  filterProductList(queryParams: {field: string, value:string}, filterType?:string)
+  {
+    this.productListFilterParameter.set(queryParams);
+    this.queryProductsFromServer(this.productListFilterParameter(), filterType).subscribe();
+  }
+
+  queryProductsFromServer(queryParams: {field: string, value: string}, filterType?:string) : Observable<any>
+  {
+    var configuredURL = `${this.url}/query/field?field=${queryParams.field}&value=${queryParams.value}`;
+    console.log(configuredURL);
+    return this.http
+      .get(configuredURL)
+        .pipe(
+          map((response:any)=>{
+            if(response.status)
+            {
+              // this.snackbarService.setMessage(`Products are now filtered by ${queryParams.field} ${queryParams.value}`);
+              this.snackbarService.setMessage(`Products are now filtered by ${filterType ? filterType : queryParams.field}`);
+              const products = response.data;
+              let tempTotalPricePerItem: number  = 0.0;
+              let tempTotalPrice: number = 0.0;
+              let tempTotalEntitiesCount: number  = 0;
+              this.totalProducts.set(products.length);
+              for(let x = 0; x < products.length; x++)
+              {
+                products[x].purchase_date = new Date(products[x].purchase_date);
+                tempTotalPricePerItem += products[x].price_per_item;
+                tempTotalPrice += products[x].price;
+                tempTotalEntitiesCount += products[x].count;
+                products[x].purchase_date = new Date(products[x].purchase_date);
+              }
+              this.totalPrice.set(tempTotalPrice);
+              this.totalPricePerItem.set(tempTotalPricePerItem);
+              this.totalEntitiesCount.set(tempTotalEntitiesCount)
+              this.activeProductCollection.set(products);
+            }
+            return response;
+          }),
+          catchError((err)=>{
+            if(err.error.message)
+            {
+              console.log(err);
+              this.snackbarService.setMessage(err.error.message);
+              return err.error.message;
+            }
+            else
+            {
+              this.snackbarService.setMessage("an error occured during products list retrieval");
+              return of(err);
+            }
+          }),
+          finalize(()=>{
+            this.snackbarService.startSnackBar();
+          })
+        )
+  }
+
   getProductsFromServer() : Observable<any>
   {
     return this.http
       .get(this.url)
         .pipe(
           map((response:any)=>{
+            if(response.status)
+            {
+              this.setProductClassifications().subscribe();
+              this.setProductPurchaseDates().subscribe();
+              this.setProductSellers().subscribe();
+              this.setProductTypes().subscribe();
+            }
             const products = response.data;
             if(products.length > 0)
             {
@@ -373,6 +525,20 @@ export class ProductListServicve
             }
             this.activeProductCollection.set(products);
             return response;
+          }),
+          catchError((err)=>{
+            if(err.error.message)
+            {
+              this.snackbarService.setMessage(err.error.message);
+              this.snackbarService.startSnackBar();
+              return err.error.message;
+            }
+            else
+            {
+              this.snackbarService.setMessage("an error occured during products list retrieval");
+              this.snackbarService.startSnackBar();
+              return of(err);
+            }
           })
         )
 
