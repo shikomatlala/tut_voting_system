@@ -36,6 +36,8 @@ export class ProductListServicve
   private productTypes = signal<Array<{id:string, value:string}>>([]);
   private productClassifications = signal<Array<{id:string, value:string}>>([]);
   private productSellers = signal<Array<{id:string, value:string}>>([]);
+  private productBrands = signal<Array<{id:string, value:string}>>([]);
+  private productNames = signal<Array<{id:string, value:string}>>([]);
   private productPurchaseDates = signal<Array<{id:string, value:string}>>([]);
 
   private columnTitles = [
@@ -44,14 +46,14 @@ export class ProductListServicve
     { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Price per item", reference: "price_per_item" },
     { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Price", reference: "price" },
     { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Count", reference: "count" },
-    { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Seller", reference: "seller" },
-    { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Purchase Date", reference: "purchase_date" },
     // { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Quantity", reference: "quantity" },
     // { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Classification", reference: "classification" },
     // { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Unit of Measurement", reference: "unit_of_measurement" },
     // { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Description", reference: "description" },
     { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Product Type", reference: "product_type" },
     { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Brand", reference: "brand" },
+    { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Seller", reference: "seller" },
+    { isSortAscending: true, ascendingIcon: "arrowDropDown", descendingIcon: "arrowDropUp", caption: "Purchase Date", reference: "purchase_date" },
   ]
 
   constructor()
@@ -94,6 +96,14 @@ export class ProductListServicve
  {
   return this.productPurchaseDates();
  }
+ getProductNames(): Array<{id:string, value:string}>
+ {
+  return this.productNames();
+ }
+ getProductBrands(): Array<{id:string, value:string}>
+ {
+  return this.productBrands();
+ }
  getProductSellers(): Array<{id:string, value:string}>
  {
   return this.productSellers();
@@ -102,6 +112,32 @@ export class ProductListServicve
  {
   return this.productTypes();
  }
+  setProductNames(): Observable<any>
+  {
+    return this.http
+      .get(this.url + `/query/group?field=name`)
+        .pipe(
+          map((response:any)=>{
+            if(response.status)
+            {
+              this.productNames.set(response.data.names);
+            }
+          })
+        )
+  }
+  setProductBrands(): Observable<any>
+  {
+    return this.http
+      .get(this.url + `/query/group?field=brand`)
+        .pipe(
+          map((response:any)=>{
+            if(response.status)
+            {
+              this.productBrands.set(response.data.brands);
+            }
+          })
+        )
+  }
   setProductSellers(): Observable<any>
   {
     return this.http
@@ -500,6 +536,8 @@ export class ProductListServicve
             if(response.status)
             {
               this.setProductClassifications().subscribe();
+              this.setProductNames().subscribe();
+              this.setProductBrands().subscribe();
               this.setProductPurchaseDates().subscribe();
               this.setProductSellers().subscribe();
               this.setProductTypes().subscribe();

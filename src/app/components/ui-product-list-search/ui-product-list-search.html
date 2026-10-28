@@ -3,7 +3,7 @@
     <div ui-card-container class="remove-margin-and-padding remove-background-color">
       <div ui-input-field
         class="flex remove-margin  white-background"
-        style="width: 450px;"
+        style="width: auto;"
         [hasIcon]="false"
       >
         <input
@@ -59,9 +59,10 @@
       </div>
     </div>
     <ui-table-layout-controls></ui-table-layout-controls>
-    <button ui-button-icon (click)="productListService.resetAllFilters()" iconCode="refresh" class="btn-outlined flex rotate-icon small" >Reset All</button>
+    <button ui-button-icon (click)="productListService.resetAllFilters()" iconCode="refresh" class="btn-outlined flex rotate-icon small" >Reset Filters</button>
     <ui-product-list-filters labelName="Classification" filterType="classification" [dataSource]="productListService.getProductClassifications()"></ui-product-list-filters>
     <!-- <ui-product-list-filters labelName="Purchase Date" filterType="purchase_date" [dataSource]="productListService.getProductPurchaseDates()"></ui-product-list-filters> -->
     <ui-product-list-filters labelName="Product Type" filterType="product_type" [dataSource]="productListService.getProductTypes()"></ui-product-list-filters>
     <ui-product-list-filters labelName="Seller" filterType="seller" [dataSource]="productListService.getProductSellers()"></ui-product-list-filters>
+    <ui-product-list-filters labelName="Brand" filterType="brand" [dataSource]="productListService.getProductBrands()"></ui-product-list-filters>
   </div>

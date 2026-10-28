@@ -38,12 +38,12 @@
                 <td ui-table-data class="header">
                   <button
                     ui-button
-                    (click)="productListService.sort(productListService.getColumnTitles()[2].reference)"
+                    (click)="productListService.sort(productListService.getColumnTitles()[3].reference)"
                     class="small-padding-and-margin table-button" >
-                    @if(productListService.getColumnTitles()[2])
+                    @if(productListService.getColumnTitles()[3])
                     {
-                      {{productListService.getColumnTitles()[2].caption | uppercase}}
-                      <ui-icon color="grey" [code]="productListService.getColumnTitles()[2].isSortAscending ?productListService.getColumnTitles()[2].ascendingIcon: productListService.getColumnTitles()[2].descendingIcon"/>
+                      {{productListService.getColumnTitles()[3].caption | uppercase}}
+                      <ui-icon color="grey" [code]="productListService.getColumnTitles()[2].isSortAscending ?productListService.getColumnTitles()[3].ascendingIcon: productListService.getColumnTitles()[3].descendingIcon"/>
                     }
                   </button>
                 </td>
@@ -72,15 +72,27 @@
                 </td>
                 <td ui-table-data>
                   {{product.name}}
+                  <div [ngStyle]="{display: uiTableLayoutControlService.activeDensity().name == 'medium' ? 'block' : 'none'}">
+                    <span style="color:grey; font-size: smaller;padding-right: 10px;">{{product.seller + ' |'}}</span>
+                    <span style="color:grey; font-size: smaller;padding-right: 10px;">{{product.product_type + ' |'}}</span>
+                    <span style="color:grey; font-size: smaller;padding-right: 10px;">{{product.brand}}</span>
+                  </div>
                 </td>
                 <td ui-table-data>
                     R{{product.price}}
+                  <div [ngStyle]="{display: uiTableLayoutControlService.activeDensity().name == 'medium' ? 'block' : 'none'}">
+                    <span style="color:grey; font-size: smaller;padding-right: 10px;">R{{product.price_per_item}}</span>
+                  </div>
                 </td>
                 <td ui-table-data>
                     {{`${product.purchase_date | date}`}}
+                    <div [ngStyle]="{display: uiTableLayoutControlService.activeDensity().name == 'medium' ? 'block' : 'none'}">
+                      <span style="color:grey; font-size: smaller;padding-right: 10px;">{{product.purchase_date | date : 'h:mm a'}}</span>
+                    </div>
                 </td>
                 <td ui-table-data>
-                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button>
+                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button iconCode="delete" tooltip="delete"[ngStyle]="{padding: uiTableLayoutControlService.activeDensity().padding, margin: uiTableLayoutControlService.activeDensity().margin}" class="btn-text small" >delete</button>
+                  <!-- <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button> -->
                 </td>
               </tr>
             }
@@ -91,17 +103,27 @@
             {
               <tr ui-table-row  (keydown)="productService.setProduct(product) " (click)="productService.setProduct(product) "  style="cursor: pointer;">
                 <td ui-table-data>{{product.id}}</td>
-                <td ui-table-data>{{product.name}}</td>
-                <td ui-table-data>{{product.price_per_item}}</td>
-                <td ui-table-data>{{product.price}}</td>
-                <td ui-table-data>{{product.count}}</td>
-                <td ui-table-data>{{product.seller}}</td>
-                <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
+                <td ui-table-data>{{product.name}}
+                  <div [ngStyle]="{display: uiTableLayoutControlService.activeDensity().name == 'medium' ? 'block' : 'none'}">
+                    <span style="color:grey; font-size: smaller;padding-right: 10px;">{{product.seller + ' |'}}</span>
+                    <span style="color:grey; font-size: smaller;padding-right: 10px;">{{product.product_type + ' |'}}</span>
+                    <span style="color:grey; font-size: smaller;padding-right: 10px;">{{product.brand}}</span>
+                  </div>
+                </td>
+                <td ui-table-data>R{{product.price}}
+                  <div [ngStyle]="{display: uiTableLayoutControlService.activeDensity().name == 'medium' ? 'block' : 'none'}">
+                    <span style="color:grey; font-size: smaller;padding-right: 10px;">R{{product.price_per_item}}</span>
+                  </div>
+                </td>
+                <td ui-table-data>{{`${product.purchase_date | date}`}}
+                  <div [ngStyle]="{display: uiTableLayoutControlService.activeDensity().name == 'medium' ? 'block' : 'none'}">
+                    <span style="color:grey; font-size: smaller;padding-right: 10px;">{{product.purchase_date | date : 'h:mm a'}}</span>
+                  </div>
+                </td>
                 <!-- <td ui-table-data>{{product.purchase_date}}</td> -->
-                <td ui-table-data>{{product.product_type}}</td>
-                <td ui-table-data>{{product.brand}}</td>
                 <td ui-table-data>
-                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button>
+                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button iconCode="delete" tooltip="delete"[ngStyle]="{padding: uiTableLayoutControlService.activeDensity().padding, margin: uiTableLayoutControlService.activeDensity().margin}" class="btn-text small" >delete</button>
+                  <!-- <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button> -->
                 </td>
               </tr>
             }
@@ -150,7 +172,13 @@
                   </p>
                 </td>
                 <td ui-table-data>
-                  <input (keyup.enter)="addProduct(productForm)" name="name" ui-input formControlName="name" class="table-input outlined small remove-border-radius" type="text" placeholder="Product Name"/>
+                  <input #inputName (keyup.enter)="addProduct(productForm)" name="name" id="name" list="productNames-datalist" ui-input formControlName="name" class="table-input outlined small remove-border-radius" type="text" placeholder="Product Name"/>
+                  <datalist id="productNames-datalist">
+                    @for(productName of productListService.getProductNames();track $index)
+                    {
+                      <option>{{productName.value}} </option>
+                    }
+                  </datalist>
                 </td>
                 <td ui-table-data>
                   <input (keyup.enter)="addProduct(productForm)"  name="pricePerItem"  ui-input formControlName="price_per_item" class="table-input outlined remove-border-radius"  type="number" placeholder="Price / Item"/>
@@ -162,21 +190,39 @@
                   <input (keyup.enter)="addProduct(productForm)"  name="count" ui-input formControlName="count" class="table-input outlined remove-border-radius" type="number" placeholder="Count"/>
                 </td>
                 <td ui-table-data>
-                  <input (keyup.enter)="addProduct(productForm)"  name="seller" ui-input formControlName="seller" class="table-input outlined remove-border-radius"  type="text" placeholder="Seller"/>
+                  <input (keyup.enter)="addProduct(productForm)" id="productType" list="productType-datalist"  name="productType" ui-input  formControlName="product_type" class="table-input outlined remove-border-radius"  type="text" placeholder="Product Type"/>
+                  <datalist id="productType-datalist">
+                    @for(productType of productListService.getProductTypes();track $index)
+                    {
+                      <option>{{productType.value}} </option>
+                    }
+                  </datalist>
+                </td>
+                <td ui-table-data>
+                  <input (keyup.enter)="addProduct(productForm)" list="brand-datalist" name="brand"  ui-input formControlName="brand" class="table-input outlined remove-border-radius"  type="text" placeholder="Brand"/>
+                  <datalist id="brand-datalist">
+                    @for(brand of productListService.getProductBrands();track $index)
+                    {
+                      <option>{{brand.value}} </option>
+                    }
+                  </datalist>
+                </td>
+                <td ui-table-data>
+                  <input (keyup.enter)="addProduct(productForm)" id="seller"  list="seller-datalist" name="seller" ui-input formControlName="seller" class="table-input outlined remove-border-radius"  type="text" placeholder="Seller"/>
+                  <datalist id="seller-datalist">
+                    @for(seller of productListService.getProductSellers();track $index)
+                    {
+                      <option>{{seller.value}}</option>
+                    }
+                  </datalist>
                 </td>
                 <td ui-table-data>
                   <input (keyup.enter)="addProduct(productForm)"  name="purchaseDate" ui-input formControlName="purchase_date" class="table-input outlined remove-border-radius"  type="datetime-local" placeholder="Purchase Date"/>
                 </td>
                 <td ui-table-data>
-                  <input (keyup.enter)="addProduct(productForm)"  name="productType" ui-input  formControlName="product_type" class="table-input outlined remove-border-radius"  type="text" placeholder="Product Type"/>
-                </td>
-                <td ui-table-data>
-                  <input (keyup.enter)="addProduct(productForm)"  name="brand"  ui-input formControlName="brand" class="table-input outlined remove-border-radius"  type="text" placeholder="Brand"/>
-                </td>
-                <td ui-table-data>
                   <div class="flex">
                     <button ui-button (click)="addProduct( productForm)"> Save</button>
-                    <button (click)="clear(productForm)" ui-button class=" btn-text" > Clear </button>
+                    <button (click)="clear(productForm)" [ngStyle]="{padding: uiTableLayoutControlService.activeDensity().padding, margin: uiTableLayoutControlService.activeDensity().margin}" ui-button class="btn-text" > Clear </button>
                   </div>
                 </td>
               </tr>
@@ -187,22 +233,22 @@
             {
               <tr ui-table-row>
                 <td ui-table-data>
-                  <button ui-button class="btn-text">
-                    {{product.id}}
+                  <button ui-button [ngStyle]="{padding: uiTableLayoutControlService.activeDensity().padding, margin: uiTableLayoutControlService.activeDensity().margin}" class="btn-text">
+                    {{product.id }}
                   </button>
                 </td>
                 <td ui-table-data>{{product.name}}</td>
                 <td ui-table-data>R{{product.price_per_item}}</td>
                 <td ui-table-data>R{{product.price}}</td>
                 <td ui-table-data>{{product.count}}</td>
-                <td ui-table-data>{{product.seller}}</td>
                 <!-- <td ui-table-data>{{`${product.purchase_date.getDate()}/${product.purchase_date.getMonth()}/${product.purchase_date.getFullYear()} ${product.purchase_date.getHours()}:${product.purchase_date.getMinutes()}`}}</td> -->
-                <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
                 <td ui-table-data>{{product.product_type}}</td>
                 <td ui-table-data>{{product.brand}}</td>
+                <td ui-table-data>{{product.seller}}</td>
+                <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
                 <td ui-table-data>
                   <!-- <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button> -->
-                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button iconCode="delete" tooltip="delete" class="btn-text small" >delete</button>
+                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button iconCode="delete" tooltip="delete"[ngStyle]="{padding: uiTableLayoutControlService.activeDensity().padding, margin: uiTableLayoutControlService.activeDensity().margin}" class="btn-text small" >delete</button>
                 </td>
               </tr>
             }
@@ -228,12 +274,13 @@
                 <td ui-table-data>{{product.price_per_item}}</td>
                 <td ui-table-data>{{product.price}}</td>
                 <td ui-table-data>{{product.count}}</td>
-                <td ui-table-data>{{product.seller}}</td>
-                <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
                 <td ui-table-data>{{product.product_type}}</td>
                 <td ui-table-data>{{product.brand}}</td>
+                <td ui-table-data>{{product.seller}}</td>
+                <td ui-table-data>{{`${product.purchase_date | date: 'medium'}`}}</td>
                 <td ui-table-data>
-                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button>
+                  <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button iconCode="delete" tooltip="delete"[ngStyle]="{padding: uiTableLayoutControlService.activeDensity().padding, margin: uiTableLayoutControlService.activeDensity().margin}" class="btn-text small" >delete</button>
+                  <!-- <button (click)="deleteProduct({id: product.id, name: product.name})" ui-button-icon iconCode="delete" tooltip="delete" class="btn-circle-tooltip" ></button> -->
                 </td>
               </tr>
             }

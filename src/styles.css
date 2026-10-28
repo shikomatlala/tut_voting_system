@@ -306,7 +306,7 @@ select
 {
   flex                        : 1;
   border                      : #0015247f       ;
-  background-color: aliceblue;
+  background-color: transparent;
   border-radius: var(--theme-border-radius);
   padding: var(--theme-padding);
   width: auto;

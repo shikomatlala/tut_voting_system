@@ -1,8 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, inject, OnInit, viewChild } from '@angular/core';
 import { UiTableModule } from '../ui-table/ui-table.module';
 import { ProductListServicve } from '../../services/productList.service';
 import { UiButton } from '../ui-button/ui-button';
-import { CurrencyPipe, DatePipe, UpperCasePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, UpperCasePipe, NgStyle } from '@angular/common';
 import { UiIcon } from '../ui-icon/ui-icon';
 import { UiCardModule } from '../ui-card/ui-card.module';
 import { UiInput } from '../ui-input/ui-input';
@@ -13,7 +13,6 @@ import { UIDialogService } from '../../services/ui-dialog.service';
 import { TableLayoutControlService } from '../../services/tableLayoutControl.service';
 import { ProductInterface } from '../../Interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
-
 @Component({
   selector: 'ui-product-list-table',
   imports: [
@@ -27,12 +26,14 @@ import { ProductService } from '../../services/product.service';
     ReactiveFormsModule,
     UiButtonIcon,
     DatePipe,
-    CurrencyPipe
+    CurrencyPipe,
+    NgStyle
 ],
   templateUrl: './ui-product-list-table.html',
   styleUrl: './ui-product-list-table.css',
 })
 export class UiProductListTable implements OnInit {
+  @ViewChild('inputName', {read: ElementRef}) productInputName! : ElementRef<HTMLInputElement>
   productService = inject(ProductService);
   uiTableLayoutControlService = inject(TableLayoutControlService);
   uiDialogService = inject(UIDialogService);
@@ -91,7 +92,10 @@ export class UiProductListTable implements OnInit {
       product: productForm.value
     };
     this.productListService.addProduct(product).subscribe(()=>{
-      this.productListService.getProductsFromServer().subscribe();
+      this.productListService.getProductsFromServer().subscribe(()=>{
+        this.productInputName.nativeElement.value = "";
+        this.productInputName.nativeElement.focus();
+      });
     });
   }
 
