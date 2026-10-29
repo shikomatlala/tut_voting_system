@@ -8,7 +8,7 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'ui-products-tab-group',
-  imports: [UiTabGroup, UiTab, UiButton, UiTabButton, NgClass],
+  imports: [UiTabGroup, UiTab, UiTabButton, NgClass],
   templateUrl: './ui-products-tab-group.html',
   styleUrl: './ui-products-tab-group.css',
 })

@@ -24,7 +24,6 @@ import { ProductService } from '../../services/product.service';
     FormsModule,
     UiInput,
     ReactiveFormsModule,
-    UiButtonIcon,
     DatePipe,
     CurrencyPipe,
     NgStyle

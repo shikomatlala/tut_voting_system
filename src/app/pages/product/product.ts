@@ -17,7 +17,6 @@ import { UiProductsTabGroup } from '../../components/ui-products-tab-group/ui-pr
     UiTopNav,
     UiSideNav,
     RouterOutlet,
-    UiProductListSearch,
     UiProductsTabGroup
 ],
   templateUrl: './product.html',

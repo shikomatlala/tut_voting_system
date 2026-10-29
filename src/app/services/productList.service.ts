@@ -478,7 +478,7 @@ export class ProductListServicve
 
   queryProductsFromServer(queryParams: {field: string, value: string}, filterType?:string) : Observable<any>
   {
-    var configuredURL = `${this.url}/query/field?field=${queryParams.field}&value=${queryParams.value}`;
+    var configuredURL = `${this.url}/query/field?field=${queryParams.field}&value=${encodeURIComponent(queryParams.value)}`;
     console.log(configuredURL);
     return this.http
       .get(configuredURL)

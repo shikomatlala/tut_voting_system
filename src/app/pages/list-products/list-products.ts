@@ -15,7 +15,6 @@ import { UiProductListFilters } from '../../components/ui-product-list-filters/u
     UiProductListSearch,
     UiProductListTable,
     UiProductView,
-    UiProductListFilters,
     UiCardModule],
   templateUrl: './list-products.html',
   styleUrl: './list-products.css',

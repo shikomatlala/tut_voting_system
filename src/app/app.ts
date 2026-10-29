@@ -21,7 +21,6 @@ import { UiDialog } from './components/ui-dialog/ui-dialog';
     UiLoader,
     RouterOutlet,
     UiSnackbar,
-    Footer,
     UiDialog
 ]
 })
