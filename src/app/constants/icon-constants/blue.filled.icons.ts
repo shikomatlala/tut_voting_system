@@ -103,6 +103,8 @@ export const BLUE_FILLED_ICONS = [
     { color: "blue", state: "filled", code: "earlyOn", src: "assets/icons/filled/blue/earlyOn.svg", alt: "earlyOn icon"},
     { color: "blue", state: "filled", code: "editCalendar", src: "assets/icons/filled/blue/editCalendar.svg", alt: "editCalendar icon"},
     { color: "blue", state: "filled", code: "editDocument", src: "assets/icons/filled/blue/editDocument.svg", alt: "editDocument icon"},
+    { color: "blue", state: "filled", code: "electricalServices", src: "assets/icons/filled/blue/electricalServices.svg", alt: "electricalServices icon"},
+    { color: "blue", state: "filled", code: "electricBolt", src: "assets/icons/filled/blue/electricBolt.svg", alt: "electricBolt icon"},
     { color: "blue", state: "filled", code: "error", src: "assets/icons/filled/blue/error.svg", alt: "error icon"},
     { color: "blue", state: "filled", code: "event", src: "assets/icons/filled/blue/event.svg", alt: "event icon"},
     { color: "blue", state: "filled", code: "eventAvailable", src: "assets/icons/filled/blue/eventAvailable.svg", alt: "eventAvailable icon"},

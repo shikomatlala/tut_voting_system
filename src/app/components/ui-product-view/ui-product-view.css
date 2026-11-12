@@ -1,0 +1,10 @@
+.fixed-card-for-split-view
+{
+  position                    : fixed;
+  /* position: relative; */
+  /* top                         : 265px; */
+  width                       : calc(50dvw - 80px);
+  /* width: 100%; */
+  overflow-y                  : scroll;
+  /* background-color            : green; */
+}

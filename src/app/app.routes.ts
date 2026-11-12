@@ -13,6 +13,8 @@ import { Product } from './pages/product/product';
 import { ViewProducts } from './pages/view-products/view-products';
 import { ListProducts } from './pages/list-products/list-products';
 import { ProductsStatistics } from './pages/products-statistics/products-statistics';
+import { Utilities } from './pages/utilities/utilities';
+import { Electricity } from './pages/electricity/electricity';
 
 export const routes: Routes = [
   { path: "error", component: ErrorPage},
@@ -24,10 +26,13 @@ export const routes: Routes = [
   { path: "elections", component: Elections  },
   { path: "vote-complete", component: VoteComplete },
   { path: "dashboard", component: Dashboard },
+  { path: "utilities", component: Utilities},
+  { path: "electricity", component: Electricity},
   { path: "account", component: Account},
   { path: "product",
     component: Product,
     children: [
+      { path : "", component: ListProducts},
       { path : "list-products", component: ListProducts},
       { path : "statistics", component: ProductsStatistics}
     ]

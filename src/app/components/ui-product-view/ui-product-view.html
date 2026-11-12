@@ -1,7 +1,7 @@
 
-  <div ui-card-container  style="overflow: hidden;">
+  <div ui-card-container class="fixed-card-for-split-view">
     <form ui-form #productForm="ngForm" class="remove-styles">
-    <div style="height: calc(100dvh - 320px); ;overflow: hidden;overflow-y: scroll;" >
+    <div style="height: calc(100dvh - 300px); ;overflow: hidden;overflow-y: scroll;" >
       @if(productService.getIsProductSelected())
       {
 
@@ -232,7 +232,6 @@
             <div style="display: flex;
                           position: sticky;
                           bottom: 0%;
-                          background: #ff0000;
                           width: 100%;
                           width: calc(100% - 1000px);
                           width: 100%;

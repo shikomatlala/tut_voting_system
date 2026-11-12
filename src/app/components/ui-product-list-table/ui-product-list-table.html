@@ -1,15 +1,10 @@
       @switch(uiTableLayoutControlService.getLayout())
       {
         @case('split'){
-      <div class="section" style="
-          margin-left: 0;
-          position: relative;
-          left:0;
-          width: 100%;
-          margin-top: 0;">
+      <div class="section" style="width:calc(50dvw - 80px);">
         <div ui-card-container class="scrollable-table remove-margin-and-padding remove-background-color">
-          <div ui-card-container class="scrollable-table remove-margin-and-padding remove-background-color" style="height:calc(100dvh - 260px)">
-          <table ui-table style="width:100%">
+          <div ui-card-container class="scrollable-table remove-margin-and-padding remove-background-color" >
+          <table ui-table style="width: 100%!important;">
             <tr ui-table-row class="header">
                 <td ui-table-data class="header">
                   <button
@@ -136,15 +131,9 @@
         }
         @case('unsplit')
         {
-      <div class="section" style="
-          margin-left: 0;
-          border-radius: 0;
-          position: relative;
-          left: 70px;
-          width: calc(100% - 70px);
-          margin-top: 0;">
+      <div class="section">
         <div ui-card-container class="scrollable-table remove-margin-and-padding remove-background-color">
-          <div ui-card-container class="scrollable-table remove-margin-and-padding remove-background-color" style="height:calc(100dvh - 260px)">
+          <div ui-card-container class="scrollable-table remove-margin-and-padding remove-background-color" >
           <table ui-table>
             <tr ui-table-row class="header">
               @for(column of productListService.getColumnTitles(); track $index) {
@@ -269,7 +258,9 @@
             @for(product of this.productListService.getProductCollection(); track $index)
             {
               <tr ui-table-row>
-                <td ui-table-data>{{product.id}}</td>
+                <button ui-button [ngStyle]="{padding: uiTableLayoutControlService.activeDensity().padding, margin: uiTableLayoutControlService.activeDensity().margin}" class="btn-text">
+                  {{product.id }}
+                </button>
                 <td ui-table-data>{{product.name}}</td>
                 <td ui-table-data>{{product.price_per_item}}</td>
                 <td ui-table-data>{{product.price}}</td>

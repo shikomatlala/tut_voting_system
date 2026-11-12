@@ -1,8 +1,8 @@
-.fault-issued-controls-section
+.list-products-controls-section
 {
   border-bottom: 1px solid rgb(233, 233, 233);
 }
-.fault-issued-controls-list-ul
+.list-products-controls-list-ul
 {
   display: flex;
   list-style:none;
@@ -12,7 +12,7 @@
   padding: 0;
   margin: 0;
 }
-.fault-issued-controls-list-paginator
+.list-products-controls-list-paginator
 {
   width: 100%;
   display: flex;
@@ -20,22 +20,22 @@
   margin-right: 100px;
   user-select: none;
 }
-.fault-issued-main-window-section
+.list-products-main-window-section
 {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  width: calc(100dvw - 100px);
-  position: relative;
-  left: 35px;
-  height: calc(100dvh - 300px);
-  align-items: center;
-  justify-items: center;
-  border-radius: var(--theme-border-radius);
-  /* padding: var(--theme-padding);
-  margin: var(--theme-margin); */
+  display                   : grid;
+  left                      : 80px;
+  grid-template-columns     : 50% 50%;
+  width                     : calc(100dvw - 90px);
+  position                  : fixed;
+  top                       : 265px;
+  height                    : calc(100dvh - 260px);
+  align-items               : center;
+  justify-items             : center;
+  border-radius             : var(--theme-border-radius);
 }
-.fault-issued-main-window-column-div
+.list-products-main-window-column-div
 {
+  /* background-color: orange; */
   height: calc(100vh - 200px);
   overflow-y: scroll;
   width: 100%;

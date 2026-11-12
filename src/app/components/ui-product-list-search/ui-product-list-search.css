@@ -9,11 +9,13 @@
 
 .section
 {
-  padding-bottom              : 0px;
+  position                    : fixed;
+  top                         : 140px;
+  left                        : 80px;
   width                       : calc(100dvw - 90px);
-  margin-top                  : 75px;
   overflow-y                  : scroll;
-  margin-left                 : 80px;
+  margin-left                 : 00px;
   display                     : flex;
   align-items                 : center;
+  /* background-color:red; */
 }

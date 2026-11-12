@@ -1,70 +1,74 @@
 
-  <div class="section" style="overflow:unset;">
-    <div ui-card-container class="remove-margin-and-padding remove-background-color">
-      <div ui-input-field
-        class="flex remove-margin  white-background"
-        style="width: auto;"
-        [hasIcon]="false"
-      >
-        <input
-          (focus)="isSearchInputSelected.set(true)"
-          (focusout)="isSearchInputSelected.set(false)"
-          (keyup)="productListService.search(search.value)"
-          (keyup.backspace)="productListService.search(search.value)"
-          (keyup.enter)="productListService.search(search.value)"
-          type="text"
-          style="padding-left: 5px;"
-          class="no-icon"
-          ngModel
-          name="search"
-          id="search"
-          #search="ngModel"
-          [(ngModel)]="searchValue"
-          ui-input
-          placeholder="Search Produts"
-        />
-        @if(productListService.getSearchStatus())
-        {
-          <button
-            ui-button-icon
-            iconCode="close"
-            [iconColor]="isSearchInputSelected() ? 'blue': 'grey'"
-            title="close"
-            (focus)="isSearchInputSelected.set(true)"
-            (click)="clearSearchInputBox()"
-            (click)="productListService.search('')"
-            (focusout)="isSearchInputSelected.set(false)"
-            type="submit"
-            /* class="button button-icon button-circle" */
-            class="button button-icon button-circle"
-            >
-          </button>
-
-        }
-        @else {
-          <button
-            ui-button-icon
-            iconCode="search"
-            [iconColor]="isSearchInputSelected() ? 'blue': 'grey'"
-            title="search"
-            (focus)="isSearchInputSelected.set(true)"
-            (click)="productListService.search(search.value)"
-            (focusout)="isSearchInputSelected.set(false)"
-            type="submit"
-            /* class="button button-icon button-circle" */
-            class="button-text circle no-border"
-            >
-          </button>
-        }
-      </div>
-    </div>
-    <ui-table-layout-controls></ui-table-layout-controls>
-    <button ui-button-icon (click)="productListService.resetAllFilters()" iconCode="refresh" class="btn-outlined flex rotate-icon small" >Reset Filters</button>
+  <div class="section" style="overflow:unset;display:grid">
     <div style="display:flex;flex-wrap: wrap;">
+      <div ui-card-container class="remove-margin-and-padding remove-background-color">
+        <div ui-input-field
+          class="flex remove-margin  white-background remove-padding"
+          style="width: auto;margin-left: 10px !important"
+          [hasIcon]="false"
+        >
+          <input
+            (focus)="isSearchInputSelected.set(true)"
+            (focusout)="isSearchInputSelected.set(false)"
+            (keyup)="productListService.search(search.value)"
+            (keyup.backspace)="productListService.search(search.value)"
+            (keyup.enter)="productListService.search(search.value)"
+            type="text"
+            style="padding-left: 5px;"
+            class="no-icon"
+            ngModel
+            name="search"
+            id="search"
+            #search="ngModel"
+            [(ngModel)]="searchValue"
+            ui-input
+            placeholder="Search Produts"
+          />
+          @if(productListService.getSearchStatus())
+          {
+            <button
+              ui-button-icon
+              iconCode="close"
+              [iconColor]="isSearchInputSelected() ? 'blue': 'grey'"
+              title="close"
+              (focus)="isSearchInputSelected.set(true)"
+              (click)="clearSearchInputBox()"
+              (click)="productListService.search('')"
+              (focusout)="isSearchInputSelected.set(false)"
+              type="submit"
+              /* class="button button-icon button-circle" */
+              class="button button-icon button-circle"
+              >
+            </button>
+
+          }
+          @else {
+            <button
+              ui-button-icon
+              iconCode="search"
+              [iconColor]="isSearchInputSelected() ? 'blue': 'grey'"
+              title="search"
+              (focus)="isSearchInputSelected.set(true)"
+              (click)="productListService.search(search.value)"
+              (focusout)="isSearchInputSelected.set(false)"
+              type="submit"
+              /* class="button button-icon button-circle" */
+              class="button-text circle no-border"
+              >
+            </button>
+          }
+        </div>
+      </div>
+      <ui-table-layout-controls></ui-table-layout-controls>
+      <button ui-button-icon (click)="productListService.resetAllFilters()" iconCode="refresh" class="btn-outlined flex rotate-icon small" >Reset Filters</button>
       <ui-product-list-filters labelName="Classification" filterType="classification" [dataSource]="productListService.getProductClassifications()"></ui-product-list-filters>
-      <!-- <ui-product-list-filters labelName="Purchase Date" filterType="purchase_date" [dataSource]="productListService.getProductPurchaseDates()"></ui-product-list-filters> -->
+      <ui-product-list-filters labelName="Purchase Date" filterType="purchase_date" [dataSource]="productListService.getProductPurchaseDates()"></ui-product-list-filters>
       <ui-product-list-filters labelName="Product Type" filterType="product_type" [dataSource]="productListService.getProductTypes()"></ui-product-list-filters>
       <ui-product-list-filters labelName="Seller" filterType="seller" [dataSource]="productListService.getProductSellers()"></ui-product-list-filters>
       <ui-product-list-filters labelName="Brand" filterType="brand" [dataSource]="productListService.getProductBrands()"></ui-product-list-filters>
     </div>
+    <!-- <div class="" style="margin-top: 5px;">
+      <div style="display:flex;flex-wrap: wrap;">
+      </div>
+    </div> -->
   </div>

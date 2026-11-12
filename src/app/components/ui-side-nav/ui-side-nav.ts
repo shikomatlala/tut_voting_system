@@ -17,7 +17,9 @@ export class UiSideNav implements OnInit {
   private router = inject(Router);
   public tabs = [
 
-    { name : "product", isActive: false, iconCode: "shoppingCart", label: "Products" }
+    { name : "product", isActive: false, iconCode: "shoppingCart", label: "Products" },
+    { name : "electricity", isActive: false, iconCode: "electricBolt", label: "Electricity" },
+    { name : "utilities", isActive: false, iconCode: "electricalServices", label: "Utilities" }
 
   ]
 

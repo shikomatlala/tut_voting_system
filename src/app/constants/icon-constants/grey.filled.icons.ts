@@ -100,6 +100,8 @@ export const GREY_FILLED_ICONS = [
     { color: "grey", state: "filled", code: "earlyOn", src: "assets/icons/filled/grey/earlyOn.svg", alt: "earlyOn icon"},
     { color: "grey", state: "filled", code: "editCalendar", src: "assets/icons/filled/grey/editCalendar.svg", alt: "editCalendar icon"},
     { color: "grey", state: "filled", code: "editDocument", src: "assets/icons/filled/grey/editDocument.svg", alt: "editDocument icon"},
+    { color: "grey", state: "filled", code: "electricalServices", src: "assets/icons/filled/grey/electricalServices.svg", alt: "electricalServices icon"},
+    { color: "grey", state: "filled", code: "electricBolt", src: "assets/icons/filled/grey/electricBolt.svg", alt: "electricBolt icon"},
     { color: "grey", state: "filled", code: "error", src: "assets/icons/filled/grey/error.svg", alt: "error icon"},
     { color: "grey", state: "filled", code: "event", src: "assets/icons/filled/grey/event.svg", alt: "event icon"},
     { color: "grey", state: "filled", code: "eventAvailable", src: "assets/icons/filled/grey/eventAvailable.svg", alt: "eventAvailable icon"},

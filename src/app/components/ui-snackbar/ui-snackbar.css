@@ -1,6 +1,7 @@
 .snack-bar-div
 {
   /* width:fit-content; */
+  user-select: none;
   position:fixed;
   top: 30px;
   left:50%;
