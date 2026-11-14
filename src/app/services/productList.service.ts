@@ -112,6 +112,58 @@ export class ProductListServicve
  {
   return this.productTypes();
  }
+
+
+
+ queryProductPurchaseDates( queryParams: {property: string, value: string } = {property: "DATE", value: "2026-11-09"}) : Observable<any>
+ {
+
+  var configuredURL = `${this.url}/query/purchase-date?property=${queryParams.property}&value=${encodeURIComponent(queryParams.value)}`;
+    return this.http
+      .get(configuredURL)
+        .pipe(
+          map((response:any)=>{
+            if(response.status)
+            {
+              this.snackbarService.setMessage(`Products are now filtered by ${queryParams.property} of ${queryParams.value}`);
+              const products = response.data;
+              let tempTotalPricePerItem: number = 0.0;
+              let tempTotalPrice: number = 0.0;
+              let tempTotalEntitiesCount:  number = 0;
+              this.totalProducts.set(products.length);
+              for(let x = 0; x < this.totalProducts(); x++)
+              {
+                products[x].purchase_date = new Date(products[x].purchase_date);
+                tempTotalPricePerItem += products[x].price_per_item;
+                tempTotalPrice += products[x].price;
+                tempTotalEntitiesCount += products[x].count;
+              }
+
+              this.totalPrice.set(tempTotalPrice);
+              this.totalPricePerItem.set(tempTotalPricePerItem);
+              this.totalEntitiesCount.set(tempTotalEntitiesCount);
+              this.activeProductCollection.set(products);
+            }
+            return response;
+          }),
+          catchError((err)=>{
+            if(err.error.message)
+            {
+              this.snackbarService.setMessage(err.error.message);
+              return err.error.message;
+            }
+            else
+            {
+              this.snackbarService.setMessage("an error occured during products list retrieval");
+              return of(err);
+            }
+          }),
+          finalize(()=>{
+            this.snackbarService.startSnackBar();
+          })
+        )
+ }
+
   setProductNames(): Observable<any>
   {
     return this.http
@@ -468,6 +520,12 @@ export class ProductListServicve
   setProductListFilterParameter(queryParams: {field: string, value: string})
   {
     this.productListFilterParameter.set(queryParams);
+  }
+
+
+  filterProductPurchaseDates(queryParams: {property: string, value:string})
+  {
+    this.queryProductPurchaseDates(queryParams).subscribe();
   }
 
   filterProductList(queryParams: {field: string, value:string}, filterType?:string)

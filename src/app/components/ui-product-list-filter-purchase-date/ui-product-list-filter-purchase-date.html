@@ -1,0 +1,27 @@
+<div ui-input-field class="has-label" [hasIcon]="false" style="width:300px;display:grid; grid-template-columns: auto auto; margin:0;padding:2px;">
+  <label ui-input-label>{{labelName()}}</label>
+  <input
+    style="padding-left: 5px;"
+    ngModel
+    #purchaseDate="ngModel"
+    type="date"
+    id="purchaseDate"
+    name="purchaseDate"
+    [ngModel]="today.toLocaleDateString('en-CA')"
+    (input)="filterProdcutPurchaseDates(purchaseDate, filterOptions)"
+    >
+  <select
+    ngModel
+    #filterOptions="ngModel"
+    (change)="filterProdcutPurchaseDates(purchaseDate, filterOptions)"
+    name="filterOptions"
+    [ngModel]="'YEAR'"
+    id="filterOptions"
+  >
+
+    <option ui-option value="YEAR" selected> YEAR </option>
+    <option ui-option value="MONTH" > MONTH </option>
+    <option ui-option value="WEEK" > WEEK </option>
+    <option ui-option value="DATE" > DATE</option>
+  </select>
+</div>

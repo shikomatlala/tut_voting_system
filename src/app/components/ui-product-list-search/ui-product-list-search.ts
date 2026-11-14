@@ -7,6 +7,7 @@ import { UiCardModule } from '../ui-card/ui-card.module';
 import { UiTableLayoutControls } from '../ui-table-layout-controls/ui-table-layout-controls';
 import { UiInput } from '../ui-input/ui-input';
 import { UiProductListFilters } from '../ui-product-list-filters/ui-product-list-filters';
+import { UiProductListFilterPurchaseDate } from '../ui-product-list-filter-purchase-date/ui-product-list-filter-purchase-date';
 @Component({
   selector: 'ui-product-list-search',
   imports: [
@@ -16,7 +17,8 @@ import { UiProductListFilters } from '../ui-product-list-filters/ui-product-list
     UiCardModule,
     UiTableLayoutControls,
     UiInput,
-    UiProductListFilters
+    UiProductListFilters,
+    UiProductListFilterPurchaseDate
 ],
   templateUrl: './ui-product-list-search.html',
   styleUrl: './ui-product-list-search.css',
