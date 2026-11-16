@@ -6,13 +6,16 @@ import { CurrencyPipe, DatePipe, UpperCasePipe, NgStyle } from '@angular/common'
 import { UiIcon } from '../ui-icon/ui-icon';
 import { UiCardModule } from '../ui-card/ui-card.module';
 import { UiInput } from '../ui-input/ui-input';
-import { FormControl, FormGroup, FormsModule, NgForm, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgForm, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UiForm } from '../ui-form/ui-form';
 import { UiButtonIcon } from '../ui-button-icon/ui-button-icon';
 import { UIDialogService } from '../../services/ui-dialog.service';
 import { TableLayoutControlService } from '../../services/tableLayoutControl.service';
 import { ProductInterface } from '../../Interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
+import { UiPopover } from '../ui-popover/ui-popover';
+import { UiProductView } from '../ui-product-view/ui-product-view';
+import { SnackbarService } from '../../services/snackbar.service';
 @Component({
   selector: 'ui-product-list-table',
   imports: [
@@ -26,7 +29,9 @@ import { ProductService } from '../../services/product.service';
     ReactiveFormsModule,
     DatePipe,
     CurrencyPipe,
-    NgStyle
+    NgStyle,
+    UiPopover,
+    UiProductView
 ],
   templateUrl: './ui-product-list-table.html',
   styleUrl: './ui-product-list-table.css',
@@ -36,15 +41,16 @@ export class UiProductListTable implements OnInit {
   productService = inject(ProductService);
   uiTableLayoutControlService = inject(TableLayoutControlService);
   uiDialogService = inject(UIDialogService);
+  uiSnackbar = inject(SnackbarService);
   productListService = inject(ProductListServicve);
   productForm : FormGroup = new FormGroup(
     {
-      name:  new FormControl(""),
-      price_per_item:  new FormControl(0.0),
-      price:  new FormControl(0.0),
-      count:  new FormControl(1),
-      seller:  new FormControl(""),
-      purchase_date:  new FormControl(new Date()),
+      name:  new FormControl("", Validators.required),
+      price_per_item:  new FormControl(0.0, Validators.required),
+      price:  new FormControl(0.0, Validators.required),
+      count:  new FormControl(1, Validators.required),
+      seller:  new FormControl("", Validators.required),
+      purchase_date:  new FormControl(new Date(), Validators.required),
       product_type:  new FormControl(""),
       brand:  new FormControl("")
     }
@@ -66,12 +72,12 @@ export class UiProductListTable implements OnInit {
     this.productListService.getProductsFromServer().subscribe();
     this.productForm = new FormGroup(
       {
-        name:  new FormControl(""),
-        price_per_item:  new FormControl(0.0),
-        price:  new FormControl(0.0),
-        count:  new FormControl(1),
-        seller:  new FormControl(""),
-        purchase_date:  new FormControl(new Date()),
+        name:  new FormControl("", Validators.required),
+        price_per_item:  new FormControl(0.0, Validators.required),
+        price:  new FormControl(0.0, Validators.required),
+        count:  new FormControl(1, Validators.required),
+        seller:  new FormControl("", Validators.required),
+        purchase_date:  new FormControl(new Date(), Validators.required),
         product_type:  new FormControl(""),
         brand:  new FormControl("")
       }
@@ -87,15 +93,24 @@ export class UiProductListTable implements OnInit {
 
   addProduct( productForm: FormGroup)
   {
-    let product = {
-      product: productForm.value
-    };
-    this.productListService.addProduct(product).subscribe(()=>{
-      this.productListService.getProductsFromServer().subscribe(()=>{
-        this.productInputName.nativeElement.value = "";
-        this.productInputName.nativeElement.focus();
+    if(productForm.valid)
+    {
+      let product = {
+        product: productForm.value
+      };
+      this.productListService.addProduct(product).subscribe(()=>{
+        this.productListService.getProductsFromServer().subscribe(()=>{
+          this.productInputName.nativeElement.value = "";
+          this.productInputName.nativeElement.focus();
+        });
       });
-    });
+    }
+    else
+    {
+      this.uiSnackbar.setMessage("Enter all missing required inputs to proceed");
+      this.uiSnackbar.startSnackBar();
+
+    }
   }
 
   greet(product: ProductInterface)
@@ -105,3 +120,5 @@ export class UiProductListTable implements OnInit {
 
 
 }
+
+

@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, effect, input, inject, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { UiCardModule } from '../ui-card/ui-card.module';
 import { UiInputField } from '../ui-input-field/ui-input-field';
@@ -7,9 +7,11 @@ import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from
 import { UiInputLabel } from '../ui-input-label/ui-input-label';
 import { UiButton } from '../ui-button/ui-button';
 import { UIDialogService } from '../../services/ui-dialog.service';
-import { formatDate, NgClass } from '@angular/common';
+import { formatDate, NgClass, NgStyle } from '@angular/common';
 import { UiForm } from '../ui-form/ui-form';
 import { SnackbarService } from '../../services/snackbar.service';
+import { ProductListServicve } from '../../services/productList.service';
+import { UiPopover } from '../ui-popover/ui-popover';
 
 @Component({
   selector: 'ui-product-view',
@@ -23,14 +25,18 @@ import { SnackbarService } from '../../services/snackbar.service';
     UiButton,
     ReactiveFormsModule,
     UiForm,
+    NgStyle
 ],
   templateUrl: './ui-product-view.html',
   styleUrl: './ui-product-view.css',
 })
 export class UiProductView  {
 
+
   snackbar = inject(SnackbarService);
   uiDialogService = inject(UIDialogService);
+  isViewAsSplitView = input<boolean>(true);
+  productListService = inject(ProductListServicve);
   productService = inject(ProductService);
   productForm  = new FormGroup(
     {
@@ -76,7 +82,7 @@ export class UiProductView  {
     if(productForm.dirty)
     {
       this.productService.update().subscribe();
-      this.productForm.reset();
+      productForm.resetForm(productForm.value);
     }
     else
     {

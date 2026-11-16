@@ -1,6 +1,7 @@
 
 :host
 {
+  height: 100%;
   margin                  : 5px;
   margin-bottom           : 10px;
   background-color        : aliceblue ;

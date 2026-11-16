@@ -10,7 +10,6 @@ import { ProductListServicve } from '../../services/productList.service';
   selector: 'ui-product-list-filter-purchase-date',
   imports: [
     UiOption,
-    NgClass,
     FormsModule,
     UiInputField,
     UiInputLabel
@@ -26,7 +25,6 @@ export class UiProductListFilterPurchaseDate {
 
   filterProdcutPurchaseDates(purchaseDate: NgModel, filterOption: NgModel)
   {
-
     this.productListService.filterProductPurchaseDates({property: filterOption.value, value: purchaseDate.value});
   }
 

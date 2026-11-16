@@ -1,0 +1,26 @@
+<div class="popover-close-button-container">
+  <button
+    ui-button-icon
+    iconCode="cancel"
+    iconHeight="24"
+    iconWidth="24"
+    iconColor="blue"
+    title="Close"
+    [attr.popovertarget]="id()"
+    class="
+      btn-icon
+      title-bottom
+      button-circle
+    "></button>
+</div>
+<div>
+  <ng-content></ng-content>
+  @if(snackBarService.getIsShowing())
+  {
+    <ui-snackbar></ui-snackbar>
+  }
+  @if(uiDialogService.getIsShowingModal())
+  {
+    <div ui-dialog></div>
+  }
+</div>

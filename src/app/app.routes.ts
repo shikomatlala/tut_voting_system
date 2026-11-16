@@ -32,7 +32,7 @@ export const routes: Routes = [
   { path: "product",
     component: Product,
     children: [
-      { path : "", component: ListProducts},
+      { path : "", redirectTo: "list-products", pathMatch: "full"},
       { path : "list-products", component: ListProducts},
       { path : "statistics", component: ProductsStatistics}
     ]

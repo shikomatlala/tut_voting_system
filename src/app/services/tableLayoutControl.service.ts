@@ -120,7 +120,6 @@ export class TableLayoutControlService
     {
       if(density.isActive)
       {
-        console.log(density);
         return density;
       }
     }

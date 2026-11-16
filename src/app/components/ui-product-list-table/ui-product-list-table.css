@@ -4,8 +4,7 @@
   top                         : 265px;
   left                        : 80px;
   width                       : calc(100dvw - 90px);
-  overflow-y                  : scroll;
-  /* background-color: red; */
+  overflow: hidden;
 }
 
 
@@ -14,9 +13,8 @@
 {
   padding: 0;
   margin: 0;
-   overflow: hidden;
-    overflow-y: scroll;
-   height: calc(100dvh - 270px);
+  overflow-y: scroll;
+  height: calc(100dvh - 270px);
 }
 
 .table-input

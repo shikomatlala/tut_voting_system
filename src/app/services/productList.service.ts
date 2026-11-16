@@ -36,6 +36,7 @@ export class ProductListServicve
   private productTypes = signal<Array<{id:string, value:string}>>([]);
   private productClassifications = signal<Array<{id:string, value:string}>>([]);
   private productSellers = signal<Array<{id:string, value:string}>>([]);
+  private productUnitsOfMeasurement = signal<Array<{id:string, value:string}>>([]);
   private productBrands = signal<Array<{id:string, value:string}>>([]);
   private productNames = signal<Array<{id:string, value:string}>>([]);
   private productPurchaseDates = signal<Array<{id:string, value:string}>>([]);
@@ -108,6 +109,10 @@ export class ProductListServicve
  {
   return this.productSellers();
  }
+ getProductUnitsOfMeasurement(): Array<{id:string, value:string}>
+ {
+  return this.productUnitsOfMeasurement();
+ }
  getProductTypes(): Array<{id:string, value:string}>
  {
   return this.productTypes();
@@ -173,6 +178,19 @@ export class ProductListServicve
             if(response.status)
             {
               this.productNames.set(response.data.names);
+            }
+          })
+        )
+  }
+  setProductUnitsOfMeasurement() : Observable<any>
+  {
+    return this.http
+      .get(this.url + `/query/group?field=unitOfMeasurement`)
+        .pipe(
+          map((response:any)=>{
+            if(response.status)
+            {
+              this.productUnitsOfMeasurement.set(response.data.units_of_measurement)
             }
           })
         )
@@ -599,6 +617,7 @@ export class ProductListServicve
               this.setProductPurchaseDates().subscribe();
               this.setProductSellers().subscribe();
               this.setProductTypes().subscribe();
+              this.setProductUnitsOfMeasurement().subscribe();
             }
             const products = response.data;
             if(products.length > 0)
@@ -692,7 +711,7 @@ export class ProductListServicve
     {
       this.isSearchOn.set(true);
       this.productCollection.set(this.getActiveProductCollection());
-      return this.productCollection.set(this.productCollection().filter(product => product.name.toString().toLowerCase().includes(value.toLowerCase())))
+      return this.productCollection.set(this.productCollection().filter(product => { return product.name.toString().toLowerCase().includes(value.toLowerCase())}))
     }
     this.isSearchOn.set(false);
     return this.productCollection.set(this.getActiveProductCollection());
