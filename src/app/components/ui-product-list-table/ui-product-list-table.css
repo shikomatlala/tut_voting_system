@@ -1,5 +1,8 @@
 .section
 {
+  border-top: 1px solid #f2f2f2;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
   position                    : fixed;
   top                         : 265px;
   left                        : 80px;
